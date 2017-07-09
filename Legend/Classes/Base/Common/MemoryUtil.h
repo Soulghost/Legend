@@ -21,6 +21,21 @@ _##ptr = ptr; \
 _##ptr->retain(); \
 }while(0);
 
-#include <stdio.h>
+#define SINGLETON(__TYPE__) \
+    static __TYPE__* getInstance() { \
+    static __TYPE__ *instance = nullptr; \
+    if (instance == nullptr) { \
+        instance = new(std::nothrow) __TYPE__(); \
+        if (instance && instance->init()) { \
+            return instance; \
+        } else { \
+            delete instance; \
+            instance = nullptr; \
+            return nullptr; \
+        } \
+    } \
+    return instance; \
+} \
+bool init(); \
 
 #endif /* MemoryUtil_hpp */

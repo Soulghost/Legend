@@ -11,5 +11,6 @@
 
 #include "MemoryUtil.h"
 #include "LayoutUtil.h"
+#include "LGUITheme.h"
 
 #endif /* Legend_h */

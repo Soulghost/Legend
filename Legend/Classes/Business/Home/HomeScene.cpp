@@ -33,15 +33,13 @@ bool HomeScene::init() {
     return true;
 }
 
-void HomeScene::commonInit() {
-    Size screenSize = Director::getInstance()->getWinSize();
-    FrameNode *frameNode = FrameNode::create();
-    frameNode->setContentSize(Size(120, 40));
-    frameNode->setPosition(Vec2(61, 21));
-    this->addChild(frameNode);
-    
+void HomeScene::commonInit() {    
     LGButton *btn = LGButton::create();
-    btn->setContentSize(Size(120, 40));
+    btn->setTitle("任务");
+    btn->setTitleFont(16);
+    btn->setTitleColor(Color4B::BLACK);
+    btn->setBackgroudColor(Color3B::WHITE);
+    btn->setContentSize(Size(80, 40));
     btn->setFrameVisible(true);
     btn->setPosition(Vec2(100, 100));
     this->addChild(btn);

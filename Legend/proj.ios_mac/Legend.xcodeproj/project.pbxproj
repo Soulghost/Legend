@@ -69,6 +69,8 @@
 		6803F74C1F1257DA00384C35 /* BaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7481F1254C200384C35 /* BaseLayer.cpp */; };
 		6803F74F1F125E8000384C35 /* LayoutUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F74D1F125E8000384C35 /* LayoutUtil.cpp */; };
 		6803F7501F125F4500384C35 /* LayoutUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F74D1F125E8000384C35 /* LayoutUtil.cpp */; };
+		6803F7531F12757D00384C35 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7511F12757D00384C35 /* LGUITheme.cpp */; };
+		6803F7541F12847500384C35 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7511F12757D00384C35 /* LGUITheme.cpp */; };
 		68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729271F123B6D003EFCC1 /* FrameNode.cpp */; };
 		68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */; };
 		68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729331F1244F7003EFCC1 /* BaseNode.cpp */; };
@@ -180,6 +182,8 @@
 		6803F7491F1254C200384C35 /* BaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLayer.h; sourceTree = "<group>"; };
 		6803F74D1F125E8000384C35 /* LayoutUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayoutUtil.cpp; sourceTree = "<group>"; };
 		6803F74E1F125E8000384C35 /* LayoutUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutUtil.h; sourceTree = "<group>"; };
+		6803F7511F12757D00384C35 /* LGUITheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGUITheme.cpp; sourceTree = "<group>"; };
+		6803F7521F12757D00384C35 /* LGUITheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGUITheme.h; sourceTree = "<group>"; };
 		68B729271F123B6D003EFCC1 /* FrameNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameNode.cpp; sourceTree = "<group>"; };
 		68B729281F123B6D003EFCC1 /* FrameNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameNode.h; sourceTree = "<group>"; };
 		68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryUtil.cpp; sourceTree = "<group>"; };
@@ -413,6 +417,8 @@
 			children = (
 				6803F7451F12548A00384C35 /* LGButton.cpp */,
 				6803F7461F12548A00384C35 /* LGButton.h */,
+				6803F7511F12757D00384C35 /* LGUITheme.cpp */,
+				6803F7521F12757D00384C35 /* LGUITheme.h */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -606,6 +612,7 @@
 			files = (
 				68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				6803F7531F12757D00384C35 /* LGUITheme.cpp in Sources */,
 				6803F74A1F1254C200384C35 /* BaseLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */,
@@ -630,6 +637,7 @@
 				6803F7401F1253C900384C35 /* FrameNode.cpp in Sources */,
 				6803F73E1F1253BA00384C35 /* MemoryUtil.cpp in Sources */,
 				6803F74C1F1257DA00384C35 /* BaseLayer.cpp in Sources */,
+				6803F7541F12847500384C35 /* LGUITheme.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

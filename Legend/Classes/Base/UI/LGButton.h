@@ -12,6 +12,7 @@
 #include "BaseLayer.h"
 
 USING_NS_CC;
+using namespace std;
 
 class LGButton : public BaseLayer {
 public:
@@ -22,11 +23,16 @@ public:
     CREATE_FUNC(LGButton);
 public:
     virtual void layoutSubviews() override;
+    void setTitle(const string &title);
+    void setTitleColor(const Color4B &titleColor);
+    void setTitleFont(float font);
+    void setBackgroudColor(const Color3B &backgroudColor);
     
 private:
     Label *_titleLabel;
 private:
     void commonInit();
+    void performScale(float scale, float duration);
 };
 
 #endif

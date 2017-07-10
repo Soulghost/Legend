@@ -71,6 +71,10 @@
 		6803F7501F125F4500384C35 /* LayoutUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F74D1F125E8000384C35 /* LayoutUtil.cpp */; };
 		6803F7531F12757D00384C35 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7511F12757D00384C35 /* LGUITheme.cpp */; };
 		6803F7541F12847500384C35 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7511F12757D00384C35 /* LGUITheme.cpp */; };
+		6803F7571F13C68100384C35 /* UIControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7551F13C68100384C35 /* UIControl.cpp */; };
+		6803F75A1F13DBCC00384C35 /* UITabbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7581F13DBCC00384C35 /* UITabbar.cpp */; };
+		6803F75B1F13DF5F00384C35 /* UITabbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7581F13DBCC00384C35 /* UITabbar.cpp */; };
+		6803F75C1F13E72800384C35 /* UIControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7551F13C68100384C35 /* UIControl.cpp */; };
 		68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729271F123B6D003EFCC1 /* FrameNode.cpp */; };
 		68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */; };
 		68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729331F1244F7003EFCC1 /* BaseNode.cpp */; };
@@ -184,6 +188,11 @@
 		6803F74E1F125E8000384C35 /* LayoutUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutUtil.h; sourceTree = "<group>"; };
 		6803F7511F12757D00384C35 /* LGUITheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGUITheme.cpp; sourceTree = "<group>"; };
 		6803F7521F12757D00384C35 /* LGUITheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGUITheme.h; sourceTree = "<group>"; };
+		6803F7551F13C68100384C35 /* UIControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIControl.cpp; sourceTree = "<group>"; };
+		6803F7561F13C68100384C35 /* UIControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIControl.h; sourceTree = "<group>"; };
+		6803F7581F13DBCC00384C35 /* UITabbar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITabbar.cpp; sourceTree = "<group>"; };
+		6803F7591F13DBCC00384C35 /* UITabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabbar.h; sourceTree = "<group>"; };
+		6803F75D1F13E73300384C35 /* UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKit.h; sourceTree = "<group>"; };
 		68B729271F123B6D003EFCC1 /* FrameNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameNode.cpp; sourceTree = "<group>"; };
 		68B729281F123B6D003EFCC1 /* FrameNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameNode.h; sourceTree = "<group>"; };
 		68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryUtil.cpp; sourceTree = "<group>"; };
@@ -415,10 +424,15 @@
 		6803F7411F12545B00384C35 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6803F75D1F13E73300384C35 /* UIKit.h */,
+				6803F7551F13C68100384C35 /* UIControl.cpp */,
+				6803F7561F13C68100384C35 /* UIControl.h */,
 				6803F7451F12548A00384C35 /* LGButton.cpp */,
 				6803F7461F12548A00384C35 /* LGButton.h */,
 				6803F7511F12757D00384C35 /* LGUITheme.cpp */,
 				6803F7521F12757D00384C35 /* LGUITheme.h */,
+				6803F7581F13DBCC00384C35 /* UITabbar.cpp */,
+				6803F7591F13DBCC00384C35 /* UITabbar.h */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -611,6 +625,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */,
+				6803F7571F13C68100384C35 /* UIControl.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				6803F7531F12757D00384C35 /* LGUITheme.cpp in Sources */,
 				6803F74A1F1254C200384C35 /* BaseLayer.cpp in Sources */,
@@ -618,6 +633,7 @@
 				68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				6803F7471F12548A00384C35 /* LGButton.cpp in Sources */,
+				6803F75A1F13DBCC00384C35 /* UITabbar.cpp in Sources */,
 				68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */,
 				6803F73C1F124EA400384C35 /* HomeScene.cpp in Sources */,
 				6803F74F1F125E8000384C35 /* LayoutUtil.cpp in Sources */,
@@ -630,7 +646,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6803F74B1F12557300384C35 /* LGButton.cpp in Sources */,
+				6803F75C1F13E72800384C35 /* UIControl.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				6803F75B1F13DF5F00384C35 /* UITabbar.cpp in Sources */,
 				6803F7501F125F4500384C35 /* LayoutUtil.cpp in Sources */,
 				6803F73D1F1253B400384C35 /* HomeScene.cpp in Sources */,
 				6803F73F1F1253C700384C35 /* BaseNode.cpp in Sources */,

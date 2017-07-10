@@ -10,17 +10,17 @@
 #define __LGButton_H__
 
 #include "BaseLayer.h"
+#include "UIControl.h"
+#include "LGUITheme.h"
 
 USING_NS_CC;
 using namespace std;
 
-class LGButton : public BaseLayer {
+class LGButton : public BaseLayer, public UIControl {
 public:
     LGButton();
     ~LGButton();
-    
-    virtual bool init() override;
-    CREATE_FUNC(LGButton);
+    CREATE_FUNC_PARAMS_1(LGButton, WithFont, UIFont, font);
 public:
     virtual void layoutSubviews() override;
     void setTitle(const string &title);

@@ -38,4 +38,22 @@ _##ptr->retain(); \
 } \
 bool init(); \
 
+#define CREATE_FUNC_PARAMS_1(__TYPE__, __INIT__, P1T, P1V) \
+bool init##__INIT__(P1T P1V); \
+static __TYPE__* create##__INIT__(P1T P1V) \
+{ \
+__TYPE__ *pRet = new(std::nothrow) __TYPE__(); \
+if (pRet && pRet->init##__INIT__(P1V)) \
+{ \
+pRet->autorelease(); \
+return pRet; \
+} \
+else \
+{ \
+delete pRet; \
+pRet = nullptr; \
+return nullptr; \
+} \
+}
+
 #endif /* MemoryUtil_hpp */

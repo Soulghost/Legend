@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "HomeScene.h"
+#include "UITabbar.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -94,8 +95,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = HomeScene::createScene();
-
+    auto tabbar = UITabbar::create();
+    tabbar->addLayer(HomeScene::create());
+    tabbar->addLayer(LayerColor::create(Color4B::RED));
+    tabbar->addLayer(LayerColor::create(Color4B::BLUE));
+    tabbar->test();
+    auto scene = Scene::create();
+    scene->addChild(tabbar);
     // run
     director->runWithScene(scene);
 

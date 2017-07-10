@@ -17,21 +17,21 @@ LGButton::~LGButton() {
     
 }
 
-bool LGButton::init() {
+bool LGButton::initWithFont(UIFont font) {
     if (!BaseLayer::init()) {
         return false;
     }
-    commonInit();
-    return true;
-}
-
-void LGButton::commonInit() {
-    Label *titleLabel = Label::createWithTTF("", LGUITheme::getInstance()->cnTTF, 15);
+    Label *titleLabel = Label::createWithTTF("", font.path, font.size);
     MEMSETTER(titleLabel);
     titleLabel->setAlignment(TextHAlignment::CENTER);
     titleLabel->setTextColor(Color4B::BLACK);
     this->addChild(titleLabel);
     
+    commonInit();
+    return true;
+}
+
+void LGButton::commonInit() {
     EventListenerTouchOneByOne *touch = EventListenerTouchOneByOne::create();
     touch->onTouchBegan = [&](Touch *t, Event *e) {
         if (this->getBoundingBox().containsPoint(t->getLocation())) {
@@ -42,7 +42,7 @@ void LGButton::commonInit() {
     };
     touch->onTouchEnded = [&](Touch *t, Event *e) {
         if (this->getBoundingBox().containsPoint(t->getLocation())) {
-            CCLOG("pressed");
+            this->onClick(this);
         }
         this->performScale(1.0, 0.1);
     };
@@ -65,7 +65,7 @@ void LGButton::setTitleColor(const cocos2d::Color4B &titleColor) {
 }
 
 void LGButton::setTitleFont(float font) {
-    _titleLabel->setSystemFontSize(font);
+    _titleLabel->setBMFontSize(font);
 }
 
 void LGButton::setBackgroudColor(const cocos2d::Color3B &backgroudColor) {

@@ -14,6 +14,16 @@
 using namespace std;
 USING_NS_CC;
 
+typedef struct UIFont {
+    std::string path;
+    float size;
+    
+    UIFont(std::string _path, float _size) {
+        path = _path;
+        size = _size;
+    }
+} UIFont;
+
 class LGUITheme {
 public:
     SINGLETON(LGUITheme);

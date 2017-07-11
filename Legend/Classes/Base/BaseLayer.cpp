@@ -30,7 +30,7 @@ bool BaseLayer::init() {
 }
 
 void BaseLayer::commonInit() {
-    this->setAnchorPoint(Vec2(0.5f, 0.5f));
+    this->setAnchorPoint(Vec2(0, 0));
 }
 
 void BaseLayer::setContentSize(const cocos2d::Size &contentSize) {

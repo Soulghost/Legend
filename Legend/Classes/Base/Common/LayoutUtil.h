@@ -10,8 +10,16 @@
 #define LayoutUtil_hpp
 
 #include <stdio.h>
+#include "Macros.h"
 
 #define Layout_CenterPoint Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.5f)
+
+#define Layout_Radius CCMIN(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.5f)
+
+#define Layout_Width this->getContentSize().width
+#define Layout_Height this->getContentSize().height
+
+#define Layout_TopY this->getContentSize().height
 
 #define Layout_Center(ptr) do { \
     Vec2 __centerPoint = Layout_CenterPoint; \

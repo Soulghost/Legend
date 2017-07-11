@@ -75,6 +75,8 @@
 		6803F75A1F13DBCC00384C35 /* UITabbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7581F13DBCC00384C35 /* UITabbar.cpp */; };
 		6803F75B1F13DF5F00384C35 /* UITabbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7581F13DBCC00384C35 /* UITabbar.cpp */; };
 		6803F75C1F13E72800384C35 /* UIControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7551F13C68100384C35 /* UIControl.cpp */; };
+		6803F7631F151E5B00384C35 /* StatusIndicator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7611F151E5B00384C35 /* StatusIndicator.cpp */; };
+		6803F7681F1915B800384C35 /* StatusIndicatorRound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7661F1915B800384C35 /* StatusIndicatorRound.cpp */; };
 		68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729271F123B6D003EFCC1 /* FrameNode.cpp */; };
 		68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */; };
 		68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729331F1244F7003EFCC1 /* BaseNode.cpp */; };
@@ -193,6 +195,11 @@
 		6803F7581F13DBCC00384C35 /* UITabbar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITabbar.cpp; sourceTree = "<group>"; };
 		6803F7591F13DBCC00384C35 /* UITabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabbar.h; sourceTree = "<group>"; };
 		6803F75D1F13E73300384C35 /* UIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKit.h; sourceTree = "<group>"; };
+		6803F7611F151E5B00384C35 /* StatusIndicator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StatusIndicator.cpp; sourceTree = "<group>"; };
+		6803F7621F151E5B00384C35 /* StatusIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusIndicator.h; sourceTree = "<group>"; };
+		6803F7641F1521BB00384C35 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		6803F7661F1915B800384C35 /* StatusIndicatorRound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StatusIndicatorRound.cpp; sourceTree = "<group>"; };
+		6803F7671F1915B800384C35 /* StatusIndicatorRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusIndicatorRound.h; sourceTree = "<group>"; };
 		68B729271F123B6D003EFCC1 /* FrameNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameNode.cpp; sourceTree = "<group>"; };
 		68B729281F123B6D003EFCC1 /* FrameNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameNode.h; sourceTree = "<group>"; };
 		68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryUtil.cpp; sourceTree = "<group>"; };
@@ -415,6 +422,7 @@
 		6803F7391F124E9000384C35 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6803F7601F151DED00384C35 /* UI */,
 				6803F73A1F124EA400384C35 /* HomeScene.cpp */,
 				6803F73B1F124EA400384C35 /* HomeScene.h */,
 			);
@@ -433,6 +441,17 @@
 				6803F7521F12757D00384C35 /* LGUITheme.h */,
 				6803F7581F13DBCC00384C35 /* UITabbar.cpp */,
 				6803F7591F13DBCC00384C35 /* UITabbar.h */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		6803F7601F151DED00384C35 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				6803F7611F151E5B00384C35 /* StatusIndicator.cpp */,
+				6803F7621F151E5B00384C35 /* StatusIndicator.h */,
+				6803F7661F1915B800384C35 /* StatusIndicatorRound.cpp */,
+				6803F7671F1915B800384C35 /* StatusIndicatorRound.h */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -458,6 +477,7 @@
 				68B7292D1F123DFD003EFCC1 /* MemoryUtil.h */,
 				6803F74D1F125E8000384C35 /* LayoutUtil.cpp */,
 				6803F74E1F125E8000384C35 /* LayoutUtil.h */,
+				6803F7641F1521BB00384C35 /* Macros.h */,
 			);
 			name = Common;
 			path = Base/Common;
@@ -626,11 +646,13 @@
 			files = (
 				68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */,
 				6803F7571F13C68100384C35 /* UIControl.cpp in Sources */,
+				6803F7681F1915B800384C35 /* StatusIndicatorRound.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				6803F7531F12757D00384C35 /* LGUITheme.cpp in Sources */,
 				6803F74A1F1254C200384C35 /* BaseLayer.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */,
+				6803F7631F151E5B00384C35 /* StatusIndicator.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				6803F7471F12548A00384C35 /* LGButton.cpp in Sources */,
 				6803F75A1F13DBCC00384C35 /* UITabbar.cpp in Sources */,

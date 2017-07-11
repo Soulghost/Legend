@@ -9,6 +9,7 @@
 #ifndef Legend_h
 #define Legend_h
 
+#include "Macros.h"
 #include "MemoryUtil.h"
 #include "LayoutUtil.h"
 

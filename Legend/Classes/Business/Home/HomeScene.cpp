@@ -6,10 +6,11 @@
 //
 //
 
+#include "Legend.h"
 #include "HomeScene.h"
 #include "FrameNode.h"
 #include "LGButton.h"
-#include "Legend.h"
+#include "StatusIndicatorRound.h"
 
 HomeScene::HomeScene() {
     
@@ -35,17 +36,13 @@ bool HomeScene::init() {
 }
 
 void HomeScene::commonInit() {
-    LGButton *btn = LGButton::createWithFont(UIFont(LGUITheme::getInstance()->cnTTF, 18));
-    btn->setTitle("任务");
-    btn->setTitleFont(16);
-    btn->setTitleColor(Color4B::BLACK);
-    btn->setBackgroudColor(Color3B::WHITE);
-    btn->setContentSize(Size(80, 40));
-    btn->setFrameVisible(true);
-    btn->setPosition(Vec2(100, 100));
-    btn->setOnClickHandler([&](Ref *sender) {
-        LGButton *self = static_cast<LGButton *>(sender);
-        self->setTitle("任务1");
-    });
-    this->addChild(btn);
+    float marginLeft = 15;
+    float marginTop = 15;
+    float indicatorWH = 70;
+    StatusIndicatorRound *statusIndicator = StatusIndicatorRound::create();
+    statusIndicator->setContentSize(Size(indicatorWH, indicatorWH));
+    statusIndicator->setPosition(Point(marginLeft, Layout_TopY - marginTop - indicatorWH));
+    this->addChild(statusIndicator);
+    statusIndicator->setHpPercent(67);
+    statusIndicator->setMpPercent(35);
 }

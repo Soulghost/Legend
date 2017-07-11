@@ -28,11 +28,12 @@ public:
     virtual void layoutSubviews();
     void setFrameVisible(bool visible);
 
+protected:
+    // to escape from init cause layoutSubviews
+    bool _isInitting;
 private:
     bool _frameVisible;
     FrameNode *_frameNode;
-    // to escape from init cause layoutSubviews
-    bool _isInitting;
 private:
     void commonInit();
 };

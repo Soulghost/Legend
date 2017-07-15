@@ -12,11 +12,12 @@
 #include "cocos2d.h"
 #include <cocos-ext.h>
 #include "MVVM.h"
+#include "UIKit.h"
 
 USING_NS_CC_EXT;
 USING_NS_CC;
 
-class HomeScene : public LayerColor, public ScrollViewDelegate {
+class HomeScene : public LayerColor, public UITableViewDelegate, public UITableViewDataSource {
 public:
     HomeScene();
     ~HomeScene();
@@ -26,10 +27,19 @@ public:
     CREATE_FUNC(HomeScene);
     
 public:
-    virtual void scrollViewDidScroll(ScrollView* view) override;
-    virtual void scrollViewDidZoom(ScrollView* view) override;
+#pragma mark - UITableView DataSource
+    virtual int tableViewNumberOfSections() override;
+    virtual int tableViewNumberOfRowsInSection(int section) override;
+    virtual UITableViewCell* tableViewCellForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) override;
+#pragma mark - UITableView Delegate
+    virtual float tableViewHeightForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) override;
+#pragma mark -
+    
+    int cellCount;
+    
 private:
     UIScrollViewMVVMBinder *_binder;
+    UITableView *_tableView;
 private:
     void commonInit();
 };

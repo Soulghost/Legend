@@ -26,16 +26,20 @@ bool LGButton::initWithFont(UIFont font) {
     titleLabel->setAlignment(TextHAlignment::CENTER);
     titleLabel->setTextColor(Color4B::BLACK);
     this->addChild(titleLabel);
-    
     commonInit();
     return true;
 }
 
 void LGButton::commonInit() {
+    this->setAnchorPoint(Vec2(0.5f, 0.5f));
     EventListenerTouchOneByOne *touch = EventListenerTouchOneByOne::create();
     touch->setSwallowTouches(true);
     touch->onTouchBegan = [&](Touch *t, Event *e) {
-        if (this->getBoundingBox().containsPoint(t->getLocation())) {
+        Vec2 touchLocation = t->getLocation(); // Get the touch position
+        touchLocation = this->getParent()->convertToNodeSpace(touchLocation);
+        Rect bBox = getBoundingBox();
+        bool isValid = bBox.containsPoint(touchLocation);
+        if (isValid) {
             this->performScale(1.1, 0.1);
             return true;
         }

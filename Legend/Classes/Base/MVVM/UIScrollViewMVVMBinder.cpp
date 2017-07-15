@@ -13,7 +13,7 @@ UIScrollViewMVVMBinder::UIScrollViewMVVMBinder() {
 }
 
 UIScrollViewMVVMBinder::~UIScrollViewMVVMBinder() {
-    _scrollView->removeAllChildren();
+    this->removeAllChilds();
     MEMCLEAR(_scrollView);
 }
 
@@ -36,6 +36,17 @@ void UIScrollViewMVVMBinder::addChild(cocos2d::Node *child) {
     _scrollView->addChild(child);
     _childs.pushBack(child);
     layout();
+}
+
+void UIScrollViewMVVMBinder::removeAllChilds() {
+    for (Node *node : _childs) {
+        node->removeFromParent();
+    }
+    _childs.clear();
+}
+
+void UIScrollViewMVVMBinder::setContentOffset(const cocos2d::Vec2 &contentOffset) {
+    _scrollView->setContentOffset(contentOffset);
 }
 
 void UIScrollViewMVVMBinder::layout() {
@@ -65,13 +76,13 @@ void UIScrollViewMVVMBinder::layout() {
 
 #pragma mark - ScrollView Delegate
 void UIScrollViewMVVMBinder::scrollViewDidZoom(cocos2d::extension::ScrollView *view) {
-    if (_zoomCallback) {
-        _zoomCallback(view, view->getZoomScale());
+    if (zoomCallback) {
+        zoomCallback(view, view->getZoomScale());
     }
 }
 
 void UIScrollViewMVVMBinder::scrollViewDidScroll(cocos2d::extension::ScrollView *view) {
-    if (_scrollCallback) {
-        _scrollCallback(view, view->getContentOffset());
+    if (scrollCallback) {
+        scrollCallback(view, view->getContentOffset());
     }
 }

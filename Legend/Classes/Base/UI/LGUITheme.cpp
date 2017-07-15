@@ -10,6 +10,8 @@
 
 bool LGUITheme::init() {
     cnTTF = "fonts/xihei.ttf";
-    enTTF = "fonts/SourceCodePro-Light.ttf";
+    enTTF = "fonts/SourceCodePro-Light.ttf";;
+    titleFont = 16;
+    detailFont = 14;
     return true;
 }

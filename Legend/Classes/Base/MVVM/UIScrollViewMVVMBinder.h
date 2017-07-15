@@ -29,14 +29,16 @@ public:
     
 #pragma mark - ScrollView Delegate
     virtual void scrollViewDidScroll(ScrollView* view) override;
-    ScrollViewDidScrollCallback _scrollCallback;
+    ScrollViewDidScrollCallback scrollCallback;
     virtual void scrollViewDidZoom(ScrollView* view) override;
-    ScrollViewDidZoomCallback _zoomCallback;
+    ScrollViewDidZoomCallback zoomCallback;
 #pragma mark -
     
 public:
     void bindWithScrollView(ScrollView *scrollView);
     void addChild(Node *child);
+    void removeAllChilds();
+    void setContentOffset(const Vec2& contentOffset);
     
 private:
     ScrollView *_scrollView;

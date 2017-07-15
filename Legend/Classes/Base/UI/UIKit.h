@@ -13,5 +13,7 @@
 #include "LGButton.h"
 #include "LGUITheme.h"
 #include "UITabbar.h"
+#include "UITableView.h"
+#include "UITableViewCell.h"
 
 #endif /* UIKit_h */

@@ -8,6 +8,16 @@
 
 #include "StatusIndicator.h"
 
+float limitPercent(float percent) {
+    if (percent > 100) {
+        return 100;
+    }
+    if (percent < 0) {
+        return 0;
+    }
+    return percent;
+}
+
 StatusIndicator::StatusIndicator() {
     _drawNode = nullptr;
     _hpPercent = 100;
@@ -37,12 +47,12 @@ void StatusIndicator::setContentSize(const cocos2d::Size &contentSize) {
 }
 
 void StatusIndicator::setHpPercent(float percent) {
-    _hpPercent = percent;
+    _hpPercent = limitPercent(percent);
     redraw();
 }
 
 void StatusIndicator::setMpPercent(float percent) {
-    _mpPercent = percent;
+    _mpPercent = limitPercent(percent);
     redraw();
 }
 

@@ -11,13 +11,14 @@
 #include "FrameNode.h"
 #include "LGButton.h"
 #include "StatusIndicatorRound.h"
+#include "MVVM.h"
 
 HomeScene::HomeScene() {
     
 }
 
 HomeScene::~HomeScene() {
-    
+    MEMCLEAR(_binder);
 }
 
 Scene* HomeScene::createScene() {
@@ -37,12 +38,27 @@ bool HomeScene::init() {
 
 void HomeScene::commonInit() {
     float marginLeft = 15;
-    float marginTop = 15;
     float indicatorWH = 70;
-    StatusIndicatorRound *statusIndicator = StatusIndicatorRound::create();
-    statusIndicator->setContentSize(Size(indicatorWH, indicatorWH));
-    statusIndicator->setPosition(Point(marginLeft, Layout_TopY - marginTop - indicatorWH));
-    this->addChild(statusIndicator);
-    statusIndicator->setHpPercent(67);
-    statusIndicator->setMpPercent(35);
+    ScrollView *scrollView = ScrollView::create(Size(Layout_Width - 2 * marginLeft, Layout_Height));
+    scrollView->setDirection(ScrollView::Direction::VERTICAL);
+    scrollView->setPosition(Vec2(marginLeft, 0));
+    this->addChild(scrollView);
+    UIScrollViewMVVMBinder *binder = UIScrollViewMVVMBinder::create();
+    MEMSETTER(binder);
+    binder->bindWithScrollView(scrollView);
+    for (int i = 0; i < 22; i++) {
+        StatusIndicatorRound *statusIndicator = StatusIndicatorRound::create();
+        statusIndicator->setContentSize(Size(indicatorWH, indicatorWH));
+        statusIndicator->setHpPercent(100 - 5 * i);
+        statusIndicator->setMpPercent(50);
+        binder->addChild(statusIndicator);
+    }
+}
+
+void HomeScene::scrollViewDidScroll(cocos2d::extension::ScrollView *view) {
+    CCLOG("contentOffset = %f", view->getContentOffset().y);
+}
+
+void HomeScene::scrollViewDidZoom(cocos2d::extension::ScrollView *view) {
+    
 }

@@ -9,11 +9,11 @@
 #ifndef __UITabbar_H__
 #define __UITabbar_H__
 
-#include "cocos2d.h"
+#include "UIKit.h"
 
 USING_NS_CC;
 
-class UITabbar : public Layer {
+class UITabbar : public BaseLayer {
 public:
     UITabbar();
     ~UITabbar();

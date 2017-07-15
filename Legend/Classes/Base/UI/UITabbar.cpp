@@ -28,7 +28,7 @@ Scene* UITabbar::createScene() {
 }
 
 bool UITabbar::init() {
-    if (!Layer::init()) {
+    if (!BaseLayer::init()) {
         return false;
     }
     commonInit();

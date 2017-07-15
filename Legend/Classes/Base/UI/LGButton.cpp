@@ -33,6 +33,7 @@ bool LGButton::initWithFont(UIFont font) {
 
 void LGButton::commonInit() {
     EventListenerTouchOneByOne *touch = EventListenerTouchOneByOne::create();
+    touch->setSwallowTouches(true);
     touch->onTouchBegan = [&](Touch *t, Event *e) {
         if (this->getBoundingBox().containsPoint(t->getLocation())) {
             this->performScale(1.1, 0.1);

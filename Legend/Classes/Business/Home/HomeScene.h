@@ -26,6 +26,9 @@ public:
     virtual bool init() override;
     CREATE_FUNC(HomeScene);
     
+private:
+    map<string, Vector<UITableViewCell *>> _cellCache;
+
 public:
 #pragma mark - UITableView DataSource
     virtual int tableViewNumberOfSections() override;
@@ -33,6 +36,10 @@ public:
     virtual UITableViewCell* tableViewCellForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) override;
 #pragma mark - UITableView Delegate
     virtual float tableViewHeightForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) override;
+    virtual UITableViewHeaderFooterView* tableViewHeaderViewForSection(UITableView *tableView, int section) override;
+    virtual UITableViewHeaderFooterView* tableViewFooterViewForSection(UITableView *tableView, int section) override;
+    virtual float tableViewHeightForHeaderInSection(UITableView *tableView, int section) override;
+    virtual float tableViewHeightForFooterInSection(UITableView *tableView, int section) override;
 #pragma mark -
     
     int cellCount;

@@ -21,6 +21,9 @@ public:
     virtual bool init() override;
     CREATE_FUNC(UITableViewCell);
     
+public:
+    string identifier;
+    
 private:
     void commonInit();
 };

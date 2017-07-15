@@ -15,5 +15,6 @@
 #include "UITabbar.h"
 #include "UITableView.h"
 #include "UITableViewCell.h"
+#include "UITableViewHeaderFooterView.h"
 
 #endif /* UIKit_h */

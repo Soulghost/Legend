@@ -38,6 +38,7 @@ public:
     void bindWithScrollView(ScrollView *scrollView);
     void addChild(Node *child);
     void removeAllChilds();
+    const Vector<Node *>& getChilds();
     void setContentOffset(const Vec2& contentOffset);
     
 private:

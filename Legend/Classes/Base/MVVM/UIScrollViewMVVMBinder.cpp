@@ -38,6 +38,10 @@ void UIScrollViewMVVMBinder::addChild(cocos2d::Node *child) {
     layout();
 }
 
+const Vector<Node *>& UIScrollViewMVVMBinder::getChilds() {
+    return _childs;
+}
+
 void UIScrollViewMVVMBinder::removeAllChilds() {
     for (Node *node : _childs) {
         node->removeFromParent();

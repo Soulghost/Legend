@@ -83,6 +83,8 @@
 		6803F7791F19D9EE00384C35 /* UIScrollViewMVVMBinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7741F19D6D000384C35 /* UIScrollViewMVVMBinder.cpp */; };
 		6803F77D1F19F1AA00384C35 /* UITableViewCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F77B1F19F1AA00384C35 /* UITableViewCell.cpp */; };
 		6803F7801F1A032400384C35 /* ButtonTableViewCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F77E1F1A032400384C35 /* ButtonTableViewCell.cpp */; };
+		6803F7831F1A43BD00384C35 /* UITableViewMVVMBinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7811F1A43BD00384C35 /* UITableViewMVVMBinder.cpp */; };
+		6803F7861F1A5CEC00384C35 /* UITableViewHeaderFooterView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7841F1A5CEC00384C35 /* UITableViewHeaderFooterView.cpp */; };
 		68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729271F123B6D003EFCC1 /* FrameNode.cpp */; };
 		68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */; };
 		68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729331F1244F7003EFCC1 /* BaseNode.cpp */; };
@@ -215,6 +217,10 @@
 		6803F77C1F19F1AA00384C35 /* UITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCell.h; sourceTree = "<group>"; };
 		6803F77E1F1A032400384C35 /* ButtonTableViewCell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ButtonTableViewCell.cpp; sourceTree = "<group>"; };
 		6803F77F1F1A032400384C35 /* ButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTableViewCell.h; sourceTree = "<group>"; };
+		6803F7811F1A43BD00384C35 /* UITableViewMVVMBinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITableViewMVVMBinder.cpp; sourceTree = "<group>"; };
+		6803F7821F1A43BD00384C35 /* UITableViewMVVMBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewMVVMBinder.h; sourceTree = "<group>"; };
+		6803F7841F1A5CEC00384C35 /* UITableViewHeaderFooterView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITableViewHeaderFooterView.cpp; sourceTree = "<group>"; };
+		6803F7851F1A5CEC00384C35 /* UITableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewHeaderFooterView.h; sourceTree = "<group>"; };
 		68B729271F123B6D003EFCC1 /* FrameNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameNode.cpp; sourceTree = "<group>"; };
 		68B729281F123B6D003EFCC1 /* FrameNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameNode.h; sourceTree = "<group>"; };
 		68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryUtil.cpp; sourceTree = "<group>"; };
@@ -462,6 +468,8 @@
 				6803F76C1F19C34800384C35 /* UITableView.h */,
 				6803F77B1F19F1AA00384C35 /* UITableViewCell.cpp */,
 				6803F77C1F19F1AA00384C35 /* UITableViewCell.h */,
+				6803F7841F1A5CEC00384C35 /* UITableViewHeaderFooterView.cpp */,
+				6803F7851F1A5CEC00384C35 /* UITableViewHeaderFooterView.h */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -480,9 +488,11 @@
 		6803F7731F19D6BD00384C35 /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				6803F7771F19D94900384C35 /* MVVM.h */,
 				6803F7741F19D6D000384C35 /* UIScrollViewMVVMBinder.cpp */,
 				6803F7751F19D6D000384C35 /* UIScrollViewMVVMBinder.h */,
-				6803F7771F19D94900384C35 /* MVVM.h */,
+				6803F7811F1A43BD00384C35 /* UITableViewMVVMBinder.cpp */,
+				6803F7821F1A43BD00384C35 /* UITableViewMVVMBinder.h */,
 			);
 			path = MVVM;
 			sourceTree = "<group>";
@@ -686,9 +696,11 @@
 				6803F74A1F1254C200384C35 /* BaseLayer.cpp in Sources */,
 				6803F76D1F19C34800384C35 /* UITableView.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				6803F7831F1A43BD00384C35 /* UITableViewMVVMBinder.cpp in Sources */,
 				68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */,
 				6803F7631F151E5B00384C35 /* StatusIndicator.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				6803F7861F1A5CEC00384C35 /* UITableViewHeaderFooterView.cpp in Sources */,
 				6803F7471F12548A00384C35 /* LGButton.cpp in Sources */,
 				6803F75A1F13DBCC00384C35 /* UITabbar.cpp in Sources */,
 				6803F77D1F19F1AA00384C35 /* UITableViewCell.cpp in Sources */,

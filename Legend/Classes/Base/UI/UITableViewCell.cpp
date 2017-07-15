@@ -9,7 +9,7 @@
 #include "UITableViewCell.h"
 
 UITableViewCell::UITableViewCell() {
-    
+    this->identifier = "cell";
 }
 
 UITableViewCell::~UITableViewCell() {

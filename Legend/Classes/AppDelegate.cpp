@@ -1,6 +1,8 @@
 #include "AppDelegate.h"
 #include "HomeScene.h"
 #include "UITabbar.h"
+#include "CppRuntime.h"
+#include "LGRuntimeMap.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -93,6 +95,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     register_all_packages();
+    
+    // register runtime
+    CppRuntime::getInstance()->linkMap(new LGRuntimeMap());
 
     // create a scene. it's an autorelease object
     auto tabbar = UITabbar::create();

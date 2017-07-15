@@ -85,6 +85,16 @@
 		6803F7801F1A032400384C35 /* ButtonTableViewCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F77E1F1A032400384C35 /* ButtonTableViewCell.cpp */; };
 		6803F7831F1A43BD00384C35 /* UITableViewMVVMBinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7811F1A43BD00384C35 /* UITableViewMVVMBinder.cpp */; };
 		6803F7861F1A5CEC00384C35 /* UITableViewHeaderFooterView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7841F1A5CEC00384C35 /* UITableViewHeaderFooterView.cpp */; };
+		6803F7891F1A682400384C35 /* UITableViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7871F1A682400384C35 /* UITableViewModel.cpp */; };
+		6803F78D1F1A688800384C35 /* BaseModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F78B1F1A688800384C35 /* BaseModel.cpp */; };
+		6803F7901F1A68F900384C35 /* UITableViewCellModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F78E1F1A68F900384C35 /* UITableViewCellModel.cpp */; };
+		6803F7941F1A6E1600384C35 /* CppRuntime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7921F1A6E1600384C35 /* CppRuntime.cpp */; };
+		6803F7951F1A7D0500384C35 /* CppRuntime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7921F1A6E1600384C35 /* CppRuntime.cpp */; };
+		6803F7961F1A7D0D00384C35 /* UITableViewMVVMBinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7811F1A43BD00384C35 /* UITableViewMVVMBinder.cpp */; };
+		6803F7971F1A7D0F00384C35 /* UITableViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7871F1A682400384C35 /* UITableViewModel.cpp */; };
+		6803F7981F1A7D1100384C35 /* UITableViewCellModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F78E1F1A68F900384C35 /* UITableViewCellModel.cpp */; };
+		6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F79C1F1A851E00384C35 /* LGRuntimeMap.cpp */; };
+		6803F7A11F1A863F00384C35 /* CppRuntimeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F79F1F1A863F00384C35 /* CppRuntimeMap.cpp */; };
 		68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729271F123B6D003EFCC1 /* FrameNode.cpp */; };
 		68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */; };
 		68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729331F1244F7003EFCC1 /* BaseNode.cpp */; };
@@ -221,6 +231,18 @@
 		6803F7821F1A43BD00384C35 /* UITableViewMVVMBinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewMVVMBinder.h; sourceTree = "<group>"; };
 		6803F7841F1A5CEC00384C35 /* UITableViewHeaderFooterView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITableViewHeaderFooterView.cpp; sourceTree = "<group>"; };
 		6803F7851F1A5CEC00384C35 /* UITableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewHeaderFooterView.h; sourceTree = "<group>"; };
+		6803F7871F1A682400384C35 /* UITableViewModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITableViewModel.cpp; sourceTree = "<group>"; };
+		6803F7881F1A682400384C35 /* UITableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewModel.h; sourceTree = "<group>"; };
+		6803F78B1F1A688800384C35 /* BaseModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseModel.cpp; sourceTree = "<group>"; };
+		6803F78C1F1A688800384C35 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		6803F78E1F1A68F900384C35 /* UITableViewCellModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITableViewCellModel.cpp; sourceTree = "<group>"; };
+		6803F78F1F1A68F900384C35 /* UITableViewCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellModel.h; sourceTree = "<group>"; };
+		6803F7921F1A6E1600384C35 /* CppRuntime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CppRuntime.cpp; sourceTree = "<group>"; };
+		6803F7931F1A6E1600384C35 /* CppRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CppRuntime.h; sourceTree = "<group>"; };
+		6803F79C1F1A851E00384C35 /* LGRuntimeMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGRuntimeMap.cpp; sourceTree = "<group>"; };
+		6803F79D1F1A851E00384C35 /* LGRuntimeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGRuntimeMap.h; sourceTree = "<group>"; };
+		6803F79F1F1A863F00384C35 /* CppRuntimeMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CppRuntimeMap.cpp; sourceTree = "<group>"; };
+		6803F7A01F1A863F00384C35 /* CppRuntimeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CppRuntimeMap.h; sourceTree = "<group>"; };
 		68B729271F123B6D003EFCC1 /* FrameNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameNode.cpp; sourceTree = "<group>"; };
 		68B729281F123B6D003EFCC1 /* FrameNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameNode.h; sourceTree = "<group>"; };
 		68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryUtil.cpp; sourceTree = "<group>"; };
@@ -493,13 +515,29 @@
 				6803F7751F19D6D000384C35 /* UIScrollViewMVVMBinder.h */,
 				6803F7811F1A43BD00384C35 /* UITableViewMVVMBinder.cpp */,
 				6803F7821F1A43BD00384C35 /* UITableViewMVVMBinder.h */,
+				6803F7871F1A682400384C35 /* UITableViewModel.cpp */,
+				6803F7881F1A682400384C35 /* UITableViewModel.h */,
+				6803F78E1F1A68F900384C35 /* UITableViewCellModel.cpp */,
+				6803F78F1F1A68F900384C35 /* UITableViewCellModel.h */,
 			);
 			path = MVVM;
+			sourceTree = "<group>";
+		};
+		6803F7911F1A6DE300384C35 /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				6803F7921F1A6E1600384C35 /* CppRuntime.cpp */,
+				6803F7931F1A6E1600384C35 /* CppRuntime.h */,
+				6803F79F1F1A863F00384C35 /* CppRuntimeMap.cpp */,
+				6803F7A01F1A863F00384C35 /* CppRuntimeMap.h */,
+			);
+			path = Runtime;
 			sourceTree = "<group>";
 		};
 		68B729251F123B4C003EFCC1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				6803F7911F1A6DE300384C35 /* Runtime */,
 				6803F7731F19D6BD00384C35 /* MVVM */,
 				6803F7411F12545B00384C35 /* UI */,
 				68B729331F1244F7003EFCC1 /* BaseNode.cpp */,
@@ -508,6 +546,8 @@
 				68B729281F123B6D003EFCC1 /* FrameNode.h */,
 				6803F7481F1254C200384C35 /* BaseLayer.cpp */,
 				6803F7491F1254C200384C35 /* BaseLayer.h */,
+				6803F78B1F1A688800384C35 /* BaseModel.cpp */,
+				6803F78C1F1A688800384C35 /* BaseModel.h */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -529,6 +569,8 @@
 			isa = PBXGroup;
 			children = (
 				68B729301F123ECF003EFCC1 /* Legend.h */,
+				6803F79C1F1A851E00384C35 /* LGRuntimeMap.cpp */,
+				6803F79D1F1A851E00384C35 /* LGRuntimeMap.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -688,10 +730,12 @@
 			files = (
 				68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */,
 				6803F7571F13C68100384C35 /* UIControl.cpp in Sources */,
+				6803F78D1F1A688800384C35 /* BaseModel.cpp in Sources */,
 				6803F7681F1915B800384C35 /* StatusIndicatorRound.cpp in Sources */,
 				6803F7801F1A032400384C35 /* ButtonTableViewCell.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				6803F7531F12757D00384C35 /* LGUITheme.cpp in Sources */,
+				6803F7A11F1A863F00384C35 /* CppRuntimeMap.cpp in Sources */,
 				6803F7761F19D6D000384C35 /* UIScrollViewMVVMBinder.cpp in Sources */,
 				6803F74A1F1254C200384C35 /* BaseLayer.cpp in Sources */,
 				6803F76D1F19C34800384C35 /* UITableView.cpp in Sources */,
@@ -699,13 +743,17 @@
 				6803F7831F1A43BD00384C35 /* UITableViewMVVMBinder.cpp in Sources */,
 				68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */,
 				6803F7631F151E5B00384C35 /* StatusIndicator.cpp in Sources */,
+				6803F7941F1A6E1600384C35 /* CppRuntime.cpp in Sources */,
+				6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				6803F7861F1A5CEC00384C35 /* UITableViewHeaderFooterView.cpp in Sources */,
+				6803F7901F1A68F900384C35 /* UITableViewCellModel.cpp in Sources */,
 				6803F7471F12548A00384C35 /* LGButton.cpp in Sources */,
 				6803F75A1F13DBCC00384C35 /* UITabbar.cpp in Sources */,
 				6803F77D1F19F1AA00384C35 /* UITableViewCell.cpp in Sources */,
 				68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */,
 				6803F73C1F124EA400384C35 /* HomeScene.cpp in Sources */,
+				6803F7891F1A682400384C35 /* UITableViewModel.cpp in Sources */,
 				6803F74F1F125E8000384C35 /* LayoutUtil.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
@@ -716,18 +764,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				6803F74B1F12557300384C35 /* LGButton.cpp in Sources */,
+				6803F7971F1A7D0F00384C35 /* UITableViewModel.cpp in Sources */,
 				6803F75C1F13E72800384C35 /* UIControl.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				6803F75B1F13DF5F00384C35 /* UITabbar.cpp in Sources */,
 				6803F7501F125F4500384C35 /* LayoutUtil.cpp in Sources */,
+				6803F7961F1A7D0D00384C35 /* UITableViewMVVMBinder.cpp in Sources */,
 				6803F73D1F1253B400384C35 /* HomeScene.cpp in Sources */,
 				6803F73F1F1253C700384C35 /* BaseNode.cpp in Sources */,
 				6803F76F1F19C34C00384C35 /* UITableView.cpp in Sources */,
 				6803F7401F1253C900384C35 /* FrameNode.cpp in Sources */,
 				6803F7791F19D9EE00384C35 /* UIScrollViewMVVMBinder.cpp in Sources */,
 				6803F73E1F1253BA00384C35 /* MemoryUtil.cpp in Sources */,
+				6803F7981F1A7D1100384C35 /* UITableViewCellModel.cpp in Sources */,
 				6803F74C1F1257DA00384C35 /* BaseLayer.cpp in Sources */,
 				6803F7541F12847500384C35 /* LGUITheme.cpp in Sources */,
+				6803F7951F1A7D0500384C35 /* CppRuntime.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,17 +13,18 @@ UITableViewMVVMBinder::UITableViewMVVMBinder() {
 }
 
 UITableViewMVVMBinder::~UITableViewMVVMBinder() {
-    
+    MEMCLEAR(_tableView);
 }
 
 bool UITableViewMVVMBinder::init() {
-    if (!Layer::init()) {
-        return false;
-    }
     commonInit();
     return true;
 }
 
 void UITableViewMVVMBinder::commonInit() {
     
+}
+
+void UITableViewMVVMBinder::bindWithTableView(UITableView *tableView) {
+    MEMSETTER(tableView);
 }

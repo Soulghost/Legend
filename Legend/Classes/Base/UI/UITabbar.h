@@ -13,6 +13,18 @@
 
 USING_NS_CC;
 
+class UITabbarView : public BaseLayer {
+public:
+    UITabbarView();
+    ~UITabbarView();
+    
+    virtual bool init() override;
+    CREATE_FUNC(UITabbarView);
+//
+private:
+    void commonInit();
+};
+
 class UITabbar : public BaseLayer {
 public:
     UITabbar();

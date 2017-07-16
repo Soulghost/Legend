@@ -95,6 +95,8 @@
 		6803F7981F1A7D1100384C35 /* UITableViewCellModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F78E1F1A68F900384C35 /* UITableViewCellModel.cpp */; };
 		6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F79C1F1A851E00384C35 /* LGRuntimeMap.cpp */; };
 		6803F7A11F1A863F00384C35 /* CppRuntimeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F79F1F1A863F00384C35 /* CppRuntimeMap.cpp */; };
+		6803F7A41F1B34A400384C35 /* UITableViewCellViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7A21F1B34A400384C35 /* UITableViewCellViewModel.cpp */; };
+		68642B6C1F1B398F0085DF1D /* UITableViewCellViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7A21F1B34A400384C35 /* UITableViewCellViewModel.cpp */; };
 		68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729271F123B6D003EFCC1 /* FrameNode.cpp */; };
 		68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */; };
 		68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729331F1244F7003EFCC1 /* BaseNode.cpp */; };
@@ -243,6 +245,8 @@
 		6803F79D1F1A851E00384C35 /* LGRuntimeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGRuntimeMap.h; sourceTree = "<group>"; };
 		6803F79F1F1A863F00384C35 /* CppRuntimeMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CppRuntimeMap.cpp; sourceTree = "<group>"; };
 		6803F7A01F1A863F00384C35 /* CppRuntimeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CppRuntimeMap.h; sourceTree = "<group>"; };
+		6803F7A21F1B34A400384C35 /* UITableViewCellViewModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITableViewCellViewModel.cpp; sourceTree = "<group>"; };
+		6803F7A31F1B34A400384C35 /* UITableViewCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCellViewModel.h; sourceTree = "<group>"; };
 		68B729271F123B6D003EFCC1 /* FrameNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrameNode.cpp; sourceTree = "<group>"; };
 		68B729281F123B6D003EFCC1 /* FrameNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameNode.h; sourceTree = "<group>"; };
 		68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryUtil.cpp; sourceTree = "<group>"; };
@@ -519,6 +523,8 @@
 				6803F7881F1A682400384C35 /* UITableViewModel.h */,
 				6803F78E1F1A68F900384C35 /* UITableViewCellModel.cpp */,
 				6803F78F1F1A68F900384C35 /* UITableViewCellModel.h */,
+				6803F7A21F1B34A400384C35 /* UITableViewCellViewModel.cpp */,
+				6803F7A31F1B34A400384C35 /* UITableViewCellViewModel.h */,
 			);
 			path = MVVM;
 			sourceTree = "<group>";
@@ -754,6 +760,7 @@
 				68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */,
 				6803F73C1F124EA400384C35 /* HomeScene.cpp in Sources */,
 				6803F7891F1A682400384C35 /* UITableViewModel.cpp in Sources */,
+				6803F7A41F1B34A400384C35 /* UITableViewCellViewModel.cpp in Sources */,
 				6803F74F1F125E8000384C35 /* LayoutUtil.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
@@ -767,6 +774,7 @@
 				6803F7971F1A7D0F00384C35 /* UITableViewModel.cpp in Sources */,
 				6803F75C1F13E72800384C35 /* UIControl.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				68642B6C1F1B398F0085DF1D /* UITableViewCellViewModel.cpp in Sources */,
 				6803F75B1F13DF5F00384C35 /* UITabbar.cpp in Sources */,
 				6803F7501F125F4500384C35 /* LayoutUtil.cpp in Sources */,
 				6803F7961F1A7D0D00384C35 /* UITableViewMVVMBinder.cpp in Sources */,

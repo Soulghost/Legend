@@ -9,7 +9,11 @@
 #ifndef __UITableViewMVVMBinder_H__
 #define __UITableViewMVVMBinder_H__
 
-#include "cocos2d.h"
+#include "UITableView.h"
+#include "UITableViewModel.h"
+
+typedef std::function<void()> ReloadTableViewCallback;
+typedef std::function<void(int section)> ReloadSectionCallback;
 
 USING_NS_CC;
 
@@ -18,9 +22,16 @@ public:
     UITableViewMVVMBinder();
     ~UITableViewMVVMBinder();
     
-    virtual bool init() override;
+    bool init();
     CREATE_FUNC(UITableViewMVVMBinder);
     
+public:
+    void bindWithTableView(UITableView *tableView);
+    void setViewModel(UITableViewModel *viewModel);
+    
+private:
+    UITableView *_tableView;
+    UITableViewModel *_viewModel;
 private:
     void commonInit();
 };

@@ -58,6 +58,8 @@ void HomeScene::commonInit() {
         this->cellCount = 3;
         _tableView->reloadData();
     });
+    
+    Ref* ref = CppRuntime::getInstance()->createInstanceByClassName("UITableViewCellModel");
 }
 
 #pragma mark - UITableView DataSource

@@ -10,7 +10,9 @@
 
 // Classes
 #include "UITableViewCellModel.h"
+#include "UITableViewCellViewModel.h"
 
 void LGRuntimeMap::registerClasses() {
     RuntimeImpl(UITableViewCellModel);
+    RuntimeImpl(UITableViewCellViewModel);
 }

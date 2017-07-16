@@ -35,4 +35,6 @@
     Layout_Center(ptr); \
 }while(0);
 
+#define Layout_Level_Floating 100
+
 #endif /* LayoutUtil_hpp */

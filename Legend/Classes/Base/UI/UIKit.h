@@ -17,6 +17,4 @@
 #include "UITableViewCell.h"
 #include "UITableViewHeaderFooterView.h"
 
-#include "BaseModel.h"
-
 #endif /* UIKit_h */

@@ -9,8 +9,9 @@
 #ifndef __UITableViewCellModel_H__
 #define __UITableViewCellModel_H__
 
-#include "UIKit.h"
 #include "CppRuntime.h"
+#include "BaseModel.h"
+#include "UITableViewCellViewModel.h"
 
 USING_NS_CC;
 
@@ -22,6 +23,10 @@ public:
     virtual bool init() override;
     CREATE_FUNC(UITableViewCellModel);
     RuntimeInterface(UITableViewCellModel);
+    
+public:
+    int cellCount;
+    Vector<UITableViewCellViewModel *> viewModels;
     
 private:
     void commonInit();

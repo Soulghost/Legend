@@ -10,5 +10,9 @@
 #define MVVM_h
 
 #include "UIScrollViewMVVMBinder.h"
+#include "UITableViewMVVMBinder.h"
+#include "UITableViewModel.h"
+#include "UITableViewCellModel.h"
+#include "UITableViewCellViewModel.h"
 
 #endif /* MVVM_h */

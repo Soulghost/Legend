@@ -11,9 +11,9 @@
 
 #include "cocos2d.h"
 #include <cocos-ext.h>
-#include "UIKit.h"
-#include "MVVM.h"
+#include "UIScrollViewMVVMBinder.h"
 
+using namespace std;
 USING_NS_CC;
 USING_NS_CC_EXT;
 

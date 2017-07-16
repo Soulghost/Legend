@@ -28,7 +28,7 @@ Scene* UITabbar::createScene() {
 }
 
 bool UITabbar::init() {
-    if (!BaseLayer::init()) {
+    if (!BaseLayer::initWithColor(Color4B::BLACK)) {
         return false;
     }
     commonInit();
@@ -36,7 +36,10 @@ bool UITabbar::init() {
 }
 
 void UITabbar::commonInit() {
-
+    UITabbarView *tabbarView = UITabbarView::create();
+    tabbarView->setContentSize(Size(Layout_Width, 44));
+    this->addChild(tabbarView);
+    tabbarView->setGlobalZOrder(Layout_Level_Floating);
 }
 
 void UITabbar::test() {
@@ -100,4 +103,25 @@ void UITabbar::layout() {
         float y = 0;
         l->setPosition(Vec2(x, y));
     }
+}
+
+#pragma mark - UITabbarView
+UITabbarView::UITabbarView() {
+    
+}
+
+UITabbarView::~UITabbarView() {
+    
+}
+
+bool UITabbarView::init() {
+    if (!BaseLayer::init()) {
+        return false;
+    }
+    commonInit();
+    return true;
+}
+
+void UITabbarView::commonInit() {
+    this->setColor(Color3B::GRAY);
 }

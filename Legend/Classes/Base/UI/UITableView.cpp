@@ -7,6 +7,8 @@
 //
 
 #include "UITableView.h"
+#include "UITableViewCell.h"
+#include "UITableViewHeaderFooterView.h"
 
 UITableView::UITableView() {
     _currentContentOffsetY = 0;

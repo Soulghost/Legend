@@ -56,4 +56,40 @@ return nullptr; \
 } \
 }
 
+#define CREATE_FUNC_PARAMS_2(__TYPE__, __INIT__, P1T, P1V, P2T, P2V) \
+bool init##__INIT__(P1T P1V, P2T P2V); \
+static __TYPE__* create##__INIT__(P1T P1V, P2T P2V) \
+{ \
+__TYPE__ *pRet = new(std::nothrow) __TYPE__(); \
+if (pRet && pRet->init##__INIT__(P1V, P2V)) \
+{ \
+pRet->autorelease(); \
+return pRet; \
+} \
+else \
+{ \
+delete pRet; \
+pRet = nullptr; \
+return nullptr; \
+} \
+}
+
+#define CREATE_FUNC_PARAMS_3(__TYPE__, __INIT__, P1T, P1V, P2T, P2V, P3T, P3V) \
+bool init##__INIT__(P1T P1V, P2T P2V, P3T P3V); \
+static __TYPE__* create##__INIT__(P1T P1V, P2T P2V, P3T P3V) \
+{ \
+__TYPE__ *pRet = new(std::nothrow) __TYPE__(); \
+if (pRet && pRet->init##__INIT__(P1V, P2V, P3V)) \
+{ \
+pRet->autorelease(); \
+return pRet; \
+} \
+else \
+{ \
+delete pRet; \
+pRet = nullptr; \
+return nullptr; \
+} \
+}
+
 #endif /* MemoryUtil_hpp */

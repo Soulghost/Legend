@@ -125,3 +125,66 @@ bool UITabbarView::init() {
 void UITabbarView::commonInit() {
     this->setColor(Color3B::GRAY);
 }
+
+#pragma mark - UITabbarItem
+UITabbarItem::UITabbarItem() {
+    
+}
+
+UITabbarItem::~UITabbarItem() {
+    
+}
+
+bool UITabbarItem::init() {
+    if (!BaseModel::init()) {
+        return false;
+    }
+    return true;
+}
+
+bool UITabbarItem::initWithConfigs(string title, string imagePath, string selectedImagePath) {
+    if (!BaseModel::init()) {
+        return false;
+    }
+    this->title = title;
+    this->imagePath = imagePath;
+    this->selectedImagePath = selectedImagePath;
+    return true;
+}
+
+#pragma mark - UITabbarView
+UITabbarItemView::UITabbarItemView() {
+    
+}
+
+UITabbarItemView::~UITabbarItemView() {
+    
+}
+
+bool UITabbarItemView::initWithItem(UITabbarItem *item) {
+    if (!BaseLayer::init()) {
+        return false;
+    }
+
+    return true;
+}
+
+void UITabbarItemView::setSelected(bool selected) {
+    _selected = selected;
+}
+
+bool UITabbarItemView::getSelected() {
+    return _selected;
+}
+
+void UITabbarItemView::setItem(UITabbarItem *tabbarItem) {
+    _tabbarItem = tabbarItem;
+}
+
+UITabbarItem* UITabbarItemView::getItem() {
+    return _tabbarItem;
+}
+
+void UITabbarItemView::refresh() {
+    
+}

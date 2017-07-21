@@ -14,6 +14,10 @@
 #include "MVVM.h"
 #include "ButtonTableViewCell.h"
 #include "CppRuntime.h"
+#include "UIImageView.h"
+#include "UILabel.h"
+
+USING_NS_CC_EXT;
 
 HomeScene::HomeScene() {
     
@@ -43,8 +47,8 @@ void HomeScene::commonInit() {
     UITableView *tableView = UITableView::create();
     MEMSETTER(tableView);
     this->addChild(tableView);
-    tableView->setPosition(Vec2(15, 0));
-    tableView->setViewSize(Size(Layout_Width - 30, Layout_Height));
+    tableView->setPosition(Vec2(15, 44));
+    tableView->setViewSize(Size(Layout_Width - 30, Layout_Height - 44));
     tableView->delegate = this;
     tableView->dataSource = this;
     tableView->reloadData();
@@ -58,8 +62,6 @@ void HomeScene::commonInit() {
         this->cellCount = 3;
         _tableView->reloadData();
     });
-    
-    Ref* ref = CppRuntime::getInstance()->createInstanceByClassName("UITableViewCellModel");
 }
 
 #pragma mark - UITableView DataSource

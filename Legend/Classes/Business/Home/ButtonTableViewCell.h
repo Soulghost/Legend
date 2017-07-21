@@ -10,6 +10,7 @@
 #define __ButtonTableViewCell_H__
 
 #include "UIKit.h"
+#include "LGUIKit.h"
 #include "CppRuntime.h"
 
 USING_NS_CC;

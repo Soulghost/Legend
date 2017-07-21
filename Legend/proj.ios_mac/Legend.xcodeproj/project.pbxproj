@@ -63,14 +63,10 @@
 		6803F73E1F1253BA00384C35 /* MemoryUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */; };
 		6803F73F1F1253C700384C35 /* BaseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729331F1244F7003EFCC1 /* BaseNode.cpp */; };
 		6803F7401F1253C900384C35 /* FrameNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729271F123B6D003EFCC1 /* FrameNode.cpp */; };
-		6803F7471F12548A00384C35 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7451F12548A00384C35 /* LGButton.cpp */; };
 		6803F74A1F1254C200384C35 /* BaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7481F1254C200384C35 /* BaseLayer.cpp */; };
-		6803F74B1F12557300384C35 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7451F12548A00384C35 /* LGButton.cpp */; };
 		6803F74C1F1257DA00384C35 /* BaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7481F1254C200384C35 /* BaseLayer.cpp */; };
 		6803F74F1F125E8000384C35 /* LayoutUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F74D1F125E8000384C35 /* LayoutUtil.cpp */; };
 		6803F7501F125F4500384C35 /* LayoutUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F74D1F125E8000384C35 /* LayoutUtil.cpp */; };
-		6803F7531F12757D00384C35 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7511F12757D00384C35 /* LGUITheme.cpp */; };
-		6803F7541F12847500384C35 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7511F12757D00384C35 /* LGUITheme.cpp */; };
 		6803F7571F13C68100384C35 /* UIControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7551F13C68100384C35 /* UIControl.cpp */; };
 		6803F75A1F13DBCC00384C35 /* UITabbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7581F13DBCC00384C35 /* UITabbar.cpp */; };
 		6803F75B1F13DF5F00384C35 /* UITabbar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F7581F13DBCC00384C35 /* UITabbar.cpp */; };
@@ -100,6 +96,20 @@
 		68B729291F123B6D003EFCC1 /* FrameNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729271F123B6D003EFCC1 /* FrameNode.cpp */; };
 		68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B7292C1F123DFD003EFCC1 /* MemoryUtil.cpp */; };
 		68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68B729331F1244F7003EFCC1 /* BaseNode.cpp */; };
+		68ED49B61F22346E009057C5 /* UIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49B41F22346E009057C5 /* UIImageView.cpp */; };
+		68ED49B71F22346E009057C5 /* UIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49B41F22346E009057C5 /* UIImageView.cpp */; };
+		68ED49BA1F223481009057C5 /* UIImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49B81F223481009057C5 /* UIImage.cpp */; };
+		68ED49BB1F223481009057C5 /* UIImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49B81F223481009057C5 /* UIImage.cpp */; };
+		68ED49C21F223D67009057C5 /* UILabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C01F223D67009057C5 /* UILabel.cpp */; };
+		68ED49C31F223D67009057C5 /* UILabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C01F223D67009057C5 /* UILabel.cpp */; };
+		68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
+		68ED49CB1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
+		68ED49CC1F22408B009057C5 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C81F22408B009057C5 /* LGUITheme.cpp */; };
+		68ED49CD1F22408B009057C5 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C81F22408B009057C5 /* LGUITheme.cpp */; };
+		68ED49D31F224A27009057C5 /* TouchEventCapability.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49D11F224A27009057C5 /* TouchEventCapability.cpp */; };
+		68ED49D41F224A27009057C5 /* TouchEventCapability.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49D11F224A27009057C5 /* TouchEventCapability.cpp */; };
+		68ED49D81F225C6F009057C5 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 68ED49D71F225C6F009057C5 /* assets */; };
+		68ED49D91F225C6F009057C5 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 68ED49D71F225C6F009057C5 /* assets */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -202,14 +212,10 @@
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		6803F73A1F124EA400384C35 /* HomeScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomeScene.cpp; sourceTree = "<group>"; };
 		6803F73B1F124EA400384C35 /* HomeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScene.h; sourceTree = "<group>"; };
-		6803F7451F12548A00384C35 /* LGButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGButton.cpp; sourceTree = "<group>"; };
-		6803F7461F12548A00384C35 /* LGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGButton.h; sourceTree = "<group>"; };
 		6803F7481F1254C200384C35 /* BaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseLayer.cpp; sourceTree = "<group>"; };
 		6803F7491F1254C200384C35 /* BaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLayer.h; sourceTree = "<group>"; };
 		6803F74D1F125E8000384C35 /* LayoutUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayoutUtil.cpp; sourceTree = "<group>"; };
 		6803F74E1F125E8000384C35 /* LayoutUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutUtil.h; sourceTree = "<group>"; };
-		6803F7511F12757D00384C35 /* LGUITheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGUITheme.cpp; sourceTree = "<group>"; };
-		6803F7521F12757D00384C35 /* LGUITheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGUITheme.h; sourceTree = "<group>"; };
 		6803F7551F13C68100384C35 /* UIControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIControl.cpp; sourceTree = "<group>"; };
 		6803F7561F13C68100384C35 /* UIControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIControl.h; sourceTree = "<group>"; };
 		6803F7581F13DBCC00384C35 /* UITabbar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITabbar.cpp; sourceTree = "<group>"; };
@@ -254,6 +260,22 @@
 		68B729301F123ECF003EFCC1 /* Legend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Legend.h; sourceTree = "<group>"; };
 		68B729331F1244F7003EFCC1 /* BaseNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseNode.cpp; sourceTree = "<group>"; };
 		68B729341F1244F7003EFCC1 /* BaseNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNode.h; sourceTree = "<group>"; };
+		68ED49B41F22346E009057C5 /* UIImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIImageView.cpp; sourceTree = "<group>"; };
+		68ED49B51F22346E009057C5 /* UIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageView.h; sourceTree = "<group>"; };
+		68ED49B81F223481009057C5 /* UIImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIImage.cpp; sourceTree = "<group>"; };
+		68ED49B91F223481009057C5 /* UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImage.h; sourceTree = "<group>"; };
+		68ED49C01F223D67009057C5 /* UILabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILabel.cpp; sourceTree = "<group>"; };
+		68ED49C11F223D67009057C5 /* UILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILabel.h; sourceTree = "<group>"; };
+		68ED49C61F22408B009057C5 /* LGButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGButton.cpp; sourceTree = "<group>"; };
+		68ED49C71F22408B009057C5 /* LGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGButton.h; sourceTree = "<group>"; };
+		68ED49C81F22408B009057C5 /* LGUITheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGUITheme.cpp; sourceTree = "<group>"; };
+		68ED49C91F22408B009057C5 /* LGUITheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGUITheme.h; sourceTree = "<group>"; };
+		68ED49CE1F2241C4009057C5 /* Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Base.h; sourceTree = "<group>"; };
+		68ED49CF1F2241FA009057C5 /* LGUIKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGUIKit.h; sourceTree = "<group>"; };
+		68ED49D11F224A27009057C5 /* TouchEventCapability.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TouchEventCapability.cpp; sourceTree = "<group>"; };
+		68ED49D21F224A27009057C5 /* TouchEventCapability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchEventCapability.h; sourceTree = "<group>"; };
+		68ED49D51F224D52009057C5 /* Capability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Capability.h; sourceTree = "<group>"; };
+		68ED49D71F225C6F009057C5 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -387,6 +409,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				68ED49D71F225C6F009057C5 /* assets */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
@@ -400,6 +423,7 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				68ED49C41F22403A009057C5 /* LGBase */,
 				6803F7381F124E5E00384C35 /* Business */,
 				68B7292F1F123EB7003EFCC1 /* Core */,
 				68B7292B1F123D3F003EFCC1 /* Common */,
@@ -481,13 +505,12 @@
 		6803F7411F12545B00384C35 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				68ED49B31F22344D009057C5 /* ImageView */,
+				68ED49C01F223D67009057C5 /* UILabel.cpp */,
+				68ED49C11F223D67009057C5 /* UILabel.h */,
 				6803F75D1F13E73300384C35 /* UIKit.h */,
 				6803F7551F13C68100384C35 /* UIControl.cpp */,
 				6803F7561F13C68100384C35 /* UIControl.h */,
-				6803F7451F12548A00384C35 /* LGButton.cpp */,
-				6803F7461F12548A00384C35 /* LGButton.h */,
-				6803F7511F12757D00384C35 /* LGUITheme.cpp */,
-				6803F7521F12757D00384C35 /* LGUITheme.h */,
 				6803F7581F13DBCC00384C35 /* UITabbar.cpp */,
 				6803F7591F13DBCC00384C35 /* UITabbar.h */,
 				6803F76B1F19C34800384C35 /* UITableView.cpp */,
@@ -543,6 +566,7 @@
 		68B729251F123B4C003EFCC1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				68ED49D01F2249F9009057C5 /* Capability */,
 				6803F7911F1A6DE300384C35 /* Runtime */,
 				6803F7731F19D6BD00384C35 /* MVVM */,
 				6803F7411F12545B00384C35 /* UI */,
@@ -554,6 +578,7 @@
 				6803F7491F1254C200384C35 /* BaseLayer.h */,
 				6803F78B1F1A688800384C35 /* BaseModel.cpp */,
 				6803F78C1F1A688800384C35 /* BaseModel.h */,
+				68ED49CE1F2241C4009057C5 /* Base.h */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -579,6 +604,47 @@
 				6803F79D1F1A851E00384C35 /* LGRuntimeMap.h */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		68ED49B31F22344D009057C5 /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				68ED49B41F22346E009057C5 /* UIImageView.cpp */,
+				68ED49B51F22346E009057C5 /* UIImageView.h */,
+				68ED49B81F223481009057C5 /* UIImage.cpp */,
+				68ED49B91F223481009057C5 /* UIImage.h */,
+			);
+			path = ImageView;
+			sourceTree = "<group>";
+		};
+		68ED49C41F22403A009057C5 /* LGBase */ = {
+			isa = PBXGroup;
+			children = (
+				68ED49C51F22404D009057C5 /* UI */,
+			);
+			path = LGBase;
+			sourceTree = "<group>";
+		};
+		68ED49C51F22404D009057C5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				68ED49C61F22408B009057C5 /* LGButton.cpp */,
+				68ED49C71F22408B009057C5 /* LGButton.h */,
+				68ED49C81F22408B009057C5 /* LGUITheme.cpp */,
+				68ED49C91F22408B009057C5 /* LGUITheme.h */,
+				68ED49CF1F2241FA009057C5 /* LGUIKit.h */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		68ED49D01F2249F9009057C5 /* Capability */ = {
+			isa = PBXGroup;
+			children = (
+				68ED49D11F224A27009057C5 /* TouchEventCapability.cpp */,
+				68ED49D21F224A27009057C5 /* TouchEventCapability.h */,
+				68ED49D51F224D52009057C5 /* Capability.h */,
+			);
+			path = Capability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -697,6 +763,7 @@
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
+				68ED49D81F225C6F009057C5 /* assets in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
@@ -720,6 +787,7 @@
 			files = (
 				46880B8219C43A67006E1F66 /* HelloWorld.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
+				68ED49D91F225C6F009057C5 /* assets in Resources */,
 				3EACC99019EE6D4300EB3C5E /* res in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 				46880B7C19C43A67006E1F66 /* CloseNormal.png in Resources */,
@@ -736,12 +804,14 @@
 			files = (
 				68B7292E1F123DFD003EFCC1 /* MemoryUtil.cpp in Sources */,
 				6803F7571F13C68100384C35 /* UIControl.cpp in Sources */,
+				68ED49CC1F22408B009057C5 /* LGUITheme.cpp in Sources */,
 				6803F78D1F1A688800384C35 /* BaseModel.cpp in Sources */,
 				6803F7681F1915B800384C35 /* StatusIndicatorRound.cpp in Sources */,
 				6803F7801F1A032400384C35 /* ButtonTableViewCell.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
-				6803F7531F12757D00384C35 /* LGUITheme.cpp in Sources */,
 				6803F7A11F1A863F00384C35 /* CppRuntimeMap.cpp in Sources */,
+				68ED49BA1F223481009057C5 /* UIImage.cpp in Sources */,
+				68ED49B61F22346E009057C5 /* UIImageView.cpp in Sources */,
 				6803F7761F19D6D000384C35 /* UIScrollViewMVVMBinder.cpp in Sources */,
 				6803F74A1F1254C200384C35 /* BaseLayer.cpp in Sources */,
 				6803F76D1F19C34800384C35 /* UITableView.cpp in Sources */,
@@ -754,12 +824,14 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				6803F7861F1A5CEC00384C35 /* UITableViewHeaderFooterView.cpp in Sources */,
 				6803F7901F1A68F900384C35 /* UITableViewCellModel.cpp in Sources */,
-				6803F7471F12548A00384C35 /* LGButton.cpp in Sources */,
 				6803F75A1F13DBCC00384C35 /* UITabbar.cpp in Sources */,
 				6803F77D1F19F1AA00384C35 /* UITableViewCell.cpp in Sources */,
 				68B729351F1244F7003EFCC1 /* BaseNode.cpp in Sources */,
+				68ED49C21F223D67009057C5 /* UILabel.cpp in Sources */,
 				6803F73C1F124EA400384C35 /* HomeScene.cpp in Sources */,
 				6803F7891F1A682400384C35 /* UITableViewModel.cpp in Sources */,
+				68ED49D31F224A27009057C5 /* TouchEventCapability.cpp in Sources */,
+				68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */,
 				6803F7A41F1B34A400384C35 /* UITableViewCellViewModel.cpp in Sources */,
 				6803F74F1F125E8000384C35 /* LayoutUtil.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
@@ -770,7 +842,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6803F74B1F12557300384C35 /* LGButton.cpp in Sources */,
+				68ED49BB1F223481009057C5 /* UIImage.cpp in Sources */,
 				6803F7971F1A7D0F00384C35 /* UITableViewModel.cpp in Sources */,
 				6803F75C1F13E72800384C35 /* UIControl.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
@@ -778,16 +850,20 @@
 				6803F75B1F13DF5F00384C35 /* UITabbar.cpp in Sources */,
 				6803F7501F125F4500384C35 /* LayoutUtil.cpp in Sources */,
 				6803F7961F1A7D0D00384C35 /* UITableViewMVVMBinder.cpp in Sources */,
+				68ED49B71F22346E009057C5 /* UIImageView.cpp in Sources */,
 				6803F73D1F1253B400384C35 /* HomeScene.cpp in Sources */,
+				68ED49CD1F22408B009057C5 /* LGUITheme.cpp in Sources */,
 				6803F73F1F1253C700384C35 /* BaseNode.cpp in Sources */,
 				6803F76F1F19C34C00384C35 /* UITableView.cpp in Sources */,
 				6803F7401F1253C900384C35 /* FrameNode.cpp in Sources */,
 				6803F7791F19D9EE00384C35 /* UIScrollViewMVVMBinder.cpp in Sources */,
+				68ED49CB1F22408B009057C5 /* LGButton.cpp in Sources */,
 				6803F73E1F1253BA00384C35 /* MemoryUtil.cpp in Sources */,
 				6803F7981F1A7D1100384C35 /* UITableViewCellModel.cpp in Sources */,
 				6803F74C1F1257DA00384C35 /* BaseLayer.cpp in Sources */,
-				6803F7541F12847500384C35 /* LGUITheme.cpp in Sources */,
 				6803F7951F1A7D0500384C35 /* CppRuntime.cpp in Sources */,
+				68ED49C31F223D67009057C5 /* UILabel.cpp in Sources */,
+				68ED49D41F224A27009057C5 /* TouchEventCapability.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

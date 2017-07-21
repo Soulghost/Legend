@@ -70,7 +70,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     // turn on display FPS
-    director->setDisplayStats(true);
+//    director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
@@ -104,7 +104,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     tabbar->addLayer(HomeScene::create());
     tabbar->addLayer(LayerColor::create(Color4B::RED));
     tabbar->addLayer(LayerColor::create(Color4B::BLUE));
-    tabbar->test();
+    tabbar->addLayer(LayerColor::create(Color4B::ORANGE));
+    tabbar->addItem(UITabbarItem::createWithConfigs("首页", "assets/tabbar/home.png", "assets/tabbar/home.png"));
+    tabbar->addItem(UITabbarItem::createWithConfigs("战斗", "assets/tabbar/fight.png", "assets/tabbar/fight.png"));
+    tabbar->addItem(UITabbarItem::createWithConfigs("背包", "assets/tabbar/bag.png", "assets/tabbar/bag.png"));
+    tabbar->addItem(UITabbarItem::createWithConfigs("设置", "assets/tabbar/settings.png", "assets/tabbar/settings.png"));
     auto scene = Scene::create();
     scene->addChild(tabbar);
     // run

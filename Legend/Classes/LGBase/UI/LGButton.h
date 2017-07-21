@@ -12,6 +12,7 @@
 #include "BaseLayer.h"
 #include "UIControl.h"
 #include "LGUITheme.h"
+#include "Capability.h"
 
 USING_NS_CC;
 using namespace std;
@@ -30,6 +31,8 @@ public:
     
 private:
     Label *_titleLabel;
+    TouchEventCapability *_touchCapability;
+    
 private:
     void commonInit();
     void performScale(float scale, float duration);

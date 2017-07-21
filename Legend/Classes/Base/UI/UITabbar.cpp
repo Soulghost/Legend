@@ -11,13 +11,16 @@
 #include "LGButton.h"
 #include "HomeScene.h"
 
+static string kTabbarSelectEvent = "kTabbarSelectEvent";
+
+#pragma mark - UITabbar
 UITabbar::UITabbar() {
     _selectedIndex = 0;
-    
 }
 
 UITabbar::~UITabbar() {
-    
+    MEMCLEAR(_tabbarView);
+    this->getEventDispatcher()->removeAllEventListeners();
 }
 
 Scene* UITabbar::createScene() {
@@ -37,35 +40,16 @@ bool UITabbar::init() {
 
 void UITabbar::commonInit() {
     UITabbarView *tabbarView = UITabbarView::create();
+    MEMSETTER(tabbarView);
     tabbarView->setContentSize(Size(Layout_Width, 44));
     this->addChild(tabbarView);
-    tabbarView->setGlobalZOrder(Layout_Level_Floating);
-}
-
-void UITabbar::test() {
-    LGButton *nextBtn = LGButton::createWithFont(UIFont(LGUITheme::getInstance()->cnTTF, 14));
-    nextBtn->setContentSize(Size(60, 24));
-    nextBtn->setPosition(Vec2(200, 400));
-    nextBtn->setTitle("next");
-    nextBtn->setFrameVisible(true);
-    nextBtn->setOnClickHandler([&](Ref *sender) {
-        if (_selectedIndex == _layers.size() - 1) return;
-        _selectedIndex++;
-        this->layout();
-    });
-    this->addChild(nextBtn);
+    tabbarView->setLocalZOrder(Layout_Level_Floating);
     
-    LGButton *beforeBtn = LGButton::createWithFont(UIFont(LGUITheme::getInstance()->cnTTF, 14));
-    beforeBtn->setContentSize(Size(60, 24));
-    beforeBtn->setPosition(Vec2(100, 400));
-    beforeBtn->setTitle("before");
-    beforeBtn->setFrameVisible(true);
-    beforeBtn->setOnClickHandler([&](Ref *sender) {
-        if (_selectedIndex == 0) return;
-        _selectedIndex--;
-        this->layout();
+    EventListenerCustom *tabbarSelectEvent = EventListenerCustom::create(kTabbarSelectEvent, [&](EventCustom *e) {
+        UITabbarItem *selectedItem = static_cast<UITabbarItem *>(e->getUserData());
+        this->setSelectedIndex(selectedItem->index);
     });
-    this->addChild(beforeBtn);
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(tabbarSelectEvent, this);
 }
 
 void UITabbar::addLayer(Layer *layer) {
@@ -78,11 +62,17 @@ void UITabbar::addLayer(Layer *layer) {
     layer->setPosition(Vec2(x, y));
 }
 
+void UITabbar::addItem(UITabbarItem *item) {
+    _tabbarView->addItem(item);
+    this->setSelectedIndex(0);
+}
+
 void UITabbar::setSelectedIndex(int index) {
     if (index < 0 || index >= _layers.size()) {
         return;
     }
     _selectedIndex = index;
+    _tabbarView->setSelectedIndex(index);
     this->layout();
 }
 
@@ -107,11 +97,11 @@ void UITabbar::layout() {
 
 #pragma mark - UITabbarView
 UITabbarView::UITabbarView() {
-    
+    _currentSelectedIndex = -1;
 }
 
 UITabbarView::~UITabbarView() {
-    
+    MEMCLEAR(_touchCapability);
 }
 
 bool UITabbarView::init() {
@@ -123,7 +113,46 @@ bool UITabbarView::init() {
 }
 
 void UITabbarView::commonInit() {
-    this->setColor(Color3B::GRAY);
+    this->setColor(Color3B(RGBH4F(0xEEEEEE)));
+    TouchEventCapability *touchCapability = TouchEventCapability::createWithLayer(this);
+    MEMSETTER(touchCapability);
+}
+
+void UITabbarView::addItem(UITabbarItem *item) {
+    UITabbarItemView *itemView = UITabbarItemView::createWithItem(item);
+    _itemViews.pushBack(itemView);
+    item->index = (int)_itemViews.size() - 1;
+    this->addChild(itemView);
+    this->layout();
+}
+
+void UITabbarView::setSelectedIndex(int index) {
+    if (_currentSelectedIndex == index) {
+        return;
+    }
+    if (_currentSelectedIndex != -1) {
+        UITabbarItemView *itemView = _itemViews.at(_currentSelectedIndex);
+        itemView->setSelected(false);
+    }
+    UITabbarItemView *itemView = _itemViews.at(index);
+    itemView->setSelected(true);
+    _currentSelectedIndex = index;
+}
+
+void UITabbarView::layout() {
+    Size contentSize = this->getContentSize();
+    float itemW = 60;
+    float itemH = contentSize.height;
+    int itemCount = (int)_itemViews.size();
+    int spaceBetween = (contentSize.width - itemCount * itemW) / (itemCount + 1);
+    int itemX = spaceBetween;
+    int itemY = 0;
+    for (int i = 0; i < itemCount; i++) {
+        UITabbarItemView *itemView = _itemViews.at(i);
+        itemView->setPosition(Vec2(itemX, itemY));
+        itemView->setContentSize(Size(itemW, itemH));
+        itemX += spaceBetween + itemW;
+    }
 }
 
 #pragma mark - UITabbarItem
@@ -152,25 +181,52 @@ bool UITabbarItem::initWithConfigs(string title, string imagePath, string select
     return true;
 }
 
-#pragma mark - UITabbarView
+#pragma mark - UITabbarItemView
 UITabbarItemView::UITabbarItemView() {
     
 }
 
 UITabbarItemView::~UITabbarItemView() {
-    
+    MEMCLEAR(_imageView);
+    MEMCLEAR(_titleLabel);
+    MEMCLEAR(_tabbarItem);
+    MEMCLEAR(_touchCapability);
 }
 
 bool UITabbarItemView::initWithItem(UITabbarItem *item) {
     if (!BaseLayer::init()) {
         return false;
     }
-
+    _tabbarItem = item;
+    _tabbarItem->retain();
+    commonInit();
     return true;
+}
+
+void UITabbarItemView::commonInit() {
+    UIImageView *imageView = UIImageView::create();
+    imageView->setImage(UIImage::createWithFile(_tabbarItem->imagePath));
+    MEMSETTER(imageView);
+    this->addChild(imageView);
+    UILabel *titleLabel = UILabel::create();
+    titleLabel->setString(_tabbarItem->title);
+    titleLabel->setSystemFontSize(10);
+    titleLabel->setTextColor(Color4B::BLACK);
+    MEMSETTER(titleLabel);
+    this->addChild(titleLabel);
+    TouchEventCapability *touchCapability = TouchEventCapability::createWithLayer(this);
+    MEMSETTER(touchCapability);
+    touchCapability->onClick = [&](Touch *t, Event *e) {
+        EventCustom *event = new EventCustom(kTabbarSelectEvent);
+        event->setUserData(this->_tabbarItem);
+        this->getEventDispatcher()->dispatchEvent(event);
+    };
+    this->setSelected(false);
 }
 
 void UITabbarItemView::setSelected(bool selected) {
     _selected = selected;
+    this->refresh();
 }
 
 bool UITabbarItemView::getSelected() {
@@ -186,5 +242,24 @@ UITabbarItem* UITabbarItemView::getItem() {
 }
 
 void UITabbarItemView::refresh() {
-    
+    this->setColor(_selected ? RGB3B(0xD8D8D8) : RGB3B(0xEEEEEE));
+}
+
+void UITabbarItemView::layoutSubviews() {
+    if (!_imageView) {
+        return;
+    }
+    Vec2 center = Layout_CenterPoint;
+    float imageWH = 20;
+    float marginTop = 5;
+    float imageX = center.x;
+    float imageY = Layout_TopY - marginTop - imageWH * 0.5f;
+    _imageView->setPosition(Vec2(imageX, imageY));
+    _imageView->setImageSize(Size(imageWH, imageWH));
+    float labelX = imageX;
+    float labelY = imageY - imageWH - 3;
+    float labelW = Layout_Width;
+    float labelH = 14;
+    _titleLabel->setPosition(Vec2(labelX, labelY));
+    _titleLabel->setContentSize(Size(labelW, labelH));
 }

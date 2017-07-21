@@ -14,7 +14,8 @@ LGButton::LGButton() {
 }
 
 LGButton::~LGButton() {
-    
+    MEMCLEAR(_touchCapability);
+    MEMCLEAR(_titleLabel);
 }
 
 bool LGButton::initWithFont(UIFont font) {
@@ -31,30 +32,22 @@ bool LGButton::initWithFont(UIFont font) {
 }
 
 void LGButton::commonInit() {
+    // set scale base point to center
     this->setAnchorPoint(Vec2(0.5f, 0.5f));
-    EventListenerTouchOneByOne *touch = EventListenerTouchOneByOne::create();
-    touch->setSwallowTouches(true);
-    touch->onTouchBegan = [&](Touch *t, Event *e) {
-        Vec2 touchLocation = t->getLocation(); // Get the touch position
-        touchLocation = this->getParent()->convertToNodeSpace(touchLocation);
-        Rect bBox = getBoundingBox();
-        bool isValid = bBox.containsPoint(touchLocation);
-        if (isValid) {
-            this->performScale(1.1, 0.1);
-            return true;
-        }
-        return false;
+    TouchEventCapability *touchCapability = TouchEventCapability::createWithLayer(this);
+    MEMSETTER(touchCapability);
+    touchCapability->onTouchBegan = [&](Touch *t, Event *e) {
+        this->performScale(1.1, 0.1);
     };
-    touch->onTouchEnded = [&](Touch *t, Event *e) {
-        if (this->getBoundingBox().containsPoint(t->getLocation())) {
-            this->onClick(this);
-        }
+    touchCapability->onTouchEnded = [&](Touch *t, Event *e) {
         this->performScale(1.0, 0.1);
     };
-    touch->onTouchCancelled = [&](Touch *t, Event *e) {
+    touchCapability->onTouchCancelled = [&](Touch *t, Event *e) {
         this->performScale(1.0, 0.1);
     };
-    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touch, this);
+    touchCapability->onClick = [&](Touch *t, Event *e) {
+        this->onClick(this);
+    };
 }
 
 void LGButton::layoutSubviews() {

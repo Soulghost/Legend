@@ -10,7 +10,8 @@
 #define __UITabbar_H__
 
 #include "UIKit.h"
-#include "BaseModel.h"
+#include "Base.h"
+#include "Capability.h"
 
 USING_NS_CC;
 
@@ -26,6 +27,7 @@ public:
     string title;
     string imagePath;
     string selectedImagePath;
+    int index;
 };
 
 class UITabbarItemView : public BaseLayer, public UIControl {
@@ -34,18 +36,22 @@ public:
     ~UITabbarItemView();
     
     CREATE_FUNC_PARAMS_1(UITabbarItemView, WithItem, UITabbarItem *, item);
+    
+    virtual void layoutSubviews() override;
 
 public:
+    void commonInit();
     void setSelected(bool selected);
     bool getSelected();
     void setItem(UITabbarItem *tabbarItem);
     UITabbarItem* getItem();
     
 private:
+    TouchEventCapability *_touchCapability;
     bool _selected;
     UITabbarItem *_tabbarItem;
-    Sprite *_imageView;
-    Label *_titleLabel;
+    UIImageView *_imageView;
+    UILabel *_titleLabel;
     
 private:
     void refresh();
@@ -58,9 +64,18 @@ public:
     
     virtual bool init() override;
     CREATE_FUNC(UITabbarView);
+    
+public:
+    void addItem(UITabbarItem *item);
+    void setSelectedIndex(int index);
 
 private:
+    TouchEventCapability *_touchCapability;
+    Vector<UITabbarItemView *> _itemViews;
+    int _currentSelectedIndex;
+    
     void commonInit();
+    void layout();
 };
 
 class UITabbar : public BaseLayer {
@@ -79,9 +94,8 @@ public:
     int selectedIndex();
     Vector<Layer *>& getLayers();
     
-    void test();
-    
 private:
+    UITabbarView *_tabbarView;
     Vector<Layer *> _layers;
     Vector<UITabbarItemView *> _itemViews;
     int _selectedIndex;

@@ -9,9 +9,17 @@
 #ifndef UIKit_h
 #define UIKit_h
 
+#include <cocos2d.h>
+
+USING_NS_CC;
+using namespace std;
+
+#include "Legend.h"
+#include "Base.h"
 #include "UIControl.h"
-#include "LGButton.h"
-#include "LGUITheme.h"
+#include "UILabel.h"
+#include "UIImage.h"
+#include "UIImageView.h"
 #include "UITabbar.h"
 #include "UITableView.h"
 #include "UITableViewCell.h"

@@ -17,12 +17,12 @@ typedef std::function<void(int section)> ReloadSectionCallback;
 
 USING_NS_CC;
 
-class UITableViewMVVMBinder : public Layer {
+class UITableViewMVVMBinder : public Layer, public UITableViewDelegate, public UITableViewDataSource {
 public:
     UITableViewMVVMBinder();
     ~UITableViewMVVMBinder();
     
-    bool init();
+    virtual bool init() override;
     CREATE_FUNC(UITableViewMVVMBinder);
     
 public:
@@ -34,6 +34,19 @@ private:
     UITableViewModel *_viewModel;
 private:
     void commonInit();
+    
+public:
+#pragma mark - UITableView DataSource
+    virtual int tableViewNumberOfSections() override;
+    virtual int tableViewNumberOfRowsInSection(int section) override;
+    virtual UITableViewCell* tableViewCellForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) override;
+#pragma mark - UITableView Delegate
+    virtual float tableViewHeightForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) override;
+    virtual UITableViewHeaderFooterView* tableViewHeaderViewForSection(UITableView *tableView, int section) override;
+    virtual UITableViewHeaderFooterView* tableViewFooterViewForSection(UITableView *tableView, int section) override;
+    virtual float tableViewHeightForHeaderInSection(UITableView *tableView, int section) override;
+    virtual float tableViewHeightForFooterInSection(UITableView *tableView, int section) override;
+#pragma mark -
 };
 
 #endif

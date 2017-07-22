@@ -9,7 +9,9 @@
 #include "UITableViewCellViewModel.h"
 
 UITableViewCellViewModel::UITableViewCellViewModel() {
-    
+    cellIdentifier = "";
+    viewClass = "";
+    cellHeight = 44;
 }
 
 UITableViewCellViewModel::~UITableViewCellViewModel() {

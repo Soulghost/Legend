@@ -22,6 +22,7 @@ public:
     
     virtual bool init() override;
     CREATE_FUNC(UITableViewCellModel);
+    CREATE_FUNC_PARAMS_1(UITableViewCellModel, SingleCellModel, UITableViewCellViewModel*, cellViewModel);
     RuntimeInterface(UITableViewCellModel);
     
 public:

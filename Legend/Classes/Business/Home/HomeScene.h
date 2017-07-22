@@ -17,7 +17,7 @@
 USING_NS_CC_EXT;
 USING_NS_CC;
 
-class HomeScene : public LayerColor, public UITableViewDelegate, public UITableViewDataSource {
+class HomeScene : public LayerColor {
 public:
     HomeScene();
     ~HomeScene();
@@ -27,26 +27,9 @@ public:
     CREATE_FUNC(HomeScene);
     
 private:
-    map<string, Vector<UITableViewCell *>> _cellCache;
-
-public:
-#pragma mark - UITableView DataSource
-    virtual int tableViewNumberOfSections() override;
-    virtual int tableViewNumberOfRowsInSection(int section) override;
-    virtual UITableViewCell* tableViewCellForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) override;
-#pragma mark - UITableView Delegate
-    virtual float tableViewHeightForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) override;
-    virtual UITableViewHeaderFooterView* tableViewHeaderViewForSection(UITableView *tableView, int section) override;
-    virtual UITableViewHeaderFooterView* tableViewFooterViewForSection(UITableView *tableView, int section) override;
-    virtual float tableViewHeightForHeaderInSection(UITableView *tableView, int section) override;
-    virtual float tableViewHeightForFooterInSection(UITableView *tableView, int section) override;
-#pragma mark -
-    
-    int cellCount;
-    
-private:
-    UIScrollViewMVVMBinder *_binder;
     UITableView *_tableView;
+    UITableViewMVVMBinder *_tableViewBinder;
+    
 private:
     void commonInit();
 };

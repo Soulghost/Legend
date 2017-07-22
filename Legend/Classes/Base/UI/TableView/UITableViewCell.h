@@ -24,8 +24,15 @@ public:
 public:
     string identifier;
     
+    virtual void setContentSize(const Size& contentSize) override;
+    void setContentView(BaseLayer *contentView);
+    BaseLayer* getContentView();
+    
 private:
+    BaseLayer *_contentView;
+    
     void commonInit();
+    
 };
 
 #endif

@@ -33,9 +33,11 @@ protected:
     bool _isInitting;
 private:
     bool _frameVisible;
-    FrameNode *_frameNode;
+    DrawNode *_drawNode;
+    
 private:
     void commonInit();
+    void drawFrame();
 };
 
 #endif

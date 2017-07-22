@@ -256,10 +256,10 @@ void UITabbarItemView::layoutSubviews() {
     float imageY = Layout_TopY - marginTop - imageWH * 0.5f;
     _imageView->setPosition(Vec2(imageX, imageY));
     _imageView->setImageSize(Size(imageWH, imageWH));
-    float labelX = imageX;
-    float labelY = imageY - imageWH - 3;
     float labelW = Layout_Width;
     float labelH = 14;
+    float labelX = imageX;
+    float labelY = imageY - (imageWH + labelH) * 0.5f - 4;
     _titleLabel->setPosition(Vec2(labelX, labelY));
     _titleLabel->setContentSize(Size(labelW, labelH));
 }

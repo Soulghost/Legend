@@ -11,8 +11,10 @@
 // Classes
 #include "UITableViewCellModel.h"
 #include "UITableViewCellViewModel.h"
+#include "StatePanelView.h"
 
 void LGRuntimeMap::registerClasses() {
     RuntimeImpl(UITableViewCellModel);
     RuntimeImpl(UITableViewCellViewModel);
+    RuntimeImpl(StatePanelView);
 }

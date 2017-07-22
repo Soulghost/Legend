@@ -25,6 +25,8 @@ public:
     
 public:
     string viewClass;
+    string cellIdentifier;
+    float cellHeight;
     
 private:
     void commonInit();

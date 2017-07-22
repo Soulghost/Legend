@@ -6,16 +6,10 @@
 //
 //
 
-#include "Legend.h"
-#include "HomeScene.h"
-#include "FrameNode.h"
-#include "LGButton.h"
-#include "StatusIndicatorRound.h"
 #include "MVVM.h"
-#include "ButtonTableViewCell.h"
-#include "CppRuntime.h"
-#include "UIImageView.h"
-#include "UILabel.h"
+#include "UIKit.h"
+#include "HomeScene.h"
+#include "HomeTableViewModel.h"
 
 USING_NS_CC_EXT;
 
@@ -24,7 +18,8 @@ HomeScene::HomeScene() {
 }
 
 HomeScene::~HomeScene() {
-    MEMCLEAR(_binder);
+    MEMCLEAR(_tableView);
+    MEMCLEAR(_tableViewBinder);
 }
 
 Scene* HomeScene::createScene() {
@@ -43,70 +38,15 @@ bool HomeScene::init() {
 }
 
 void HomeScene::commonInit() {
-    this->cellCount = 2;
     UITableView *tableView = UITableView::create();
     MEMSETTER(tableView);
     this->addChild(tableView);
-    tableView->setPosition(Vec2(15, 44));
-    tableView->setViewSize(Size(Layout_Width - 30, Layout_Height - 44));
-    tableView->delegate = this;
-    tableView->dataSource = this;
-    tableView->reloadData();
+    tableView->setPosition(Vec2(0, 44));
+    tableView->setViewSize(Size(Layout_Width, Layout_Height - 44));
+    UITableViewMVVMBinder *tableViewBinder = UITableViewMVVMBinder::create();
+    tableViewBinder->bindWithTableView(tableView);
+    MEMSETTER(tableViewBinder);
     
-    LGButton *reloadButton = LGButton::createWithFont(UIFont(LGUITheme::getInstance()->enTTF, 16));
-    reloadButton->setTitle("reload");
-    reloadButton->setContentSize(Size(60, 28));
-    reloadButton->setPosition(Vec2(Layout_Width - 60, 0));
-    this->addChild(reloadButton);
-    reloadButton->setOnClickHandler([&](Ref *sender) {
-        this->cellCount = 3;
-        _tableView->reloadData();
-    });
+    HomeTableViewModel *viewModel = HomeTableViewModel::create();
+    tableViewBinder->setViewModel(viewModel);
 }
-
-#pragma mark - UITableView DataSource
-int HomeScene::tableViewNumberOfSections() {
-    return 3;
-}
-
-int HomeScene::tableViewNumberOfRowsInSection(int section) {
-    return this->cellCount + section;
-}
-
-UITableViewCell* HomeScene::tableViewCellForRowAtIndexPath(UITableView *tableView, const UIIndexPath &indexPath) {
-    static string identifier = "homecell";
-    UITableViewCell *cell = tableView->dequeueReusableCellWithIdentifier(identifier);
-    if (cell == nullptr) {
-        cell = ButtonTableViewCell::create();
-    } else {
-        cell = dynamic_cast<ButtonTableViewCell *>(cell);
-    }
-    cell->setColor(Color3B(RGBA4F((indexPath.row * 15) % 255, 120, 120, 1.0f)));
-    return cell;
-}
-
-#pragma mark - UITableView Delegate
-float HomeScene::tableViewHeightForRowAtIndexPath(UITableView *tableView, const UIIndexPath &indexPath) {
-    return 100 + indexPath.row;
-}
-
-UITableViewHeaderFooterView* HomeScene::tableViewHeaderViewForSection(UITableView *tableView, int section) {
-    UITableViewHeaderFooterView *headerView = UITableViewHeaderFooterView::create();
-    headerView->setColor(Color3B::ORANGE);
-    return headerView;
-}
-
-UITableViewHeaderFooterView* HomeScene::tableViewFooterViewForSection(UITableView *tableView, int section) {
-    UITableViewHeaderFooterView *footerView = UITableViewHeaderFooterView::create();
-    footerView->setColor(Color3B::MAGENTA);
-    return footerView;
-}
-
-float HomeScene::tableViewHeightForHeaderInSection(UITableView *tableView, int section) {
-    return 20;
-}
-
-float HomeScene::tableViewHeightForFooterInSection(UITableView *tableView, int section) {
-    return 10;
-}
-

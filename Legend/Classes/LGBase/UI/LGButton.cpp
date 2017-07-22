@@ -37,7 +37,7 @@ void LGButton::commonInit() {
     TouchEventCapability *touchCapability = TouchEventCapability::createWithLayer(this);
     MEMSETTER(touchCapability);
     touchCapability->onTouchBegan = [&](Touch *t, Event *e) {
-        this->performScale(1.1, 0.1);
+        this->performScale(1.025, 0.1);
     };
     touchCapability->onTouchEnded = [&](Touch *t, Event *e) {
         this->performScale(1.0, 0.1);
@@ -51,6 +51,7 @@ void LGButton::commonInit() {
 }
 
 void LGButton::layoutSubviews() {
+    BaseLayer::layoutSubviews();
     Layout_Center(_titleLabel);
 }
 

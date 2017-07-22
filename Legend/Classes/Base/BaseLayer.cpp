@@ -7,16 +7,15 @@
 //
 
 #include "BaseLayer.h"
-#include "FrameNode.h"
 #include "Legend.h"
 
 BaseLayer::BaseLayer() {
     _frameVisible = false;
-    _frameNode = nullptr;
+    _drawNode = nullptr;
 }
 
 BaseLayer::~BaseLayer() {
-    
+    MEMCLEAR(_drawNode);
 }
 
 bool BaseLayer::init() {
@@ -31,6 +30,9 @@ bool BaseLayer::init() {
 
 void BaseLayer::commonInit() {
     this->setAnchorPoint(Vec2(0, 0));
+    DrawNode *drawNode = DrawNode::create();
+    MEMSETTER(drawNode);
+    this->addChild(drawNode);
 }
 
 void BaseLayer::setContentSize(const cocos2d::Size &contentSize) {
@@ -42,25 +44,22 @@ void BaseLayer::setContentSize(const cocos2d::Size &contentSize) {
 }
 
 void BaseLayer::layoutSubviews() {
-    
+    if (_frameVisible) {
+        this->drawFrame();
+    }
 }
 
 #pragma mark Setter
 void BaseLayer::setFrameVisible(bool visible) {
     _frameVisible = visible;
-    if (!visible) {
-        if (_frameNode != nullptr) {
-            _frameNode->removeFromParent();
-            MEMCLEAR(_frameNode);
-        }
+    this->drawFrame();
+}
+
+void BaseLayer::drawFrame() {
+    if (!_drawNode) {
         return;
     }
-    if (_frameNode != nullptr) {
-        _frameNode->removeFromParent();
-        MEMCLEAR(_frameNode);
-    }
-    FrameNode *frameNode = FrameNode::create();
-    MEMSETTER(frameNode);
-    Layout_CenterFill(frameNode);
-    this->addChild(frameNode);
+    Size size = this->getContentSize();
+    _drawNode->clear();
+    _drawNode->drawRect(Vec2(0, 0), Vec2(size.width, size.height), Color4F::BLACK);
 }

@@ -17,13 +17,11 @@
 
 #define RGBA4F(r,g,b,a) Color4F(r/255.0f, g/255.0f, b/255.0f, a)
 
-#define RGBH4F(rgbValue) Color4F(((rgbValue & 0xFF0000) >> 16) / 255.0, \
-    ((rgbValue & 0xFF00) >> 8) / 255.0, \
-    (rgbValue & 0xFF) / 255.0, 1.0f)
-
 #define RGBAH4F(rgbValue, alpha) Color4F(((rgbValue & 0xFF0000) >> 16) / 255.0, \
 ((rgbValue & 0xFF00) >> 8) / 255.0, \
 (rgbValue & 0xFF) / 255.0, alpha)
+
+#define RGBH4F(rgbValue) RGBAH4F(rgbValue, 1.0f)
 
 #define RGB3B(rgbValue) Color3B(RGBH4F(rgbValue))
 

@@ -14,6 +14,7 @@
 
 class LGButton;
 
+class LGValueBar;
 class StatusIndicatorRound;
 
 USING_NS_CC;
@@ -32,6 +33,7 @@ private:
     StatusIndicatorRound *_lifeIndicator;
     LGButton *_nickButton;
     LGButton *_levelButton;
+    LGValueBar *_expBar;
     
     void commonInit();
 };

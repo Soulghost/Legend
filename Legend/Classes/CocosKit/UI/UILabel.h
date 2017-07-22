@@ -10,6 +10,7 @@
 #define __UILabel_H__
 
 #include "cocos2d.h"
+#include "LGUITheme.h"
 
 USING_NS_CC;
 
@@ -21,6 +22,9 @@ public:
     static Scene* createScene();
     virtual bool init() override;
     CREATE_FUNC(UILabel);
+    
+public:
+    void setFont(const UIFont& font);
     
 private:
     void commonInit();

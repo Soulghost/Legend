@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include "Macros.h"
 
+#define Layout_Size this->getContentSize()
+
 #define Layout_CenterPoint Vec2(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.5f)
 
 #define Layout_Radius CCMIN(this->getContentSize().width * 0.5f, this->getContentSize().height * 0.5f)

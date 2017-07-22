@@ -34,3 +34,8 @@ bool UILabel::init() {
 void UILabel::commonInit() {
     
 }
+
+void UILabel::setFont(const UIFont &font) {
+    TTFConfig ttfConfig(font.path, font.size, GlyphCollection::DYNAMIC);
+    this->setTTFConfig(ttfConfig);
+}

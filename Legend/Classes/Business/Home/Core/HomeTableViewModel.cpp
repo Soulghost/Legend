@@ -8,6 +8,7 @@
 
 #include "HomeTableViewModel.h"
 #include "StatePanelViewModel.h"
+#include "ReportPanelViewModel.h"
 
 HomeTableViewModel::HomeTableViewModel() {
     
@@ -27,4 +28,5 @@ bool HomeTableViewModel::init() {
 
 void HomeTableViewModel::commonInit() {
     cellModels.pushBack(UITableViewCellModel::createSingleCellModel(StatePanelViewModel::create()));
+    cellModels.pushBack(UITableViewCellModel::createSingleCellModel(ReportPanelViewModel::create()));
 }

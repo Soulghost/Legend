@@ -81,6 +81,12 @@ UITableViewHeaderFooterView* UITableViewMVVMBinder::tableViewFooterViewForSectio
     return nullptr;
 }
 
+float UITableViewMVVMBinder::tableViewCellInsetForRowAtIndexPath(UITableView *tableView, const UIIndexPath &indexPath) {
+    UITableViewCellModel *sectionModel = _viewModel->cellModels.at(indexPath.section);
+    UITableViewCellViewModel *cellModel = sectionModel->viewModels.at(indexPath.row);
+    return cellModel->cellInset;
+}
+
 float UITableViewMVVMBinder::tableViewHeightForHeaderInSection(UITableView *tableView, int section) {
     return 0;
 }

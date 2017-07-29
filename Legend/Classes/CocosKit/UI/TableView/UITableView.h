@@ -36,6 +36,7 @@ class UITableViewDelegate {
 public:
     virtual void tableViewDidSelectRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) {};
     virtual float tableViewHeightForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) { return 44.0f; };
+    virtual float tableViewCellInsetForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) { return 0; };
     virtual UITableViewHeaderFooterView* tableViewHeaderViewForSection(UITableView *tableView, int section) { return nullptr; };
     virtual UITableViewHeaderFooterView* tableViewFooterViewForSection(UITableView *tableView, int section) { return nullptr; };
     virtual float tableViewHeightForHeaderInSection(UITableView *tableView, int section) { return 0; }

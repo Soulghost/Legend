@@ -44,6 +44,7 @@ public:
     virtual float tableViewHeightForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) override;
     virtual UITableViewHeaderFooterView* tableViewHeaderViewForSection(UITableView *tableView, int section) override;
     virtual UITableViewHeaderFooterView* tableViewFooterViewForSection(UITableView *tableView, int section) override;
+    virtual float tableViewCellInsetForRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) override;
     virtual float tableViewHeightForHeaderInSection(UITableView *tableView, int section) override;
     virtual float tableViewHeightForFooterInSection(UITableView *tableView, int section) override;
 #pragma mark -

@@ -63,7 +63,8 @@ void UITableView::reloadData() {
         for (int row = 0; row < rowCount; row++) {
             UIIndexPath indexPath = UIIndexPath(section, row);
             float height = this->delegate->tableViewHeightForRowAtIndexPath(this, indexPath);
-            Size size = Size(width, height);
+            float inset = this->delegate->tableViewCellInsetForRowAtIndexPath(this, indexPath);
+            Size size = Size(width - 2 * inset, height);
             UITableViewCell *cell = this->dataSource->tableViewCellForRowAtIndexPath(this, indexPath);
             cell->setContentSize(size);
             _scrollBinder->addChild(cell);

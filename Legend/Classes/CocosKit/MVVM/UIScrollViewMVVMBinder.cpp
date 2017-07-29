@@ -68,8 +68,9 @@ void UIScrollViewMVVMBinder::layout() {
     }
     for (int i = 0; i < subviews.size(); i++) {
         Node *subview = subviews.at(i);
+        float inset = (scrollViewSize.width - subview->getContentSize().width) * 0.5f;
         float height = subview->getContentSize().height;
-        subview->setPosition(0, baseY - height);
+        subview->setPosition(inset, baseY - height);
         baseY -= height;
     }
     Size contentSize = Size(0, CCMAX(scrollViewSize.height, totalHeight));

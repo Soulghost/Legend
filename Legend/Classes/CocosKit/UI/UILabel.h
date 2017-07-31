@@ -19,7 +19,6 @@ public:
     UILabel();
     ~UILabel();
     
-    static Scene* createScene();
     virtual bool init() override;
     CREATE_FUNC(UILabel);
     

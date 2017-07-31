@@ -21,6 +21,13 @@ _##ptr = ptr; \
 _##ptr->retain(); \
 }while(0);
 
+#define CREATE_MEMSETTER_ADD(class, ptr) \
+do { \
+    class *ptr = class::create();  \
+    MEMSETTER(ptr); \
+    this->addChild(ptr); \
+}while(0);
+
 #define SINGLETON(__TYPE__) \
     static __TYPE__* getInstance() { \
     static __TYPE__ *instance = nullptr; \

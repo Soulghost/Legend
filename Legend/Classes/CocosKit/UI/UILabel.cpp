@@ -16,13 +16,6 @@ UILabel::~UILabel() {
     
 }
 
-Scene* UILabel::createScene() {
-    auto scene = Scene::create();
-    auto layer = UILabel::create();
-    scene->addChild(layer);
-    return scene;
-}
-
 bool UILabel::init() {
     if (!Label::init()) {
         return false;
@@ -32,7 +25,8 @@ bool UILabel::init() {
 }
 
 void UILabel::commonInit() {
-    
+    this->setFont(UIFont("fonts/yahei.ttf", 14));
+    this->setTextColor(Color4B(RGBH4F(0x333333)));
 }
 
 void UILabel::setFont(const UIFont &font) {

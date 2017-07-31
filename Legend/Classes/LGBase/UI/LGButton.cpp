@@ -37,12 +37,21 @@ void LGButton::commonInit() {
     TouchEventCapability *touchCapability = TouchEventCapability::createWithLayer(this);
     MEMSETTER(touchCapability);
     touchCapability->onTouchBegan = [&](Touch *t, Event *e) {
+        if (this->disableScale) {
+            return;
+        }
         this->performScale(1.025, 0.1);
     };
     touchCapability->onTouchEnded = [&](Touch *t, Event *e) {
+        if (this->disableScale) {
+            return;
+        }
         this->performScale(1.0, 0.1);
     };
     touchCapability->onTouchCancelled = [&](Touch *t, Event *e) {
+        if (this->disableScale) {
+            return;
+        }
         this->performScale(1.0, 0.1);
     };
     touchCapability->onClick = [&](Touch *t, Event *e) {

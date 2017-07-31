@@ -34,7 +34,7 @@ void LGValueBar::commonInit() {
     UILabel *label = UILabel::create();
     label->setAlignment(TextHAlignment::CENTER);
     label->setFont(UIFont("fonts/scp.ttf", 13));
-    label->setColor(Color3B::WHITE);
+    label->setTextColor(Color4B::WHITE);
     MEMSETTER(label);
     this->addChild(label);
 }

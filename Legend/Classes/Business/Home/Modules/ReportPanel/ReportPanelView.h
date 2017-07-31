@@ -12,6 +12,8 @@
 #include "cocos2d.h"
 #include "BaseLayer.h"
 #include "CppRuntime.h"
+#include "LGButton.h"
+#include "UILabel.h"
 
 USING_NS_CC;
 
@@ -26,6 +28,9 @@ public:
     RuntimeInterface(ReportPanelView);
     
 private:
+    LGButton *_titleButton;
+    UILabel *_textLabel;
+    
     void commonInit();
 };
 

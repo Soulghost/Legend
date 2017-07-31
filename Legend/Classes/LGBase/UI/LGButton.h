@@ -23,6 +23,8 @@ public:
     ~LGButton();
     CREATE_FUNC_PARAMS_1(LGButton, WithFont, UIFont, font);
 public:
+    bool disableScale;
+    
     virtual void layoutSubviews() override;
     void setTitle(const string &title);
     void setTitleColor(const Color4B &titleColor);

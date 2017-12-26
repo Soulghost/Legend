@@ -4,6 +4,9 @@
 #include "CppRuntime.h"
 #include "LGRuntimeMap.h"
 
+#include "HelloDragonBones.h"
+#include "DragonFightScene.h"
+
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
 
@@ -100,19 +103,21 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CppRuntime::getInstance()->linkMap(new LGRuntimeMap());
 
     // create a scene. it's an autorelease object
-    auto tabbar = UITabbar::create();
-    tabbar->addLayer(HomeScene::create());
-    tabbar->addLayer(LayerColor::create(Color4B::RED));
-    tabbar->addLayer(LayerColor::create(Color4B::BLUE));
-    tabbar->addLayer(LayerColor::create(Color4B::ORANGE));
-    tabbar->addItem(UITabbarItem::createWithConfigs("首页", "assets/tabbar/home.png", "assets/tabbar/home.png"));
-    tabbar->addItem(UITabbarItem::createWithConfigs("战斗", "assets/tabbar/fight.png", "assets/tabbar/fight.png"));
-    tabbar->addItem(UITabbarItem::createWithConfigs("背包", "assets/tabbar/bag.png", "assets/tabbar/bag.png"));
-    tabbar->addItem(UITabbarItem::createWithConfigs("设置", "assets/tabbar/settings.png", "assets/tabbar/settings.png"));
-    auto scene = Scene::create();
-    scene->addChild(tabbar);
+//    auto tabbar = UITabbar::create();
+//    tabbar->addLayer(HomeScene::create());
+//    tabbar->addLayer(LayerColor::create(Color4B::RED));
+//    tabbar->addLayer(LayerColor::create(Color4B::BLUE));
+//    tabbar->addLayer(LayerColor::create(Color4B::ORANGE));
+//    tabbar->addItem(UITabbarItem::createWithConfigs("首页", "assets/tabbar/home.png", "assets/tabbar/home.png"));
+//    tabbar->addItem(UITabbarItem::createWithConfigs("战斗", "assets/tabbar/fight.png", "assets/tabbar/fight.png"));
+//    tabbar->addItem(UITabbarItem::createWithConfigs("背包", "assets/tabbar/bag.png", "assets/tabbar/bag.png"));
+//    tabbar->addItem(UITabbarItem::createWithConfigs("设置", "assets/tabbar/settings.png", "assets/tabbar/settings.png"));
+    
+//    auto scene = Scene::create();
+    auto dragon_scene = DragonFightScene::createScene();
+//    scene->addChild(tabbar);
     // run
-    director->runWithScene(scene);
+    director->runWithScene(dragon_scene);
 
     return true;
 }

@@ -11,6 +11,7 @@
 #include "OrcishModel.h"
 #include "CowModel.h"
 #include "LGButton.h"
+#include "SGCommonUtils.h"
 
 #include "ValueDisplayNode.h"
 
@@ -67,33 +68,13 @@ void DragonFightScene::commonInit() {
     _skillBtn = skillBtn;
     _skillBtn->setOnClickHandler([&](Ref *sender) {
         // simulate attack
-        _fp->playAnimationNamed("run", 0);
-        // calculate position
-        Vec2 origin = _fp->getDisplayNode()->getPosition();
-        Vec2 dest = _oc->getDisplayNode()->getPosition();
-        Size size = _oc->getDisplayNode()->getContentSize();
-        dest.x -= 40;
-        auto moveTo = MoveTo::create(1.0, dest);
-        auto attack = CallFunc::create([&]() {
-            _fp->playAnimationNamed("normalAttack", 1);
+        auto moveTo = _fp->moveToAction(_oc);
+        auto attack = _fp->attackAction([this]() {
+            _oc->sufferAttackWithValue(AttackValue(1228, ValueTypeCommon), 0.5);
         });
-        auto attackDelay = DelayTime::create(1.0);
-        auto moveBackReverse = CallFunc::create([&]() {
-//            _oc->playAnimationNamed("sweem", 1);
-            // 后仰
-            auto rotateTo = RotateBy::create(0.1, 20);
-            auto rotateBack = RotateBy::create(0.2, -20);
-            _oc->getDisplayNode()->runAction(Sequence::create(rotateTo, rotateBack, NULL));
-            _fp->getDisplayNode()->setScaleX(-_fp->getDisplayNode()->getScaleX());
-        });
-        auto moveBack = MoveTo::create(1.0, origin);
-        auto reset = CallFunc::create([&]() {
-            _fp->getDisplayNode()->setScaleX(-_fp->getDisplayNode()->getScaleX());
-            _fp->playAnimationNamed("steady", 0);
-            _oc->playAnimationNamed("main", 0);
-        });
-        auto seq = Sequence::create(moveTo, attack, attackDelay, moveBackReverse, moveBack, reset, NULL);
-        _fp->getDisplayNode()->runAction(seq);
+        auto moveBack = _fp->moveBackAction();
+        auto seq = Sequence::create(moveTo, attack, moveBack, NULL);
+        _fp->runAction(seq);
     });
     this->addChild(skillBtn);
     
@@ -103,10 +84,7 @@ void DragonFightScene::commonInit() {
     steadyBtn->setContentSize(Size(120, 24));
     _steadyBtn = steadyBtn;
     _steadyBtn->setOnClickHandler([&](Ref *sender) {
-        ValueDisplayNode *valueNode = ValueDisplayNode::create();
-        valueNode->displayOnNode(_oc->getDisplayNode(), 15022, ValueTypeHeal);
+        CCLOG("steady time = %f", SGCommonUtils::getDurationForAnimationInModel(_fp, "normalAttack"));
     });
     this->addChild(steadyBtn);
-    
-    
 }

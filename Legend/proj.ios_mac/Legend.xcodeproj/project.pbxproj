@@ -130,6 +130,7 @@
 		68CBCFAC1FF21B5B001BAD6B /* fire in Resources */ = {isa = PBXBuildFile; fileRef = 68CBCFAB1FF21B5B001BAD6B /* fire */; };
 		68CBCFB51FF21F33001BAD6B /* DragonFightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCFB31FF21F33001BAD6B /* DragonFightScene.cpp */; };
 		68CBCFBE1FF25392001BAD6B /* DragonBaseModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCFBC1FF25392001BAD6B /* DragonBaseModel.cpp */; };
+		68CE8A411FF380C3003E5626 /* SGCommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A3F1FF380C3003E5626 /* SGCommonUtils.cpp */; };
 		68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
 		68ED49CB1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
 		68ED49CC1F22408B009057C5 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C81F22408B009057C5 /* LGUITheme.cpp */; };
@@ -323,7 +324,6 @@
 		68CBCEE51FF21835001BAD6B /* LGValueBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGValueBar.h; sourceTree = "<group>"; };
 		68CBCEEB1FF21839001BAD6B /* LGRandomUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGRandomUtil.cpp; sourceTree = "<group>"; };
 		68CBCEEC1FF21839001BAD6B /* LGRandomUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGRandomUtil.h; sourceTree = "<group>"; };
-		68CBCEEE1FF2184D001BAD6B /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = ../../../../.Trash/mac/Prefix.pch; sourceTree = "<group>"; };
 		68CBCEF31FF2196A001BAD6B /* allocators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allocators.h; sourceTree = "<group>"; };
 		68CBCEF41FF2196A001BAD6B /* document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
 		68CBCEF51FF2196A001BAD6B /* encodedstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encodedstream.h; sourceTree = "<group>"; };
@@ -430,6 +430,8 @@
 		68CBCFB91FF242FD001BAD6B /* FirePrinceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirePrinceModel.h; sourceTree = "<group>"; };
 		68CBCFBC1FF25392001BAD6B /* DragonBaseModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DragonBaseModel.cpp; sourceTree = "<group>"; };
 		68CBCFBD1FF25392001BAD6B /* DragonBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragonBaseModel.h; sourceTree = "<group>"; };
+		68CE8A3F1FF380C3003E5626 /* SGCommonUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGCommonUtils.cpp; sourceTree = "<group>"; };
+		68CE8A401FF380C3003E5626 /* SGCommonUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGCommonUtils.h; sourceTree = "<group>"; };
 		68ED49C61F22408B009057C5 /* LGButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGButton.cpp; sourceTree = "<group>"; };
 		68ED49C71F22408B009057C5 /* LGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGButton.h; sourceTree = "<group>"; };
 		68ED49C81F22408B009057C5 /* LGUITheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGUITheme.cpp; sourceTree = "<group>"; };
@@ -611,7 +613,6 @@
 		503AE10617EB990700D1A890 /* mac */ = {
 			isa = PBXGroup;
 			children = (
-				68CBCEEE1FF2184D001BAD6B /* Prefix.pch */,
 				503AE0F517EB97AB00D1A890 /* Icons */,
 				503AE10317EB98FF00D1A890 /* main.cpp */,
 			);
@@ -1187,6 +1188,7 @@
 		68CBCF781FF219FD001BAD6B /* DragonBones */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8A3D1FF38065003E5626 /* Utils */,
 				68CBCFB61FF2429D001BAD6B /* Models */,
 				68CBCF791FF21A1E001BAD6B /* HelloDragonBones.cpp */,
 				68CBCF7A1FF21A1E001BAD6B /* HelloDragonBones.h */,
@@ -1238,6 +1240,15 @@
 				68CBCFBD1FF25392001BAD6B /* DragonBaseModel.h */,
 			);
 			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		68CE8A3D1FF38065003E5626 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				68CE8A3F1FF380C3003E5626 /* SGCommonUtils.cpp */,
+				68CE8A401FF380C3003E5626 /* SGCommonUtils.h */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		68ED49C41F22403A009057C5 /* LGBase */ = {
@@ -1448,6 +1459,7 @@
 				68CBCF771FF219C2001BAD6B /* CCTextureData.cpp in Sources */,
 				68CBCEAD1FF217FD001BAD6B /* CppRuntimeMap.cpp in Sources */,
 				68CBCEA41FF217FD001BAD6B /* TouchEventCapability.cpp in Sources */,
+				68CE8A411FF380C3003E5626 /* SGCommonUtils.cpp in Sources */,
 				6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */,
 				68CBCED91FF2181F001BAD6B /* StatusIndicatorRound.cpp in Sources */,
 				68CBCEE71FF21835001BAD6B /* LGLabel.cpp in Sources */,

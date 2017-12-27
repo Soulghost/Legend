@@ -30,8 +30,13 @@ void ValueDisplayNode::commonInit() {
 
 }
 
+void ValueDisplayNode::showInNode(cocos2d::Node *node, AttackValue value) {
+    ValueDisplayNode *valueNode = ValueDisplayNode::create();
+    valueNode->displayOnNode(node, value);
+}
+
 void ValueDisplayNode::addNodes() {
-    string value = StringUtils::format("%d", _value);
+    string value = StringUtils::format("%d", _attackValue.value);
     ssize_t len = value.length();
     float marginH = 8;
     float scale = 1.5f;
@@ -51,7 +56,7 @@ void ValueDisplayNode::addNodes() {
         startX = 0;
     }
     string prefix = "assets/numbers";
-    switch (_type) {
+    switch (_attackValue.type) {
         case ValueTypeCrit:
             prefix = StringUtils::format("assets/numbers/crit");
             break;
@@ -74,9 +79,8 @@ void ValueDisplayNode::addNodes() {
 }
 
 #pragma mark - Public Methods
-void ValueDisplayNode::displayOnNode(Node *node, int value, ValueType type) {
-    _value = value;
-    _type = type;
+void ValueDisplayNode::displayOnNode(Node *node, AttackValue value) {
+    _attackValue = value;
     addNodes();
     Node *parent = node->getParent();
     this->setPosition(node->getPositionX(), node->getPositionY() + 15);

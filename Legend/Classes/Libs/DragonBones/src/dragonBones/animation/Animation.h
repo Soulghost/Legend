@@ -92,6 +92,10 @@ public:
     {
         return _animations;
     }
+    
+    inline AnimationData* getAnimationNamed(const std::string &name) {
+        return _animations[name];
+    }
 
     inline const std::vector<std::string>& getAnimationNames() const
     {

@@ -31,6 +31,7 @@ public:
 private:
     LGButton *_skillBtn;
     LGButton *_steadyBtn;
+    LGButton *_rAttackBtn;
     FirePrinceModel *_fp;
     OrcishModel *_oc;
     CowModel *_cow;

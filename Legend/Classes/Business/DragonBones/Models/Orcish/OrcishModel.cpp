@@ -23,6 +23,6 @@ bool OrcishModel::init() {
 
 void OrcishModel::commonInit() {
     this->initWithInfo("ocrish/ocrish_ske.json", "ocrish/ocrish_tex.json", "armatureName", DragonActionAlias("main", "run", "attack_02"));
-    this->setAutoSteady();
     _armatureDisplay->setScale(.7f);
+    this->markOriginLeftScale();
 }

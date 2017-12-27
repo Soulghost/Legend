@@ -23,6 +23,6 @@ bool CowModel::init() {
 
 void CowModel::commonInit() {
     this->initWithInfo("cow/cow_ske.json", "cow/cow_tex.json", "armatureName", DragonActionAlias("main", "walk", "attack"));
-    this->setAutoSteady();
     _armatureDisplay->setScale(-1.5f, 1.5f);
+    this->markOriginLeftScale();
 }

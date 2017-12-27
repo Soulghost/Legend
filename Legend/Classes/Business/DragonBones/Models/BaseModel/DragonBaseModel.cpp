@@ -35,16 +35,6 @@ dragonBones::CCArmatureDisplay* DragonBaseModel::getDisplayNode() {
     return _armatureDisplay;
 }
 
-void DragonBaseModel::setAutoSteady() {
-//    _armatureDisplay->addEvent("frameEvent", [&](dragonBones::EventObject *eventObject) {
-//        if (eventObject == nullptr) return;
-//        if (eventObject->name != "attackFinish") return;
-//        SGCommonUtils::delaySecondsForNode(_armatureDisplay, 0.01, [this]() {
-//            _armatureDisplay->getAnimation().play(actionAlias.idleName);
-//        });
-//    });
-}
-
 void DragonBaseModel::startAnimating() {
     this->markOriginPosition();
     this->playAnimationNamed(actionAlias.idleName, 0);
@@ -75,37 +65,35 @@ void DragonBaseModel::markOriginPosition() {
     _originPosition = this->getDisplayNode()->getPosition();
 }
 
+void DragonBaseModel::markOriginLeftScale() {
+    _originLeftScale = Vec2(_armatureDisplay->getScaleX(), _armatureDisplay->getScaleY());
+}
+
 Vec2 DragonBaseModel::getOriginPosition() {
     return _originPosition;
 }
 
 Vec2 DragonBaseModel::getAttackPosition() {
+    // 从目标处获取位置，左侧单位攻击时，获取的是右侧的坐标，因此Right应该是减
     Vec2 dest = this->getDisplayNode()->getPosition();
-    dest.x -= 40;
+    switch (_modelPosition) {
+        case ModelPositionLeft:
+            dest.x += 40;
+            break;
+        case ModelPositionRight:
+            dest.x -= 40;
+            break;
+    }
     return dest;
 }
 
 #pragma mark - Actions
-void DragonBaseModel::doMoveTo(DragonBaseModel *destModel, EventCallback callback) {
-    // idle -> walk
-    const string &animationName = this->actionAlias.walkName;
-    this->playAnimationNamed(animationName, 0);
-//    auto moveTo = MoveTo::create(1.0, d);
-}
-
 FiniteTimeAction* DragonBaseModel::moveToAction(DragonBaseModel *destModel) {
     auto playRun = CallFunc::create([this]() {
         this->playAnimationNamed("run", 0);
     });
     auto moveTo = MoveTo::create(1.0, destModel->getAttackPosition());
     return Spawn::create(playRun, moveTo, NULL);
-}
-
-void DragonBaseModel::doAttack(EventCallback callback) {
-    const string &animationName = this->actionAlias.attackName;
-    float duration = this->durationForAttack();
-    SGCommonUtils::delaySecondsForNode(_armatureDisplay, duration, callback);
-    this->playAnimationNamed(animationName, 1);
 }
 
 float DragonBaseModel::doAttack() {
@@ -115,10 +103,10 @@ float DragonBaseModel::doAttack() {
     return duration;
 }
 
-FiniteTimeAction* DragonBaseModel::attackAction(EventCallback startCallback) {
+FiniteTimeAction* DragonBaseModel::attackAction(FloatCallback startCallback) {
     auto attack = CallFunc::create([this, startCallback]() {
-        this->doAttack();
-        startCallback();
+        float duration = this->doAttack();
+        startCallback(duration);
     });
     float attackDuration = this->durationForAttack();
     auto attackDelay = DelayTime::create(attackDuration);
@@ -168,4 +156,17 @@ float DragonBaseModel::durationForAttack() {
 #pragma mark - Shortcut
 void DragonBaseModel::runAction(Action *action) {
     _armatureDisplay->runAction(action);
+}
+
+#pragma mark - Setter
+void DragonBaseModel::setModelPosition(ModelPosition modelPosition) {
+    _modelPosition = modelPosition;
+    switch (modelPosition) {
+        case ModelPositionLeft:
+            _armatureDisplay->setScale(_originLeftScale.x, _originLeftScale.y);
+            break;
+        case ModelPositionRight:
+            _armatureDisplay->setScale(-_originLeftScale.x, _originLeftScale.y);
+            break;
+    }
 }

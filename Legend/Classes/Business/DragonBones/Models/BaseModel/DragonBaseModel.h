@@ -17,6 +17,7 @@ USING_NS_CC;
 using namespace std;
 
 typedef function<void ()> EventCallback;
+typedef function<void (float)> FloatCallback;
 
 typedef struct DragonActionAlias {
     string attackName;
@@ -36,6 +37,11 @@ typedef struct DragonActionAlias {
     }
 } DragonActionAlias;
 
+typedef enum ModelPosition {
+    ModelPositionLeft = 0,
+    ModelPositionRight = 1
+} ModelPosition;
+
 class DragonBaseModel : public Ref {
 public:
     string dataJSONPath;
@@ -49,22 +55,20 @@ public:
     CREATE_FUNC(DragonBaseModel);
     
     dragonBones::CCArmatureDisplay* getDisplayNode();
-    void setAutoSteady();
     void startAnimating();
     void playAnimationNamed(string name, unsigned int times);
     
     // calculate
     void markOriginPosition();
+    void markOriginLeftScale();
     Vec2 getOriginPosition();
     Vec2 getAttackPosition();
     
     // actions
-    void doMoveTo(DragonBaseModel *destModel, EventCallback callback);
     FiniteTimeAction* moveToAction(DragonBaseModel *destModel);
     
-    void doAttack(EventCallback callback);
     float doAttack();
-    FiniteTimeAction* attackAction(EventCallback startCallback);
+    FiniteTimeAction* attackAction(FloatCallback startCallback);
     
     FiniteTimeAction* moveBackAction();
     
@@ -79,6 +83,9 @@ public:
     // shortcut
     void runAction(Action *action);
     
+    // getter & setter
+    void setModelPosition(ModelPosition modelPosition);
+    ModelPosition getModelPosition() { return _modelPosition; }
     
 protected:
     dragonBones::DragonBonesData *_dragonBonesData;
@@ -86,11 +93,15 @@ protected:
     dragonBones::CCFactory _dragonFactory;
     dragonBones::CCArmatureDisplay *_armatureDisplay;
     Vec2 _originPosition;
+    Vec2 _originLeftScale;
     
     void initWithInfo(string dataJSONPath, string textureJSONPath, string armatureName);
     void initWithInfo(string dataJSONPath, string textureJSONPath, string armatureName, DragonActionAlias actionAlias);
     
 private:
+    // direction control
+    ModelPosition _modelPosition;
+    
     void commonInit();
 };
 

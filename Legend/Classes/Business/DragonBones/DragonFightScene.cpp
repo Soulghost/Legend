@@ -51,7 +51,9 @@ void DragonFightScene::commonInit() {
     _oc->retain();
     dragonBones::CCArmatureDisplay *ocDisplay = _oc->getDisplayNode();
     ocDisplay->setPosition(Vec2(300, 100));
-    ocDisplay->setScaleX(ocDisplay->getScaleX() * -1);
+//    ocDisplay->setScaleX(ocDisplay->getScaleX() * -1);
+//    _oc->setDirection(ModelDirectionRight);
+    _oc->setModelPosition(ModelPositionRight);
     this->addChild(ocDisplay);
     _oc->startAnimating();
     
@@ -69,8 +71,8 @@ void DragonFightScene::commonInit() {
     _skillBtn->setOnClickHandler([&](Ref *sender) {
         // simulate attack
         auto moveTo = _fp->moveToAction(_oc);
-        auto attack = _fp->attackAction([this]() {
-            _oc->sufferAttackWithValue(AttackValue(1228, ValueTypeCommon), 0.5);
+        auto attack = _fp->attackAction([this](float duration) {
+            _oc->sufferAttackWithValue(AttackValue(1228, ValueTypeCommon), duration * 0.5f);
         });
         auto moveBack = _fp->moveBackAction();
         auto seq = Sequence::create(moveTo, attack, moveBack, NULL);
@@ -87,4 +89,21 @@ void DragonFightScene::commonInit() {
         CCLOG("steady time = %f", SGCommonUtils::getDurationForAnimationInModel(_fp, "normalAttack"));
     });
     this->addChild(steadyBtn);
+    
+    LGButton *rAttackBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
+    rAttackBtn->setTitle("rAttack");
+    rAttackBtn->setPosition(Vec2(240, 0));
+    rAttackBtn->setContentSize(Size(120, 24));
+    _rAttackBtn = rAttackBtn;
+    _rAttackBtn->setOnClickHandler([&](Ref *sender) {
+        // simulate attack
+        auto moveTo = _oc->moveToAction(_fp);
+        auto attack = _oc->attackAction([this](float duration) {
+            _fp->sufferAttackWithValue(AttackValue(2776, ValueTypeCrit), duration * 0.5f);
+        });
+        auto moveBack = _oc->moveBackAction();
+        auto seq = Sequence::create(moveTo, attack, moveBack, NULL);
+        _oc->runAction(seq);
+    });
+    this->addChild(rAttackBtn);
 }

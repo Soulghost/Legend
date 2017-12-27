@@ -9,17 +9,14 @@
 #ifndef CowModel_H
 #define CowModel_H
 
-#include "cocos2d.h"
+#include "DragonBaseModel.h"
 
-USING_NS_CC;
-
-class CowModel : public Layer {
+class CowModel : public DragonBaseModel {
 public:
     CowModel();
     ~CowModel();
     
-    static Scene* createScene();
-    virtual bool init() override;
+    virtual bool init();
     CREATE_FUNC(CowModel);
     
 private:

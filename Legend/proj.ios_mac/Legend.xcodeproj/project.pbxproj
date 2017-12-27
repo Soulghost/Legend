@@ -59,7 +59,12 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F79C1F1A851E00384C35 /* LGRuntimeMap.cpp */; };
+		681ED5001FF33B8C005461CC /* ValueDisplayNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 681ED4FE1FF33B8C005461CC /* ValueDisplayNode.cpp */; };
 		68C695491FF2614D0036CDEF /* FirePrinceModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68C695471FF2614C0036CDEF /* FirePrinceModel.cpp */; };
+		68C695561FF262D50036CDEF /* OrcishModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68C695541FF262D50036CDEF /* OrcishModel.cpp */; };
+		68C695581FF264D20036CDEF /* ocrish in Resources */ = {isa = PBXBuildFile; fileRef = 68C695571FF264D20036CDEF /* ocrish */; };
+		68C6955A1FF266410036CDEF /* cow in Resources */ = {isa = PBXBuildFile; fileRef = 68C695591FF266400036CDEF /* cow */; };
+		68C6955E1FF2664F0036CDEF /* CowModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68C6955C1FF2664F0036CDEF /* CowModel.cpp */; };
 		68CBCEA11FF217FD001BAD6B /* BaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCE6C1FF217FD001BAD6B /* BaseLayer.cpp */; };
 		68CBCEA21FF217FD001BAD6B /* BaseModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCE6E1FF217FD001BAD6B /* BaseModel.cpp */; };
 		68CBCEA31FF217FD001BAD6B /* BaseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCE701FF217FD001BAD6B /* BaseNode.cpp */; };
@@ -232,8 +237,16 @@
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		6803F79C1F1A851E00384C35 /* LGRuntimeMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGRuntimeMap.cpp; sourceTree = "<group>"; };
 		6803F79D1F1A851E00384C35 /* LGRuntimeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGRuntimeMap.h; sourceTree = "<group>"; };
+		681ED4FE1FF33B8C005461CC /* ValueDisplayNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ValueDisplayNode.cpp; sourceTree = "<group>"; };
+		681ED4FF1FF33B8C005461CC /* ValueDisplayNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValueDisplayNode.h; sourceTree = "<group>"; };
 		68B729301F123ECF003EFCC1 /* Legend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Legend.h; sourceTree = "<group>"; };
 		68C695471FF2614C0036CDEF /* FirePrinceModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FirePrinceModel.cpp; sourceTree = "<group>"; };
+		68C695541FF262D50036CDEF /* OrcishModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrcishModel.cpp; sourceTree = "<group>"; };
+		68C695551FF262D50036CDEF /* OrcishModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrcishModel.h; sourceTree = "<group>"; };
+		68C695571FF264D20036CDEF /* ocrish */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ocrish; sourceTree = "<group>"; };
+		68C695591FF266400036CDEF /* cow */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cow; sourceTree = "<group>"; };
+		68C6955C1FF2664F0036CDEF /* CowModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CowModel.cpp; sourceTree = "<group>"; };
+		68C6955D1FF2664F0036CDEF /* CowModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CowModel.h; sourceTree = "<group>"; };
 		68CBCE6B1FF217FD001BAD6B /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base.h; sourceTree = "<group>"; };
 		68CBCE6C1FF217FD001BAD6B /* BaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseLayer.cpp; sourceTree = "<group>"; };
 		68CBCE6D1FF217FD001BAD6B /* BaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLayer.h; sourceTree = "<group>"; };
@@ -632,6 +645,23 @@
 			path = ios;
 			sourceTree = SOURCE_ROOT;
 		};
+		681ED4FB1FF33B67005461CC /* Effect */ = {
+			isa = PBXGroup;
+			children = (
+				681ED4FD1FF33B79005461CC /* Attack */,
+			);
+			path = Effect;
+			sourceTree = "<group>";
+		};
+		681ED4FD1FF33B79005461CC /* Attack */ = {
+			isa = PBXGroup;
+			children = (
+				681ED4FE1FF33B8C005461CC /* ValueDisplayNode.cpp */,
+				681ED4FF1FF33B8C005461CC /* ValueDisplayNode.h */,
+			);
+			path = Attack;
+			sourceTree = "<group>";
+		};
 		68B7292F1F123EB7003EFCC1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +670,24 @@
 				6803F79D1F1A851E00384C35 /* LGRuntimeMap.h */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		68C695531FF262C30036CDEF /* Orcish */ = {
+			isa = PBXGroup;
+			children = (
+				68C695541FF262D50036CDEF /* OrcishModel.cpp */,
+				68C695551FF262D50036CDEF /* OrcishModel.h */,
+			);
+			path = Orcish;
+			sourceTree = "<group>";
+		};
+		68C6955B1FF266460036CDEF /* Cow */ = {
+			isa = PBXGroup;
+			children = (
+				68C6955C1FF2664F0036CDEF /* CowModel.cpp */,
+				68C6955D1FF2664F0036CDEF /* CowModel.h */,
+			);
+			path = Cow;
 			sourceTree = "<group>";
 		};
 		68CBCE691FF217FD001BAD6B /* CocosKit */ = {
@@ -763,6 +811,7 @@
 		68CBCEB61FF2181F001BAD6B /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				681ED4FB1FF33B67005461CC /* Effect */,
 				68CBCF781FF219FD001BAD6B /* DragonBones */,
 				68CBCEB71FF2181F001BAD6B /* Combat */,
 				68CBCEB81FF2181F001BAD6B /* Home */,
@@ -1150,6 +1199,8 @@
 		68CBCF7C1FF21AC7001BAD6B /* dragondemo */ = {
 			isa = PBXGroup;
 			children = (
+				68C695591FF266400036CDEF /* cow */,
+				68C695571FF264D20036CDEF /* ocrish */,
 				68CBCFAB1FF21B5B001BAD6B /* fire */,
 				68CBCFA11FF21AEC001BAD6B /* AnimationBaseTest */,
 				68CBCFA41FF21AEC001BAD6B /* CoreElement */,
@@ -1163,6 +1214,8 @@
 		68CBCFB61FF2429D001BAD6B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				68C6955B1FF266460036CDEF /* Cow */,
+				68C695531FF262C30036CDEF /* Orcish */,
 				68CBCFBB1FF2537C001BAD6B /* BaseModel */,
 				68CBCFB71FF242A1001BAD6B /* FirePrince */,
 			);
@@ -1326,9 +1379,11 @@
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				68CBCFAC1FF21B5B001BAD6B /* fire in Resources */,
 				68ED49D81F225C6F009057C5 /* assets in Resources */,
+				68C6955A1FF266410036CDEF /* cow in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				68CBCFA91FF21AEC001BAD6B /* CoreElement in Resources */,
 				68CBCFA71FF21AEC001BAD6B /* Knight in Resources */,
+				68C695581FF264D20036CDEF /* ocrish in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
@@ -1381,12 +1436,14 @@
 				68CBCED61FF2181F001BAD6B /* StatePanelView.cpp in Sources */,
 				68CBCEAE1FF217FD001BAD6B /* UIImage.cpp in Sources */,
 				68CBCF7B1FF21A1E001BAD6B /* HelloDragonBones.cpp in Sources */,
+				68C695561FF262D50036CDEF /* OrcishModel.cpp in Sources */,
 				68CBCF661FF21992001BAD6B /* TimelineData.cpp in Sources */,
 				68CBCF671FF21992001BAD6B /* DataParser.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				68CBCED81FF2181F001BAD6B /* StatusIndicator.cpp in Sources */,
 				68CBCEB51FF217FD001BAD6B /* UITabbar.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				68C6955E1FF2664F0036CDEF /* CowModel.cpp in Sources */,
 				68CBCEB41FF217FD001BAD6B /* UILabel.cpp in Sources */,
 				68CBCF771FF219C2001BAD6B /* CCTextureData.cpp in Sources */,
 				68CBCEAD1FF217FD001BAD6B /* CppRuntimeMap.cpp in Sources */,
@@ -1410,6 +1467,7 @@
 				68CBCF631FF21992001BAD6B /* ArmatureData.cpp in Sources */,
 				68CBCEA81FF217FD001BAD6B /* UITableViewCellModel.cpp in Sources */,
 				68CBCEE91FF21835001BAD6B /* LGValueBar.cpp in Sources */,
+				681ED5001FF33B8C005461CC /* ValueDisplayNode.cpp in Sources */,
 				68CBCF641FF21992001BAD6B /* DragonBonesData.cpp in Sources */,
 				68CBCEB01FF217FD001BAD6B /* UITableView.cpp in Sources */,
 				68CBCF5F1FF21991001BAD6B /* BaseObject.cpp in Sources */,

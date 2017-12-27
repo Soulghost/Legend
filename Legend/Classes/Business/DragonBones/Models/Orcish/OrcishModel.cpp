@@ -16,21 +16,13 @@ OrcishModel::~OrcishModel() {
     
 }
 
-Scene* OrcishModel::createScene() {
-    auto scene = Scene::create();
-    auto layer = OrcishModel::create();
-    scene->addChild(layer);
-    return scene;
-}
-
 bool OrcishModel::init() {
-    if (!Layer::init()) {
-        return false;
-    }
     commonInit();
     return true;
 }
 
 void OrcishModel::commonInit() {
-    
+    this->initWithInfo("ocrish/ocrish_ske.json", "ocrish/ocrish_tex.json", "armatureName", DragonActionAlias("main", "run", "attack_02"));
+    this->setAutoSteady();
+    _armatureDisplay->setScale(.7f);
 }

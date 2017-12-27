@@ -10,16 +10,16 @@
 #define OrcishModel_H
 
 #include "cocos2d.h"
+#include "DragonBaseModel.h"
 
 USING_NS_CC;
 
-class OrcishModel : public Layer {
+class OrcishModel : public DragonBaseModel {
 public:
     OrcishModel();
     ~OrcishModel();
     
-    static Scene* createScene();
-    virtual bool init() override;
+    virtual bool init();
     CREATE_FUNC(OrcishModel);
     
 private:

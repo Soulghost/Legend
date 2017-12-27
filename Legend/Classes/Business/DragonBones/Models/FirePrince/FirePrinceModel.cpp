@@ -24,5 +24,5 @@ bool FirePrinceModel::init() {
 void FirePrinceModel::commonInit() {
     this->initWithInfo("fire/fire_ske.json", "fire/fire_tex.json", "armatureName", DragonActionAlias("steady", "run", "normalAttack"));
     this->setAutoSteady();
-    _armatureDisplay->setScale(1.f);
+    _armatureDisplay->setScale(.5f);
 }

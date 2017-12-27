@@ -16,6 +16,8 @@ using namespace std;
 
 class LGButton;
 class FirePrinceModel;
+class OrcishModel;
+class CowModel;
 
 class DragonFightScene : public Layer {
 public:
@@ -30,6 +32,8 @@ private:
     LGButton *_skillBtn;
     LGButton *_steadyBtn;
     FirePrinceModel *_fp;
+    OrcishModel *_oc;
+    CowModel *_cow;
     
     
     void commonInit();

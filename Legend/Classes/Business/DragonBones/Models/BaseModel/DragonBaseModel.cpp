@@ -9,13 +9,15 @@
 #include "DragonBaseModel.h"
 #include "SGCommonUtils.h"
 #include "ValueDisplayNode.h"
+#include "SGValueBar.h"
 
 DragonBaseModel::DragonBaseModel() {
-    
+    _modelPosition = ModelPositionLeft;
+    _player = nullptr;
 }
 
 DragonBaseModel::~DragonBaseModel() {
-    
+    _player->release();
 }
 
 bool DragonBaseModel::init() {
@@ -23,16 +25,90 @@ bool DragonBaseModel::init() {
 }
 
 void DragonBaseModel::commonInit() {
+    // load base
     _dragonBonesData = _dragonFactory.loadDragonBonesData(this->dataJSONPath);
     _dragonFactory.loadTextureAtlasData(this->textureJSONPath);
     CCAssert(_dragonBonesData != nullptr, "dragonBones data is null");
     _armatureDisplay = _dragonFactory.buildArmatureDisplay(this->armatureName);
+    _displayNode = DragonDisplayNode::create();
+    _displayNode->retain();
+    _displayNode->armatureDisplay = _armatureDisplay;
+    _displayNode->addChild(_armatureDisplay);
+    _displayNode->setupNodes();
+    this->setupViews();
+}
+
+void DragonBaseModel::setupViews() {
+    // name label
+    Label *nameLabel = Label::createWithTTF("", "fonts/yahei.ttf", 18);
+    _nameLabel = nameLabel;
+    Color4B textColor = Color4B(0x5A, 0xD8, 0x50, 0xFF);
+    nameLabel->setTextColor(textColor);
+    Color4B shadowColor = Color4B::BLACK;
+    nameLabel->enableOutline(shadowColor, 2);
+    nameLabel->enableShadow(shadowColor, Size(0, 0), 2);
+    nameLabel->setPositionY(-16);
+    _displayNode->addChild(nameLabel);
     
+    // hp bar
+    float barW = 50;
+    float barH = 5;
+    float barX = -barW * 0.5f;
+    float mpY = _modelHeight + barW * 0.5f + 5;
+    _mpBar = SGValueBar::valueBarWithType(SGValueBarTypeMpbar, Rect(barX, mpY, barW, barH));
+    _mpBar->setProgress(1.0);
+    _displayNode->addChild(_mpBar);
+    // mp bar
+    float hpY = mpY + barH;
+    _hpBar = SGValueBar::valueBarWithType(SGValueBarTypeHpbar, Rect(barX, hpY, barW, barH));
+    _hpBar->setProgress(1.0);
+    _displayNode->addChild(_hpBar);
+}
+
+#pragma mark - Data
+void DragonBaseModel::bindWithPlayer(SGPlayer *player) {
+    player->retain();
+    if (_player != nullptr) {
+        _player->release();
+    }
+    _player = player;
+    _nameLabel->setString(player->name);
+    this->renderPlayerData();
+}
+
+#pragma mark - Battle Operation
+void DragonBaseModel::renderPlayerData() {
+    SGPlayer *p = _player;
+    _hpBar->setProgress((float)p->hp / p->hpmax);
+    _mpBar->setProgress((float)p->mp / p->mpmax);
+}
+
+void DragonBaseModel::setState(ModelState modelState) {
+    switch (modelState) {
+        case ModelStateIdle:
+            if (_player->hp == 0) {
+                this->setState(ModelStateDeath);
+                return;
+            }
+            this->playAnimationNamed(actionAlias.idleName, 0);
+            break;
+        case ModelStateWalk:
+            this->playAnimationNamed(actionAlias.walkName, 0);
+            break;
+        case ModelStateDeath:
+            _hpBar->setVisible(false);
+            _mpBar->setVisible(false);
+            _armatureDisplay->getAnimation().play(actionAlias.deathName, 1);
+            break;
+        default:
+            break;
+    }
+    _modelState = modelState;
 }
 
 #pragma mark - Public Methods
-dragonBones::CCArmatureDisplay* DragonBaseModel::getDisplayNode() {
-    return _armatureDisplay;
+DragonDisplayNode* DragonBaseModel::getDisplayNode() {
+    return _displayNode;
 }
 
 void DragonBaseModel::startAnimating() {
@@ -60,6 +136,15 @@ void DragonBaseModel::initWithInfo(string dataJSONPath, string textureJSONPath, 
     commonInit();
 }
 
+#pragma mark - Location
+void DragonBaseModel::setPosition(float x, float y) {
+    _displayNode->setPosition(Vec2(x, y));
+}
+
+void DragonBaseModel::setPosition(const Vec2& pos) {
+    _displayNode->setPosition(pos);
+}
+
 #pragma mark - Calculate
 void DragonBaseModel::markOriginPosition() {
     _originPosition = this->getDisplayNode()->getPosition();
@@ -67,6 +152,10 @@ void DragonBaseModel::markOriginPosition() {
 
 void DragonBaseModel::markOriginLeftScale() {
     _originLeftScale = Vec2(_armatureDisplay->getScaleX(), _armatureDisplay->getScaleY());
+    // make skill position
+    Vec2 nodePosition = Vec2(0, _modelHeight * 0.5f - 10);
+    _displayNode->skillNode->setPosition(nodePosition);
+    _displayNode->buffNode->setPosition(nodePosition);
 }
 
 Vec2 DragonBaseModel::getOriginPosition() {
@@ -78,19 +167,20 @@ Vec2 DragonBaseModel::getAttackPosition() {
     Vec2 dest = this->getDisplayNode()->getPosition();
     switch (_modelPosition) {
         case ModelPositionLeft:
-            dest.x += 40;
+            dest.x += 100;
             break;
         case ModelPositionRight:
-            dest.x -= 40;
+            dest.x -= 90;
             break;
     }
+    CCLOG("get attack position for %s at %s, the value is (%d, %d)", "", _modelPosition == 0 ? "left" : "right", (int)dest.x, (int)dest.y);
     return dest;
 }
 
 #pragma mark - Actions
 FiniteTimeAction* DragonBaseModel::moveToAction(DragonBaseModel *destModel) {
     auto playRun = CallFunc::create([this]() {
-        this->playAnimationNamed("run", 0);
+        this->setState(ModelStateWalk);
     });
     auto moveTo = MoveTo::create(1.0, destModel->getAttackPosition());
     return Spawn::create(playRun, moveTo, NULL);
@@ -115,13 +205,13 @@ FiniteTimeAction* DragonBaseModel::attackAction(FloatCallback startCallback) {
 
 FiniteTimeAction* DragonBaseModel::moveBackAction() {
     auto reverse = CallFunc::create([this]() {
-        this->getDisplayNode()->setScaleX(-this->getDisplayNode()->getScaleX());
-        this->playAnimationNamed(actionAlias.walkName, 1);
+        _armatureDisplay->setScaleX(-_armatureDisplay->getScaleX());
+        this->setState(ModelStateWalk);
     });
     auto back = MoveTo::create(1.0, this->getOriginPosition());
     auto reset = CallFunc::create([&]() {
-        this->getDisplayNode()->setScaleX(-this->getDisplayNode()->getScaleX());
-        this->playAnimationNamed(actionAlias.idleName, 0);
+        _armatureDisplay->setScaleX(-_armatureDisplay->getScaleX());
+        this->setState(ModelStateIdle);
     });
     return Sequence::create(reverse, back, reset, NULL);
 }
@@ -145,6 +235,14 @@ void DragonBaseModel::sufferAttackWithValue(AttackValue value, float afterDelay,
         if (callback != nullptr) {
             callback();
         }
+        // 受伤处理
+        int hp = _player->hp - value.value;
+        if (hp <= 0) {
+            hp = 0;
+            this->setState(ModelStateDeath);
+        }
+        _player->hp = hp;
+        this->renderPlayerData();
     });
 }
 
@@ -155,7 +253,7 @@ float DragonBaseModel::durationForAttack() {
 
 #pragma mark - Shortcut
 void DragonBaseModel::runAction(Action *action) {
-    _armatureDisplay->runAction(action);
+    _displayNode->runAction(action);
 }
 
 #pragma mark - Setter

@@ -18,6 +18,7 @@ class LGButton;
 class FirePrinceModel;
 class OrcishModel;
 class CowModel;
+class SGPlayer;
 
 class DragonFightScene : public Layer {
 public:
@@ -38,6 +39,7 @@ private:
     
     
     void commonInit();
+    SGPlayer* createDemoPlayer(const string &name);
 };
 
 #endif

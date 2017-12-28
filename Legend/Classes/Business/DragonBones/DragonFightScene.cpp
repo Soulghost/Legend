@@ -14,6 +14,7 @@
 #include "SGCommonUtils.h"
 
 #include "ValueDisplayNode.h"
+#include "AnimationUtil.h"
 
 DragonFightScene::DragonFightScene() {
     
@@ -38,30 +39,39 @@ bool DragonFightScene::init() {
     return true;
 }
 
+SGPlayer* DragonFightScene::createDemoPlayer(const string &name) {
+    SGPlayer *p = SGPlayer::create();
+    p->name = name;
+    p->hp = p->hpmax = 1600;
+    p->mp = p->mpmax = 1000;
+    p->pl = 500;
+    p->ph = 1500;
+    p->speed = 120;
+    p->pd = 150;
+    p->pcrit = 50;
+    return p;
+}
+
 void DragonFightScene::commonInit() {
     _fp = FirePrinceModel::create();
     _fp->retain();
-    dragonBones::CCArmatureDisplay *fpDisplay = _fp->getDisplayNode();
-    fpDisplay->setPosition(Vec2(100, 100));
-    this->addChild(fpDisplay);
+    _fp->setPosition(Vec2(200, 233));
+    _fp->bindWithPlayer(createDemoPlayer("Fire Prince"));
+    this->addChild(_fp->getDisplayNode());
     _fp->startAnimating();
-    
     
     _oc = OrcishModel::create();
     _oc->retain();
-    dragonBones::CCArmatureDisplay *ocDisplay = _oc->getDisplayNode();
-    ocDisplay->setPosition(Vec2(300, 100));
-//    ocDisplay->setScaleX(ocDisplay->getScaleX() * -1);
-//    _oc->setDirection(ModelDirectionRight);
+    _oc->setPosition(Vec2(800, 233));
     _oc->setModelPosition(ModelPositionRight);
-    this->addChild(ocDisplay);
+    _oc->bindWithPlayer(createDemoPlayer("Orcish"));
+    this->addChild(_oc->getDisplayNode());
     _oc->startAnimating();
     
     _cow = CowModel::create();
     _cow->retain();
-    dragonBones::CCArmatureDisplay *cowDisplay = _cow->getDisplayNode();
-    cowDisplay->setPosition(Vec2(100, 200));
-    this->addChild(cowDisplay);
+    _cow->setPosition(Vec2(200, 466));
+    this->addChild(_cow->getDisplayNode());
     _cow->startAnimating();
     
     LGButton *skillBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
@@ -85,10 +95,12 @@ void DragonFightScene::commonInit() {
     steadyBtn->setPosition(Vec2(120, 0));
     steadyBtn->setContentSize(Size(120, 24));
     _steadyBtn = steadyBtn;
-    _steadyBtn->setOnClickHandler([&](Ref *sender) {
-        CCLOG("steady time = %f", SGCommonUtils::getDurationForAnimationInModel(_fp, "normalAttack"));
+    _steadyBtn->setOnClickHandler([this](Ref *sender) {
+        Animate *skillAnimate = AnimationUtil::createAnimate("lianhuan", 0.1, 7);
+        _oc->getDisplayNode()->skillNode->runAction(skillAnimate);
     });
     this->addChild(steadyBtn);
+    
     
     LGButton *rAttackBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
     rAttackBtn->setTitle("rAttack");

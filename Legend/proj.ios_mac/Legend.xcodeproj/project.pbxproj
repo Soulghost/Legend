@@ -131,6 +131,11 @@
 		68CBCFB51FF21F33001BAD6B /* DragonFightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCFB31FF21F33001BAD6B /* DragonFightScene.cpp */; };
 		68CBCFBE1FF25392001BAD6B /* DragonBaseModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCFBC1FF25392001BAD6B /* DragonBaseModel.cpp */; };
 		68CE8A411FF380C3003E5626 /* SGCommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A3F1FF380C3003E5626 /* SGCommonUtils.cpp */; };
+		68CE8A481FF4A617003E5626 /* SGValueBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A471FF4A616003E5626 /* SGValueBar.cpp */; };
+		68CE8A4B1FF4AAF3003E5626 /* DragonDisplayNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A491FF4AAF3003E5626 /* DragonDisplayNode.cpp */; };
+		68CE8A4F1FF4CE5B003E5626 /* SGPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A4D1FF4CE5B003E5626 /* SGPlayer.cpp */; };
+		68CE8A551FF4E2DB003E5626 /* AnimationUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A531FF4E2DB003E5626 /* AnimationUtil.cpp */; };
+		68CE8A581FF4FD45003E5626 /* skills in Resources */ = {isa = PBXBuildFile; fileRef = 68CE8A571FF4FD45003E5626 /* skills */; };
 		68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
 		68ED49CB1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
 		68ED49CC1F22408B009057C5 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C81F22408B009057C5 /* LGUITheme.cpp */; };
@@ -432,6 +437,15 @@
 		68CBCFBD1FF25392001BAD6B /* DragonBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragonBaseModel.h; sourceTree = "<group>"; };
 		68CE8A3F1FF380C3003E5626 /* SGCommonUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGCommonUtils.cpp; sourceTree = "<group>"; };
 		68CE8A401FF380C3003E5626 /* SGCommonUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGCommonUtils.h; sourceTree = "<group>"; };
+		68CE8A461FF4A616003E5626 /* SGValueBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGValueBar.h; sourceTree = "<group>"; };
+		68CE8A471FF4A616003E5626 /* SGValueBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SGValueBar.cpp; sourceTree = "<group>"; };
+		68CE8A491FF4AAF3003E5626 /* DragonDisplayNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DragonDisplayNode.cpp; sourceTree = "<group>"; };
+		68CE8A4A1FF4AAF3003E5626 /* DragonDisplayNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragonDisplayNode.h; sourceTree = "<group>"; };
+		68CE8A4D1FF4CE5B003E5626 /* SGPlayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGPlayer.cpp; sourceTree = "<group>"; };
+		68CE8A4E1FF4CE5B003E5626 /* SGPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGPlayer.h; sourceTree = "<group>"; };
+		68CE8A531FF4E2DB003E5626 /* AnimationUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationUtil.cpp; sourceTree = "<group>"; };
+		68CE8A541FF4E2DB003E5626 /* AnimationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationUtil.h; sourceTree = "<group>"; };
+		68CE8A571FF4FD45003E5626 /* skills */ = {isa = PBXFileReference; lastKnownFileType = folder; path = skills; sourceTree = "<group>"; };
 		68ED49C61F22408B009057C5 /* LGButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGButton.cpp; sourceTree = "<group>"; };
 		68ED49C71F22408B009057C5 /* LGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGButton.h; sourceTree = "<group>"; };
 		68ED49C81F22408B009057C5 /* LGUITheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGUITheme.cpp; sourceTree = "<group>"; };
@@ -571,6 +585,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8A571FF4FD45003E5626 /* skills */,
 				68CBCF7C1FF21AC7001BAD6B /* dragondemo */,
 				68ED49D71F225C6F009057C5 /* assets */,
 				521A8EA819F11F5000D177D7 /* fonts */,
@@ -812,6 +827,7 @@
 		68CBCEB61FF2181F001BAD6B /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8A441FF4A5DC003E5626 /* UI */,
 				681ED4FB1FF33B67005461CC /* Effect */,
 				68CBCF781FF219FD001BAD6B /* DragonBones */,
 				68CBCEB71FF2181F001BAD6B /* Combat */,
@@ -935,6 +951,8 @@
 		68CBCEEA1FF21839001BAD6B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8A531FF4E2DB003E5626 /* AnimationUtil.cpp */,
+				68CE8A541FF4E2DB003E5626 /* AnimationUtil.h */,
 				68CBCEEB1FF21839001BAD6B /* LGRandomUtil.cpp */,
 				68CBCEEC1FF21839001BAD6B /* LGRandomUtil.h */,
 			);
@@ -1188,6 +1206,7 @@
 		68CBCF781FF219FD001BAD6B /* DragonBones */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8A4C1FF4CE0F003E5626 /* Domain */,
 				68CE8A3D1FF38065003E5626 /* Utils */,
 				68CBCFB61FF2429D001BAD6B /* Models */,
 				68CBCF791FF21A1E001BAD6B /* HelloDragonBones.cpp */,
@@ -1238,6 +1257,8 @@
 			children = (
 				68CBCFBC1FF25392001BAD6B /* DragonBaseModel.cpp */,
 				68CBCFBD1FF25392001BAD6B /* DragonBaseModel.h */,
+				68CE8A491FF4AAF3003E5626 /* DragonDisplayNode.cpp */,
+				68CE8A4A1FF4AAF3003E5626 /* DragonDisplayNode.h */,
 			);
 			path = BaseModel;
 			sourceTree = "<group>";
@@ -1249,6 +1270,24 @@
 				68CE8A401FF380C3003E5626 /* SGCommonUtils.h */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		68CE8A441FF4A5DC003E5626 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				68CE8A471FF4A616003E5626 /* SGValueBar.cpp */,
+				68CE8A461FF4A616003E5626 /* SGValueBar.h */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		68CE8A4C1FF4CE0F003E5626 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				68CE8A4D1FF4CE5B003E5626 /* SGPlayer.cpp */,
+				68CE8A4E1FF4CE5B003E5626 /* SGPlayer.h */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		68ED49C41F22403A009057C5 /* LGBase */ = {
@@ -1382,6 +1421,7 @@
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
+				68CE8A581FF4FD45003E5626 /* skills in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
@@ -1454,13 +1494,16 @@
 				68CBCED81FF2181F001BAD6B /* StatusIndicator.cpp in Sources */,
 				68CBCEB51FF217FD001BAD6B /* UITabbar.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				68CE8A4F1FF4CE5B003E5626 /* SGPlayer.cpp in Sources */,
 				68C6955E1FF2664F0036CDEF /* CowModel.cpp in Sources */,
 				68CBCEB41FF217FD001BAD6B /* UILabel.cpp in Sources */,
 				68CBCF771FF219C2001BAD6B /* CCTextureData.cpp in Sources */,
 				68CBCEAD1FF217FD001BAD6B /* CppRuntimeMap.cpp in Sources */,
 				68CBCEA41FF217FD001BAD6B /* TouchEventCapability.cpp in Sources */,
+				68CE8A4B1FF4AAF3003E5626 /* DragonDisplayNode.cpp in Sources */,
 				68CE8A411FF380C3003E5626 /* SGCommonUtils.cpp in Sources */,
 				6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */,
+				68CE8A481FF4A617003E5626 /* SGValueBar.cpp in Sources */,
 				68CBCED91FF2181F001BAD6B /* StatusIndicatorRound.cpp in Sources */,
 				68CBCEE71FF21835001BAD6B /* LGLabel.cpp in Sources */,
 				68CBCEE81FF21835001BAD6B /* LGUITheme.cpp in Sources */,
@@ -1471,6 +1514,7 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				68CBCEB11FF217FD001BAD6B /* UITableViewCell.cpp in Sources */,
 				68CBCEAC1FF217FD001BAD6B /* CppRuntime.cpp in Sources */,
+				68CE8A551FF4E2DB003E5626 /* AnimationUtil.cpp in Sources */,
 				68CBCED41FF2181F001BAD6B /* ReportPanelView.cpp in Sources */,
 				68CBCED71FF2181F001BAD6B /* StatePanelViewModel.cpp in Sources */,
 				68CBCF5D1FF21991001BAD6B /* Bone.cpp in Sources */,

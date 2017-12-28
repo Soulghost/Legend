@@ -23,6 +23,6 @@ void SGCommonUtils::delaySecondsForNode(Node *node, float seconds, EmptyCallback
 }
 
 float SGCommonUtils::getDurationForAnimationInModel(DragonBaseModel *model, const string &name) {
-    dragonBones::AnimationData *data = model->getDisplayNode()->getAnimation().getAnimationNamed(name);
+    dragonBones::AnimationData *data = model->getDisplayNode()->armatureDisplay->getAnimation().getAnimationNamed(name);
     return data->duration;
 }

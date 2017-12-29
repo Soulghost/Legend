@@ -136,6 +136,11 @@
 		68CE8A4F1FF4CE5B003E5626 /* SGPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A4D1FF4CE5B003E5626 /* SGPlayer.cpp */; };
 		68CE8A551FF4E2DB003E5626 /* AnimationUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A531FF4E2DB003E5626 /* AnimationUtil.cpp */; };
 		68CE8A581FF4FD45003E5626 /* skills in Resources */ = {isa = PBXBuildFile; fileRef = 68CE8A571FF4FD45003E5626 /* skills */; };
+		68CE8A5A1FF50CED003E5626 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68CE8A591FF50CED003E5626 /* Launch Screen.storyboard */; };
+		68CE8A601FF608C4003E5626 /* SGBuff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A5E1FF608C4003E5626 /* SGBuff.cpp */; };
+		68CE8A641FF60A48003E5626 /* SGBuffPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A621FF60A48003E5626 /* SGBuffPool.cpp */; };
+		68CE8A691FF6189A003E5626 /* SGBuffFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A671FF6189A003E5626 /* SGBuffFactory.cpp */; };
+		68CE8A6B1FF61B90003E5626 /* plist in Resources */ = {isa = PBXBuildFile; fileRef = 68CE8A6A1FF61B90003E5626 /* plist */; };
 		68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
 		68ED49CB1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
 		68ED49CC1F22408B009057C5 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C81F22408B009057C5 /* LGUITheme.cpp */; };
@@ -446,6 +451,14 @@
 		68CE8A531FF4E2DB003E5626 /* AnimationUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationUtil.cpp; sourceTree = "<group>"; };
 		68CE8A541FF4E2DB003E5626 /* AnimationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationUtil.h; sourceTree = "<group>"; };
 		68CE8A571FF4FD45003E5626 /* skills */ = {isa = PBXFileReference; lastKnownFileType = folder; path = skills; sourceTree = "<group>"; };
+		68CE8A591FF50CED003E5626 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		68CE8A5E1FF608C4003E5626 /* SGBuff.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGBuff.cpp; sourceTree = "<group>"; };
+		68CE8A5F1FF608C4003E5626 /* SGBuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGBuff.h; sourceTree = "<group>"; };
+		68CE8A621FF60A48003E5626 /* SGBuffPool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGBuffPool.cpp; sourceTree = "<group>"; };
+		68CE8A631FF60A48003E5626 /* SGBuffPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGBuffPool.h; sourceTree = "<group>"; };
+		68CE8A671FF6189A003E5626 /* SGBuffFactory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGBuffFactory.cpp; sourceTree = "<group>"; };
+		68CE8A681FF6189A003E5626 /* SGBuffFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGBuffFactory.h; sourceTree = "<group>"; };
+		68CE8A6A1FF61B90003E5626 /* plist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = plist; sourceTree = "<group>"; };
 		68ED49C61F22408B009057C5 /* LGButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGButton.cpp; sourceTree = "<group>"; };
 		68ED49C71F22408B009057C5 /* LGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGButton.h; sourceTree = "<group>"; };
 		68ED49C81F22408B009057C5 /* LGUITheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGUITheme.cpp; sourceTree = "<group>"; };
@@ -585,6 +598,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8A6A1FF61B90003E5626 /* plist */,
 				68CE8A571FF4FD45003E5626 /* skills */,
 				68CBCF7C1FF21AC7001BAD6B /* dragondemo */,
 				68ED49D71F225C6F009057C5 /* assets */,
@@ -593,6 +607,7 @@
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
 				46880B7719C43A67006E1F66 /* CloseSelected.png */,
 				46880B7A19C43A67006E1F66 /* HelloWorld.png */,
+				68CE8A591FF50CED003E5626 /* Launch Screen.storyboard */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -1206,6 +1221,7 @@
 		68CBCF781FF219FD001BAD6B /* DragonBones */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8A651FF61881003E5626 /* Factory */,
 				68CE8A4C1FF4CE0F003E5626 /* Domain */,
 				68CE8A3D1FF38065003E5626 /* Utils */,
 				68CBCFB61FF2429D001BAD6B /* Models */,
@@ -1286,8 +1302,21 @@
 			children = (
 				68CE8A4D1FF4CE5B003E5626 /* SGPlayer.cpp */,
 				68CE8A4E1FF4CE5B003E5626 /* SGPlayer.h */,
+				68CE8A5E1FF608C4003E5626 /* SGBuff.cpp */,
+				68CE8A5F1FF608C4003E5626 /* SGBuff.h */,
+				68CE8A621FF60A48003E5626 /* SGBuffPool.cpp */,
+				68CE8A631FF60A48003E5626 /* SGBuffPool.h */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		68CE8A651FF61881003E5626 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				68CE8A671FF6189A003E5626 /* SGBuffFactory.cpp */,
+				68CE8A681FF6189A003E5626 /* SGBuffFactory.h */,
+			);
+			path = Factory;
 			sourceTree = "<group>";
 		};
 		68ED49C41F22403A009057C5 /* LGBase */ = {
@@ -1419,6 +1448,7 @@
 			files = (
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
+				68CE8A5A1FF50CED003E5626 /* Launch Screen.storyboard in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				68CE8A581FF4FD45003E5626 /* skills in Resources */,
@@ -1442,6 +1472,7 @@
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
+				68CE8A6B1FF61B90003E5626 /* plist in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
@@ -1502,6 +1533,7 @@
 				68CBCEA41FF217FD001BAD6B /* TouchEventCapability.cpp in Sources */,
 				68CE8A4B1FF4AAF3003E5626 /* DragonDisplayNode.cpp in Sources */,
 				68CE8A411FF380C3003E5626 /* SGCommonUtils.cpp in Sources */,
+				68CE8A601FF608C4003E5626 /* SGBuff.cpp in Sources */,
 				6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */,
 				68CE8A481FF4A617003E5626 /* SGValueBar.cpp in Sources */,
 				68CBCED91FF2181F001BAD6B /* StatusIndicatorRound.cpp in Sources */,
@@ -1520,6 +1552,7 @@
 				68CBCF5D1FF21991001BAD6B /* Bone.cpp in Sources */,
 				68CBCF5E1FF21991001BAD6B /* Slot.cpp in Sources */,
 				68CBCEAF1FF217FD001BAD6B /* UIImageView.cpp in Sources */,
+				68CE8A691FF6189A003E5626 /* SGBuffFactory.cpp in Sources */,
 				68CBCF631FF21992001BAD6B /* ArmatureData.cpp in Sources */,
 				68CBCEA81FF217FD001BAD6B /* UITableViewCellModel.cpp in Sources */,
 				68CBCEE91FF21835001BAD6B /* LGValueBar.cpp in Sources */,
@@ -1527,6 +1560,7 @@
 				68CBCF641FF21992001BAD6B /* DragonBonesData.cpp in Sources */,
 				68CBCEB01FF217FD001BAD6B /* UITableView.cpp in Sources */,
 				68CBCF5F1FF21991001BAD6B /* BaseObject.cpp in Sources */,
+				68CE8A641FF60A48003E5626 /* SGBuffPool.cpp in Sources */,
 				68CBCED21FF2181F001BAD6B /* HomeTableViewModel.cpp in Sources */,
 				68CBCEA51FF217FD001BAD6B /* LayoutUtil.cpp in Sources */,
 				68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */,
@@ -1599,7 +1633,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
@@ -1632,7 +1666,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
@@ -1726,7 +1760,7 @@
 					"$(SRCROOT)/../cocos2d/cocos/editor-support",
 					"$(SRCROOT)/../Classes/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1751,7 +1785,7 @@
 					"$(SRCROOT)/../cocos2d/cocos/editor-support",
 					"$(SRCROOT)/../Classes/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";

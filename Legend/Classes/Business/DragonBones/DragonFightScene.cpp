@@ -15,6 +15,8 @@
 
 #include "ValueDisplayNode.h"
 #include "AnimationUtil.h"
+#include "SGBuffFactory.h"
+#include "SGBuffPool.h"
 
 DragonFightScene::DragonFightScene() {
     
@@ -56,7 +58,7 @@ void DragonFightScene::commonInit() {
     _fp = FirePrinceModel::create();
     _fp->retain();
     _fp->setPosition(Vec2(200, 233));
-    _fp->bindWithPlayer(createDemoPlayer("Fire Prince"));
+    _fp->bindWithPlayer(createDemoPlayer("炎魔"));
     this->addChild(_fp->getDisplayNode());
     _fp->startAnimating();
     
@@ -64,7 +66,7 @@ void DragonFightScene::commonInit() {
     _oc->retain();
     _oc->setPosition(Vec2(800, 233));
     _oc->setModelPosition(ModelPositionRight);
-    _oc->bindWithPlayer(createDemoPlayer("Orcish"));
+    _oc->bindWithPlayer(createDemoPlayer("兽人"));
     this->addChild(_oc->getDisplayNode());
     _oc->startAnimating();
     
@@ -76,7 +78,8 @@ void DragonFightScene::commonInit() {
     
     LGButton *skillBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
     skillBtn->setTitle("attack");
-    skillBtn->setContentSize(Size(120, 24));
+    skillBtn->setPosition(60, 40);
+    skillBtn->setContentSize(Size(240, 48));
     _skillBtn = skillBtn;
     _skillBtn->setOnClickHandler([&](Ref *sender) {
         // simulate attack
@@ -91,21 +94,27 @@ void DragonFightScene::commonInit() {
     this->addChild(skillBtn);
     
     LGButton *steadyBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
-    steadyBtn->setTitle("steady");
-    steadyBtn->setPosition(Vec2(120, 0));
-    steadyBtn->setContentSize(Size(120, 24));
+    steadyBtn->setTitle("conjure");
+    steadyBtn->setPosition(Vec2(300, 40));
+    steadyBtn->setContentSize(Size(240, 48));
     _steadyBtn = steadyBtn;
     _steadyBtn->setOnClickHandler([this](Ref *sender) {
-        Animate *skillAnimate = AnimationUtil::createAnimate("lianhuan", 0.1, 7);
-        _oc->getDisplayNode()->skillNode->runAction(skillAnimate);
+        auto action = _fp->conjureAction([&](float duration) {
+            _fp->getDisplayNode()->conjureNode->setScale(2);
+            _fp->showSkillNamed("炎龙之怒");
+            Animate *skillAnimate = AnimationUtil::createAnimate("yanbao", 16);
+            _oc->getDisplayNode()->skillNode->setScale(2);
+            _oc->getDisplayNode()->skillNode->runAction(Sequence::create(DelayTime::create(duration * 0.8f), skillAnimate, NULL));
+            _oc->sufferAttackWithValue(AttackValue(2228, ValueTypeCrit), 2 + duration * 0.8f);
+        });
+        _fp->runAction(action);
     });
     this->addChild(steadyBtn);
     
-    
     LGButton *rAttackBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
     rAttackBtn->setTitle("rAttack");
-    rAttackBtn->setPosition(Vec2(240, 0));
-    rAttackBtn->setContentSize(Size(120, 24));
+    rAttackBtn->setPosition(Vec2(540, 40));
+    rAttackBtn->setContentSize(Size(240, 48));
     _rAttackBtn = rAttackBtn;
     _rAttackBtn->setOnClickHandler([&](Ref *sender) {
         // simulate attack
@@ -118,4 +127,34 @@ void DragonFightScene::commonInit() {
         _oc->runAction(seq);
     });
     this->addChild(rAttackBtn);
+    
+    LGButton *tickBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
+    tickBtn->setTitle("tick");
+    tickBtn->setPosition(Vec2(780, 40));
+    tickBtn->setContentSize(Size(240, 48));
+    tickBtn->setOnClickHandler([&](Ref *sender) {
+        _fp->_player->buffPool->tick();
+    });
+    this->addChild(tickBtn);
+    
+    LGButton *addBuff = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
+    addBuff->setTitle("addBuff");
+    addBuff->setPosition(Vec2(1020, 40));
+    addBuff->setContentSize(Size(240, 48));
+    addBuff->setOnClickHandler([&](Ref *sender) {
+        SGBuff *zhanqiBuff = SGBuffFactory::getInstance()->createBuffById("zhanqi");
+        _fp->_player->buffPool->addBuff(zhanqiBuff);
+    });
+    this->addChild(addBuff);
+    
+//    Animate *denym = AnimationUtil::createLoopAnimate("denym", 10, -1);
+//    Sprite *denymNode = Sprite::create();
+//    _fp->getDisplayNode()->buffNode->addChild(denymNode);
+//    Animate *zhanqi = AnimationUtil::createLoopAnimate("zhanqi", 9, -1);
+//    Sprite *zhanqiNode = Sprite::create();
+//    zhanqiNode->setPositionY(12);
+//    _fp->getDisplayNode()->buffNode->addChild(zhanqiNode);
+//    denymNode->runAction(denym);
+//    zhanqiNode->runAction(zhanqi);
+    
 }

@@ -14,6 +14,9 @@
 USING_NS_CC;
 using namespace std;
 
+class SGBuff;
+class SGBuffPool;
+
 class SGPlayer : public Ref {
 public:
     // common
@@ -32,7 +35,7 @@ public:
     // 法术防御
     int md;
     // 伤害加成, 100 = 100%
-    int gain;
+    int pgain, mgain;
     // 暴击伤害加成
     int critGain;
     // 暴击率
@@ -44,11 +47,16 @@ public:
     // 减伤, 100 = 100%
     int armor;
     
+    SGBuffPool *buffPool;
+    
     SGPlayer();
     ~SGPlayer();
     
     virtual bool init();
     CREATE_FUNC(SGPlayer);
+    
+    void performBuff(SGBuff *buff);
+    void withdrawBuff(SGBuff *buff);
     
 private:
     void commonInit();

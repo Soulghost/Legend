@@ -7,13 +7,15 @@
 //
 
 #include "SGPlayer.h"
+#include "SGBuff.h"
+#include "SGBuffPool.h"
 
 SGPlayer::SGPlayer() {
-    
+    this->buffPool = nullptr;
 }
 
 SGPlayer::~SGPlayer() {
-    
+    this->buffPool->release();
 }
 
 bool SGPlayer::init() {
@@ -22,5 +24,16 @@ bool SGPlayer::init() {
 }
 
 void SGPlayer::commonInit() {
-    
+    this->buffPool = SGBuffPool::create();
+    this->buffPool->retain();
+}
+
+void SGPlayer::performBuff(SGBuff *buff) {
+    pgain += buff->pgain;
+    mgain += buff->mgain;
+}
+
+void SGPlayer::withdrawBuff(SGBuff *buff) {
+    pgain -= buff->pgain;
+    mgain -= buff->mgain;
 }

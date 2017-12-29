@@ -8,10 +8,13 @@ using namespace std;
 class AnimationUtil
 {
 public:
-    static Animate* createAnimate(string skillPath, float duration, int count);
+    static Animate* createAnimate(string skillName, float duration, int count);
+    static Animate* createAnimate(string skillName, int count);
+    static Animate* createLoopAnimate(string skillName, int count, int loopTimes);
     
 private:
     static Animation* createWithSingleFrameName(const string &name, float delay, int iLoops, int count);
+    static void pushAnimationInCache(const string &skillName);
 
 };
 

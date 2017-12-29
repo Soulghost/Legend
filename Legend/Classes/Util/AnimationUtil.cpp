@@ -21,10 +21,24 @@ Animation* AnimationUtil::createWithSingleFrameName(const string &name, float de
     return animation;
 }
 
-Animate* AnimationUtil::createAnimate(string skillName, float duration, int count) {
+void AnimationUtil::pushAnimationInCache(const string &skillName) {
     SpriteFrameCache *cache = SpriteFrameCache::getInstance();
     cache->addSpriteFramesWithFile(StringUtils::format("skills/%s/%s.plist", skillName.c_str(), skillName.c_str()), StringUtils::format("skills/%s/%s.png", skillName.c_str(), skillName.c_str()));
+}
+
+Animate* AnimationUtil::createAnimate(string skillName, int count) {
+    return AnimationUtil::createAnimate(skillName, 0.16, count);
+}
+
+Animate* AnimationUtil::createAnimate(string skillName, float duration, int count) {
+    pushAnimationInCache(skillName);
     Animation *animation = AnimationUtil::createWithSingleFrameName(skillName, duration, 1, count);
+    return Animate::create(animation);
+}
+
+Animate* AnimationUtil::createLoopAnimate(string skillName, int count, int loopTimes) {
+    pushAnimationInCache(skillName);
+    Animation *animation = AnimationUtil::createWithSingleFrameName(skillName, 0.16, loopTimes, count);
     return Animate::create(animation);
 }
 

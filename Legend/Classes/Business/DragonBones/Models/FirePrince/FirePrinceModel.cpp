@@ -23,7 +23,7 @@ bool FirePrinceModel::init() {
 
 void FirePrinceModel::commonInit() {
     this->_modelHeight = 115;
-    this->initWithInfo("fire/fire_ske.json", "fire/fire_tex.json", "armatureName", DragonActionAlias("steady", "run", "normalAttack", "dead"));
+    this->initWithInfo("fire/fire_ske.json", "fire/fire_tex.json", "armatureName", DragonActionAlias("steady", "run", "normalAttack", "dead", "uniqueAttack"));
     _armatureDisplay->setScale(.55f);
     this->markOriginLeftScale();
 }

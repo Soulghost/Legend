@@ -28,25 +28,35 @@ typedef struct DragonActionAlias {
     string idleName;
     string walkName;
     string deathName;
+    string conjureName;
 
     DragonActionAlias() {
         attackName = "attack";
         idleName = "idle";
         walkName = "walk";
         deathName = "death";
+        conjureName = "conjure";
     }
     
-    DragonActionAlias(string _idleName, string _walkName, string _attackName) {
+    DragonActionAlias(const string &_idleName, const string &_walkName, const string &_attackName) {
         idleName = _idleName;
         walkName = _walkName;
         attackName = _attackName;
     }
     
-    DragonActionAlias(string _idleName, string _walkName, string _attackName, string _deathName) {
+    DragonActionAlias(const string &_idleName, const string &_walkName, const string &_attackName, const string &_deathName) {
         idleName = _idleName;
         walkName = _walkName;
         attackName = _attackName;
         deathName = _deathName;
+    }
+    
+    DragonActionAlias(const string &_idleName, const string &_walkName, const string &_attackName, const string &_deathName, const string &_conjureName) {
+        idleName = _idleName;
+        walkName = _walkName;
+        attackName = _attackName;
+        deathName = _deathName;
+        conjureName = _conjureName;
     }
 } DragonActionAlias;
 
@@ -58,7 +68,8 @@ typedef enum ModelPosition {
 typedef enum ModelState {
     ModelStateIdle = 0,
     ModelStateWalk = 1,
-    ModelStateDeath = 2
+    ModelStateDeath = 2,
+    ModelStateConjure = 3
 } ModelState;
 
 class DragonBaseModel : public Ref {
@@ -67,6 +78,10 @@ public:
     string textureJSONPath;
     string armatureName;
     DragonActionAlias actionAlias;
+    
+#pragma mark - battle data
+    SGPlayer *_player;
+    ModelState _modelState;
     
     DragonBaseModel();
     ~DragonBaseModel();
@@ -90,33 +105,33 @@ public:
     Vec2 getOriginPosition();
     Vec2 getAttackPosition();
     
-    // actions
+#pragma mark - Actions
+    // move
     FiniteTimeAction* moveToAction(DragonBaseModel *destModel);
-    
+    FiniteTimeAction* moveBackAction();
+    // attack
     float doAttack();
     FiniteTimeAction* attackAction(FloatCallback startCallback);
-    
-    FiniteTimeAction* moveBackAction();
-    
-    // 攻击后仰
+    // conjure
+    FiniteTimeAction* conjureAction(FloatCallback startCallback);
+    // 受到攻击的后仰和伤害作用
     void backwardInDelays(float seconds, EventCallback callback);
     void sufferAttackWithValue(AttackValue value, float afterDelay);
     void sufferAttackWithValue(AttackValue value, float afterDelay, EventCallback callback);
     
-    // action desc
+#pragma mark - Action Descriptions
     float durationForAttack();
+    float durationForConjure();
     
-    // shortcut
+#pragma mark - Indicator
+    void showSkillNamed(const string &skillName);
+    
+#pragma mark - Shortcuts
     void runAction(Action *action);
     
-    // getter & setter
+#pragma mark - getter & setter
     void setModelPosition(ModelPosition modelPosition);
     ModelPosition getModelPosition() { return _modelPosition; }
-    
-protected:
-    // battle data
-    SGPlayer *_player;
-    ModelState _modelState;
     
 #pragma mark - Battle Operation
     void renderPlayerData();

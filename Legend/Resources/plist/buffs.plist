@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>buffId</key>
+		<string>zhanqi</string>
+		<key>name</key>
+		<string>战气</string>
+		<key>iconPath</key>
+		<string></string>
+		<key>skillName</key>
+		<string>zhanqi</string>
+		<key>skillFrames</key>
+		<integer>9</integer>
+		<key>life</key>
+		<string>3</string>
+		<key>type</key>
+		<integer>1</integer>
+		<key>isNegative</key>
+		<false/>
+		<key>pgain</key>
+		<integer>20</integer>
+		<key>mgain</key>
+		<integer>0</integer>
+	</dict>
+</array>
+</plist>

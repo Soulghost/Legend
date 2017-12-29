@@ -11,6 +11,8 @@
 DragonDisplayNode::DragonDisplayNode() {
     this->skillNode = nullptr;
     this->buffNode = nullptr;
+    this->conjureNode = nullptr;
+    this->conjureTextNode = nullptr;
 }
 
 DragonDisplayNode::~DragonDisplayNode() {
@@ -35,6 +37,11 @@ void DragonDisplayNode::setupNodes() {
     }
     this->skillNode = Sprite::create();
     this->buffNode = Sprite::create();
+    this->buffNode->setScale(2);
+    this->conjureNode = Sprite::create();
+    this->conjureTextNode = Node::create();
     this->addChild(skillNode);
     this->addChild(buffNode);
+    this->addChild(conjureNode);
+    this->addChild(conjureTextNode);
 }

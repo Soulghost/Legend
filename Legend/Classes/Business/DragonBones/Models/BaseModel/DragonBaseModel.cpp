@@ -10,6 +10,8 @@
 #include "SGCommonUtils.h"
 #include "ValueDisplayNode.h"
 #include "SGValueBar.h"
+#include "AnimationUtil.h"
+#include "SGBuffPool.h"
 
 DragonBaseModel::DragonBaseModel() {
     _modelPosition = ModelPositionLeft;
@@ -30,23 +32,26 @@ void DragonBaseModel::commonInit() {
     _dragonFactory.loadTextureAtlasData(this->textureJSONPath);
     CCAssert(_dragonBonesData != nullptr, "dragonBones data is null");
     _armatureDisplay = _dragonFactory.buildArmatureDisplay(this->armatureName);
+    // setup views & nodes
     _displayNode = DragonDisplayNode::create();
     _displayNode->retain();
+    // 先添加UI，避免技能效果被遮挡
+    this->setupViews();
     _displayNode->armatureDisplay = _armatureDisplay;
     _displayNode->addChild(_armatureDisplay);
     _displayNode->setupNodes();
-    this->setupViews();
 }
 
 void DragonBaseModel::setupViews() {
     // name label
-    Label *nameLabel = Label::createWithTTF("", "fonts/yahei.ttf", 18);
+    Label *nameLabel = Label::createWithTTF("", "fonts/yahei.ttf", 20);
     _nameLabel = nameLabel;
     Color4B textColor = Color4B(0x5A, 0xD8, 0x50, 0xFF);
     nameLabel->setTextColor(textColor);
     Color4B shadowColor = Color4B::BLACK;
-    nameLabel->enableOutline(shadowColor, 2);
-    nameLabel->enableShadow(shadowColor, Size(0, 0), 2);
+//    nameLabel->enableOutline(shadowColor, 1);
+    nameLabel->enableShadow(shadowColor, Size(0, 0), 1);
+    nameLabel->enableBold();
     nameLabel->setPositionY(-16);
     _displayNode->addChild(nameLabel);
     
@@ -74,6 +79,7 @@ void DragonBaseModel::bindWithPlayer(SGPlayer *player) {
     _player = player;
     _nameLabel->setString(player->name);
     this->renderPlayerData();
+    _player->buffPool->bindModel(this);
 }
 
 #pragma mark - Battle Operation
@@ -95,6 +101,9 @@ void DragonBaseModel::setState(ModelState modelState) {
         case ModelStateWalk:
             this->playAnimationNamed(actionAlias.walkName, 0);
             break;
+        case ModelStateConjure:
+            this->playAnimationNamed(actionAlias.conjureName, 1);
+            break;
         case ModelStateDeath:
             _hpBar->setVisible(false);
             _mpBar->setVisible(false);
@@ -114,6 +123,10 @@ DragonDisplayNode* DragonBaseModel::getDisplayNode() {
 void DragonBaseModel::startAnimating() {
     this->markOriginPosition();
     this->playAnimationNamed(actionAlias.idleName, 0);
+    // load nodes by modelHeight
+    _displayNode->conjureNode->setPositionY(_modelHeight + 40);
+    _displayNode->conjureTextNode->setPosition(_displayNode->conjureNode->getPosition());
+    _displayNode->buffNode->setPositionY(16);
 }
 
 void DragonBaseModel::playAnimationNamed(string name, unsigned int times) {
@@ -216,6 +229,19 @@ FiniteTimeAction* DragonBaseModel::moveBackAction() {
     return Sequence::create(reverse, back, reset, NULL);
 }
 
+FiniteTimeAction* DragonBaseModel::conjureAction(FloatCallback startCallback) {
+    float duration = this->durationForConjure();
+    auto start = CallFunc::create([this, duration, startCallback]() {
+        this->setState(ModelStateConjure);
+        startCallback(duration);
+    });
+    auto delay = DelayTime::create(duration);
+    auto end = CallFunc::create([this]() {
+        this->setState(ModelStateIdle);
+    });
+    return Sequence::create(start, delay, end, NULL);
+}
+
 void DragonBaseModel::backwardInDelays(float seconds, EventCallback callback) {
     // 后仰
     auto delay = DelayTime::create(seconds);
@@ -251,6 +277,10 @@ float DragonBaseModel::durationForAttack() {
     return SGCommonUtils::getDurationForAnimationInModel(this, this->actionAlias.attackName);
 }
 
+float DragonBaseModel::durationForConjure() {
+    return SGCommonUtils::getDurationForAnimationInModel(this, this->actionAlias.conjureName);
+}
+
 #pragma mark - Shortcut
 void DragonBaseModel::runAction(Action *action) {
     _displayNode->runAction(action);
@@ -267,4 +297,22 @@ void DragonBaseModel::setModelPosition(ModelPosition modelPosition) {
             _armatureDisplay->setScale(-_originLeftScale.x, _originLeftScale.y);
             break;
     }
+}
+
+#pragma mark - Indicator
+void DragonBaseModel::showSkillNamed(const string &skillName) {
+    auto addLabel = CallFunc::create([&]() {
+        auto textColor = Color4B(0xfc, 0xcc, 0x35, 0xff);
+        auto borderColor = Color4B(0xdc, 0x52, 0x4a, 0xff);
+        Label *skillNameLabel = Label::createWithTTF("炎龙之怒", "fonts/yahei.ttf", 20);
+        skillNameLabel->setTextColor(textColor);
+        skillNameLabel->enableOutline(borderColor, 1);
+        _displayNode->conjureTextNode->addChild(skillNameLabel, 1, 100);
+    });
+    Animate *conjure = AnimationUtil::createLoopAnimate("conjure", 4, 2);
+    auto removeLabel = CallFunc::create([&]() {
+        _displayNode->conjureTextNode->removeChildByTag(100);
+    });
+    auto seq = Sequence::create(Spawn::create(addLabel, conjure, NULL), removeLabel, NULL);
+    _displayNode->conjureNode->runAction(seq);
 }

@@ -18,7 +18,9 @@ class DragonDisplayNode : public Layer {
 public:
     dragonBones::CCArmatureDisplay *armatureDisplay;
     Sprite *skillNode;
-    Sprite *buffNode;
+    Node *buffNode;
+    Sprite *conjureNode;
+    Node *conjureTextNode;
     
     DragonDisplayNode();
     ~DragonDisplayNode();

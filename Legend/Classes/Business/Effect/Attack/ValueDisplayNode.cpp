@@ -36,10 +36,13 @@ void ValueDisplayNode::showInNode(cocos2d::Node *node, AttackValue value) {
 }
 
 void ValueDisplayNode::addNodes() {
+    if (_attackValue.value < 0) {
+        _attackValue.value = 0;
+    }
     string value = StringUtils::format("%d", _attackValue.value);
     ssize_t len = value.length();
-    float marginH = 16;
-    float scale = 1.5f;
+    float marginH = _attackValue.type == ValueTypeCrit ? 24 : 22;
+    float scale = _attackValue.type == ValueTypeCrit ? 2.2f : 2.0f;
     float startX, spaceH;
     if (len != 1) {
         if (len % 2 == 0) {

@@ -89,9 +89,11 @@ void DragonBaseModel::renderPlayerData() {
     _mpBar->setProgress((float)p->mp / p->mpmax);
 }
 
+#pragma mark - State Machine
 void DragonBaseModel::setState(ModelState modelState) {
     switch (modelState) {
         case ModelStateIdle:
+            _displayNode->setLocalZOrder(0);
             if (_player->hp == 0) {
                 this->setState(ModelStateDeath);
                 return;
@@ -99,6 +101,7 @@ void DragonBaseModel::setState(ModelState modelState) {
             this->playAnimationNamed(actionAlias.idleName, 0);
             break;
         case ModelStateWalk:
+            _displayNode->setLocalZOrder(1);
             this->playAnimationNamed(actionAlias.walkName, 0);
             break;
         case ModelStateConjure:
@@ -186,7 +189,7 @@ Vec2 DragonBaseModel::getAttackPosition() {
             dest.x -= 90;
             break;
     }
-    CCLOG("get attack position for %s at %s, the value is (%d, %d)", "", _modelPosition == 0 ? "left" : "right", (int)dest.x, (int)dest.y);
+    CCLOG("get attack position for %s at %s, the value is (%d, %d)", _player->name.c_str(), _modelPosition == 0 ? "left" : "right", (int)dest.x, (int)dest.y);
     return dest;
 }
 

@@ -69,7 +69,8 @@ typedef enum ModelState {
     ModelStateIdle = 0,
     ModelStateWalk = 1,
     ModelStateDeath = 2,
-    ModelStateConjure = 3
+    ModelStateConjure = 3,
+    ModelStateAttack = 4
 } ModelState;
 
 class DragonBaseModel : public Ref {

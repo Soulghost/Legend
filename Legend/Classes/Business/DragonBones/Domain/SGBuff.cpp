@@ -9,7 +9,7 @@
 #include "SGBuff.h"
 
 SGBuff::SGBuff() {
-    
+    pgain = mgain = 0;
 }
 
 SGBuff::~SGBuff() {

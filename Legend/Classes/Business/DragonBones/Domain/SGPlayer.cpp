@@ -12,6 +12,14 @@
 
 SGPlayer::SGPlayer() {
     this->buffPool = nullptr;
+    hp = hpmax = mp = mpmax = sp = spmax = 0;
+    pl = ph = pd = 0;
+    ml = mh = md = 0;
+    pgain = mgain = critGain = 0;
+    pcrit = 0;
+    hpsteal = 0;
+    speed = 0;
+    armor = 0;
 }
 
 SGPlayer::~SGPlayer() {

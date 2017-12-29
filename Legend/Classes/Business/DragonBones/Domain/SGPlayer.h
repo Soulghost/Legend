@@ -44,7 +44,7 @@ public:
     int hpsteal;
     // 行动速度
     int speed;
-    // 减伤, 100 = 100%
+    // 物理减伤, 100 = 100%
     int armor;
     
     SGBuffPool *buffPool;

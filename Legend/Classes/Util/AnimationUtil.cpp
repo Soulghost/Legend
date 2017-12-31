@@ -1,13 +1,12 @@
 #include "AnimationUtil.h"
 
-Animation* AnimationUtil::createWithSingleFrameName(const string &name, float delay, int iLoops, int count) {
+Animation* AnimationUtil::createWithSingleFrameName(const string &name, float delay, int iLoops, int count, int startIndex) {
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
-
     Vector<SpriteFrame*> frameVec;
     SpriteFrame* frame = NULL;
-    int index = 1;
-    for (int i = 1; i <= count; i++) {
-        string fileName = StringUtils::format("%s%d.png", name.c_str(), index++);
+    count = startIndex == 0 ? count - 1 : count;
+    for (int i = startIndex; i <= count; i++) {
+        string fileName = StringUtils::format("%s%d.png", name.c_str(), i);
         frame = cache->getSpriteFrameByName(fileName);
         if (frame == NULL) {
             break;
@@ -39,6 +38,12 @@ Animate* AnimationUtil::createAnimate(string skillName, float duration, int coun
 Animate* AnimationUtil::createLoopAnimate(string skillName, int count, int loopTimes) {
     pushAnimationInCache(skillName);
     Animation *animation = AnimationUtil::createWithSingleFrameName(skillName, 0.16, loopTimes, count);
+    return Animate::create(animation);
+}
+
+Animate* AnimationUtil::createLoopAnimate(string skillName, int count, float duration, int loopTimes, int startIndex) {
+    pushAnimationInCache(skillName);
+    Animation *animation = AnimationUtil::createWithSingleFrameName(skillName, duration, loopTimes, count, startIndex);
     return Animate::create(animation);
 }
 

@@ -37,6 +37,9 @@ private:
     OrcishModel *_oc;
     CowModel *_cow;
     
+    Sprite *leftSkillNode;
+    Sprite *rightSkillNode;
+    
     
     void commonInit();
     SGPlayer* createDemoPlayer(const string &name);

@@ -35,15 +35,6 @@ SGBuff* SGBuffFactory::createBuffById(const string &buffId) {
     CCASSERT(_vmMap.find(buffId) != _vmMap.end(), "buff not found!");
     ValueMap vm = _vmMap[buffId];
     SGBuff *buff = SGBuff::create();
-    buff->buffId = vm.at("buffId").asString();
-    buff->name = vm.at("name").asString();
-    buff->iconPath = vm.at("iconPath").asString();
-    buff->skillName = vm.at("skillName").asString();
-    buff->skillFrames = vm.at("skillFrames").asInt();
-    buff->life = vm.at("life").asInt();
-    buff->type = static_cast<SGBuffType>(vm.at("type").asInt());
-    buff->isNegative = vm.at("isNegative").asBool();
-    buff->pgain = vm.at("pgain").asInt();
-    buff->mgain = vm.at("mgain").asInt();
+    buff->initWithValueMap(vm);
     return buff;
 }

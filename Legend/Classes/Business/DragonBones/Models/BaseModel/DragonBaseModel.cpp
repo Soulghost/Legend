@@ -52,7 +52,7 @@ void DragonBaseModel::setupViews() {
 //    nameLabel->enableOutline(shadowColor, 1);
     nameLabel->enableShadow(shadowColor, Size(0, 0), 1);
     nameLabel->enableBold();
-    nameLabel->setPositionY(-16);
+    nameLabel->setPositionY(-24);
     _displayNode->addChild(nameLabel);
     
     // hp bar
@@ -101,8 +101,11 @@ void DragonBaseModel::setState(ModelState modelState) {
             this->playAnimationNamed(actionAlias.idleName, 0);
             break;
         case ModelStateWalk:
-            _displayNode->setLocalZOrder(1);
+            _displayNode->setLocalZOrder(ZOrder_ModelAction);
             this->playAnimationNamed(actionAlias.walkName, 0);
+            break;
+        case ModelStateAttack:
+            this->playAnimationNamed(actionAlias.attackName, 1);
             break;
         case ModelStateConjure:
             this->playAnimationNamed(actionAlias.conjureName, 1);
@@ -198,8 +201,12 @@ FiniteTimeAction* DragonBaseModel::moveToAction(DragonBaseModel *destModel) {
     auto playRun = CallFunc::create([this]() {
         this->setState(ModelStateWalk);
     });
-    auto moveTo = MoveTo::create(1.0, destModel->getAttackPosition());
+    auto moveTo = MoveTo::create(0.6, destModel->getAttackPosition());
     return Spawn::create(playRun, moveTo, NULL);
+}
+
+FiniteTimeAction* DragonBaseModel::transportToAction(DragonBaseModel *destModel) {
+    return MoveTo::create(0.1, destModel->getAttackPosition());
 }
 
 float DragonBaseModel::doAttack() {
@@ -212,7 +219,9 @@ float DragonBaseModel::doAttack() {
 FiniteTimeAction* DragonBaseModel::attackAction(FloatCallback startCallback) {
     auto attack = CallFunc::create([this, startCallback]() {
         float duration = this->doAttack();
-        startCallback(duration);
+        if (startCallback != nullptr) {
+            startCallback(duration);
+        }
     });
     float attackDuration = this->durationForAttack();
     auto attackDelay = DelayTime::create(attackDuration);
@@ -224,7 +233,7 @@ FiniteTimeAction* DragonBaseModel::moveBackAction() {
         _armatureDisplay->setScaleX(-_armatureDisplay->getScaleX());
         this->setState(ModelStateWalk);
     });
-    auto back = MoveTo::create(1.0, this->getOriginPosition());
+    auto back = MoveTo::create(0.6, this->getOriginPosition());
     auto reset = CallFunc::create([&]() {
         _armatureDisplay->setScaleX(-_armatureDisplay->getScaleX());
         this->setState(ModelStateIdle);
@@ -304,18 +313,30 @@ void DragonBaseModel::setModelPosition(ModelPosition modelPosition) {
 
 #pragma mark - Indicator
 void DragonBaseModel::showSkillNamed(const string &skillName) {
-    auto addLabel = CallFunc::create([&]() {
+    auto addLabel = CallFunc::create([this, skillName]() {
         auto textColor = Color4B(0xfc, 0xcc, 0x35, 0xff);
         auto borderColor = Color4B(0xdc, 0x52, 0x4a, 0xff);
-        Label *skillNameLabel = Label::createWithTTF("炎龙之怒", "fonts/yahei.ttf", 20);
+        Label *skillNameLabel = Label::createWithTTF(skillName, "fonts/yahei.ttf", 20);
         skillNameLabel->setTextColor(textColor);
         skillNameLabel->enableOutline(borderColor, 1);
         _displayNode->conjureTextNode->addChild(skillNameLabel, 1, 100);
     });
-    Animate *conjure = AnimationUtil::createLoopAnimate("conjure", 4, 2);
+    Animate *conjure = AnimationUtil::createLoopAnimate("conjure", 4, 0.15, 2);
     auto removeLabel = CallFunc::create([&]() {
         _displayNode->conjureTextNode->removeChildByTag(100);
     });
     auto seq = Sequence::create(Spawn::create(addLabel, conjure, NULL), removeLabel, NULL);
     _displayNode->conjureNode->runAction(seq);
+}
+
+void DragonBaseModel::showHitAnimation(Animate *animate, float scale, float delay) {
+    auto delayAction = DelayTime::create(delay);
+    animate->retain();
+    auto show = CallFunc::create([this, animate, scale]() {
+        _displayNode->skillNode->setScale(scale);
+        _displayNode->skillNode->runAction(animate);
+        animate->release();
+    });
+    auto seq = Sequence::create(delayAction, show, NULL);
+    this->runAction(seq);
 }

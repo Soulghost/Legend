@@ -45,3 +45,36 @@ void SGPlayer::withdrawBuff(SGBuff *buff) {
     pgain -= buff->pgain;
     mgain -= buff->mgain;
 }
+
+bool SGPlayer::isForbiddenPhysical() {
+    Vector<SGBuff *> buffs = buffPool->getBuffs();
+    for (SGBuff *buff : buffs) {
+        if (!buff->isNegative) continue;
+        if (buff->type & SGBuffTypeStopP) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool SGPlayer::isForbiddenMagic() {
+    Vector<SGBuff *> buffs = buffPool->getBuffs();
+    for (SGBuff *buff : buffs) {
+        if (!buff->isNegative) continue;
+        if (buff->type & SGBuffTypeStopM) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool SGPlayer::isForbiddenSp() {
+    Vector<SGBuff *> buffs = buffPool->getBuffs();
+    for (SGBuff *buff : buffs) {
+        if (!buff->isNegative) continue;
+        if (buff->type & SGBuffTypeStopS) {
+            return true;
+        }
+    }
+    return false;
+}

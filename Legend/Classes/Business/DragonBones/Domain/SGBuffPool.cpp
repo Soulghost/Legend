@@ -45,6 +45,8 @@ void SGBuffPool::addBuff(SGBuff *buff) {
     // display in node
     Animate *buffAnimate = AnimationUtil::createLoopAnimate(buff->skillName, buff->skillFrames, -1);
     Sprite *buffNode = Sprite::create();
+    buffNode->setScale(buff->scale);
+    buffNode->setPosition(Vec2(buff->offsetX, buff->offsetY));
     buffNode->setName(buff->buffId);
     _model->getDisplayNode()->buffNode->addChild(buffNode);
     buffNode->runAction(buffAnimate);
@@ -81,6 +83,16 @@ void SGBuffPool::tick() {
         }
     }
     this->logPoolState();
+}
+
+Vector<SGBuff *> SGBuffPool::getBuffs() {
+    Vector<SGBuff *> buffs;
+    vector<string> keys = _buffMap.keys();
+    for (const string &key : keys) {
+        SGBuff *buff = _buffMap.at(key);
+        buffs.pushBack(buff);
+    }
+    return buffs;
 }
 
 void SGBuffPool::logPoolState() {

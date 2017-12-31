@@ -19,6 +19,8 @@
 #include "SGBuffPool.h"
 #include "SGAttackCalculator.h"
 
+#include "SGSkillDispatcher.h"
+
 DragonFightScene::DragonFightScene() {
     
 }
@@ -47,17 +49,29 @@ SGPlayer* DragonFightScene::createDemoPlayer(const string &name) {
     p->name = name;
     p->hp = p->hpmax = 16000;
     p->mp = p->mpmax = 1000;
-    p->pl = 500;
-    p->ph = 1500;
+    p->pl = 1000;
+    p->ph = 1000;
     p->ml = 1000;
     p->mh = 1000;
     p->speed = 120;
     p->pd = 150;
-    p->pcrit = 50;
     return p;
 }
 
 void DragonFightScene::commonInit() {
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    // left and right skill node
+    leftSkillNode = Sprite::create();
+    leftSkillNode->setPosition(Vec2(visibleSize.width * 0.3f, visibleSize.height * 0.6f));
+    this->addChild(leftSkillNode);
+    rightSkillNode = Sprite::create();
+    rightSkillNode->setPosition(Vec2(visibleSize.width * 0.7f, visibleSize.height * 0.6f));
+    this->addChild(rightSkillNode);
+    leftSkillNode->setLocalZOrder(ZOrder_SceneSkillNode);
+    rightSkillNode->setLocalZOrder(ZOrder_SceneSkillNode);
+    SGSkillDispatcher::getInstance()->leftSceneSkillNode = leftSkillNode;
+    SGSkillDispatcher::getInstance()->rightSceneSkillNode = rightSkillNode;
+    
     _fp = FirePrinceModel::create();
     _fp->retain();
     _fp->setPosition(Vec2(200, 366));
@@ -106,35 +120,19 @@ void DragonFightScene::commonInit() {
     steadyBtn->setContentSize(Size(120, 48));
     _steadyBtn = steadyBtn;
     _steadyBtn->setOnClickHandler([this](Ref *sender) {
-        auto action = _fp->conjureAction([&](float duration) {
-            _fp->getDisplayNode()->conjureNode->setScale(2);
-            _fp->showSkillNamed("炎龙之怒");
-            Animate *skillAnimate = AnimationUtil::createAnimate("yanbao", 16);
-            _oc->getDisplayNode()->skillNode->setScale(2);
-            _oc->getDisplayNode()->skillNode->runAction(Sequence::create(DelayTime::create(duration * 0.8f), skillAnimate, NULL));
-            CalculateOptions options = CalculateOptions(AttackAttributeMagic);
-            options.mgain = 60;
-            AttackValue v = SGAttackCalculator::calculateAttackValue(_fp->_player, _oc->_player, options);
-            _oc->sufferAttackWithValue(v, 2 + duration * 0.8f);
-        });
-        _fp->runAction(action);
+        Vector<DragonBaseModel *> targets{_oc, _cow};
+        SGSkillDispatcher::getInstance()->dispatchSceneSkill("mantianhuoyu", _fp, targets);
     });
     this->addChild(steadyBtn);
     
     LGButton *rAttackBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
-    rAttackBtn->setTitle("rAttack");
+    rAttackBtn->setTitle("pSkill");
     rAttackBtn->setPosition(Vec2(300, 40));
     rAttackBtn->setContentSize(Size(120, 48));
     _rAttackBtn = rAttackBtn;
     _rAttackBtn->setOnClickHandler([&](Ref *sender) {
-        // simulate attack
-        auto moveTo = _oc->moveToAction(_fp);
-        auto attack = _oc->attackAction([this](float duration) {
-            _fp->sufferAttackWithValue(AttackValue(2776, ValueTypeCrit), duration * 0.5f);
-        });
-        auto moveBack = _oc->moveBackAction();
-        auto seq = Sequence::create(moveTo, attack, moveBack, NULL);
-        _oc->runAction(seq);
+        Vector<DragonBaseModel *> targets{_oc, _cow};
+        SGSkillDispatcher::getInstance()->dispatchMovementSkill("leimingzhan", _fp, targets);
     });
     this->addChild(rAttackBtn);
     
@@ -152,7 +150,7 @@ void DragonFightScene::commonInit() {
     addBuff->setPosition(Vec2(540, 40));
     addBuff->setContentSize(Size(120, 48));
     addBuff->setOnClickHandler([&](Ref *sender) {
-        SGBuff *zhanqiBuff = SGBuffFactory::getInstance()->createBuffById("zhanqi");
+        SGBuff *zhanqiBuff = SGBuffFactory::getInstance()->createBuffById("zhixing");
         _fp->_player->buffPool->addBuff(zhanqiBuff);
     });
     this->addChild(addBuff);

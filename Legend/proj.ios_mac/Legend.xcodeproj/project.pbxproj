@@ -141,6 +141,10 @@
 		68CE8A641FF60A48003E5626 /* SGBuffPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A621FF60A48003E5626 /* SGBuffPool.cpp */; };
 		68CE8A691FF6189A003E5626 /* SGBuffFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A671FF6189A003E5626 /* SGBuffFactory.cpp */; };
 		68CE8A6B1FF61B90003E5626 /* plist in Resources */ = {isa = PBXBuildFile; fileRef = 68CE8A6A1FF61B90003E5626 /* plist */; };
+		68CE8A711FF62BFC003E5626 /* SGAttackCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A6F1FF62BFC003E5626 /* SGAttackCalculator.cpp */; };
+		68CE8A8B1FF6592F003E5626 /* SGSkillDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A891FF6592F003E5626 /* SGSkillDispatcher.cpp */; };
+		68CE8A901FF68C69003E5626 /* SGSkill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A8E1FF68C69003E5626 /* SGSkill.cpp */; };
+		68CE8A961FF7F95A003E5626 /* SGStaticSkillMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A941FF7F95A003E5626 /* SGStaticSkillMapper.cpp */; };
 		68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
 		68ED49CB1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
 		68ED49CC1F22408B009057C5 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C81F22408B009057C5 /* LGUITheme.cpp */; };
@@ -459,6 +463,15 @@
 		68CE8A671FF6189A003E5626 /* SGBuffFactory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGBuffFactory.cpp; sourceTree = "<group>"; };
 		68CE8A681FF6189A003E5626 /* SGBuffFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGBuffFactory.h; sourceTree = "<group>"; };
 		68CE8A6A1FF61B90003E5626 /* plist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = plist; sourceTree = "<group>"; };
+		68CE8A6F1FF62BFC003E5626 /* SGAttackCalculator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGAttackCalculator.cpp; sourceTree = "<group>"; };
+		68CE8A701FF62BFC003E5626 /* SGAttackCalculator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGAttackCalculator.h; sourceTree = "<group>"; };
+		68CE8A861FF64FC2003E5626 /* CommonDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonDefines.h; sourceTree = "<group>"; };
+		68CE8A891FF6592F003E5626 /* SGSkillDispatcher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGSkillDispatcher.cpp; sourceTree = "<group>"; };
+		68CE8A8A1FF6592F003E5626 /* SGSkillDispatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGSkillDispatcher.h; sourceTree = "<group>"; };
+		68CE8A8E1FF68C69003E5626 /* SGSkill.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGSkill.cpp; sourceTree = "<group>"; };
+		68CE8A8F1FF68C69003E5626 /* SGSkill.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGSkill.h; sourceTree = "<group>"; };
+		68CE8A941FF7F95A003E5626 /* SGStaticSkillMapper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGStaticSkillMapper.cpp; sourceTree = "<group>"; };
+		68CE8A951FF7F95A003E5626 /* SGStaticSkillMapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGStaticSkillMapper.h; sourceTree = "<group>"; };
 		68ED49C61F22408B009057C5 /* LGButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGButton.cpp; sourceTree = "<group>"; };
 		68ED49C71F22408B009057C5 /* LGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGButton.h; sourceTree = "<group>"; };
 		68ED49C81F22408B009057C5 /* LGUITheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGUITheme.cpp; sourceTree = "<group>"; };
@@ -842,21 +855,16 @@
 		68CBCEB61FF2181F001BAD6B /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8A931FF7F929003E5626 /* Skill */,
+				68CE8A881FF65916003E5626 /* Dispatcher */,
+				68CE8A851FF64FB7003E5626 /* Common */,
 				68CE8A441FF4A5DC003E5626 /* UI */,
 				681ED4FB1FF33B67005461CC /* Effect */,
 				68CBCF781FF219FD001BAD6B /* DragonBones */,
-				68CBCEB71FF2181F001BAD6B /* Combat */,
 				68CBCEB81FF2181F001BAD6B /* Home */,
 				68CBCECE1FF2181F001BAD6B /* Player */,
 			);
 			path = Business;
-			sourceTree = "<group>";
-		};
-		68CBCEB71FF2181F001BAD6B /* Combat */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Combat;
 			sourceTree = "<group>";
 		};
 		68CBCEB81FF2181F001BAD6B /* Home */ = {
@@ -1221,6 +1229,7 @@
 		68CBCF781FF219FD001BAD6B /* DragonBones */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8A6E1FF62BE3003E5626 /* Calculate */,
 				68CE8A651FF61881003E5626 /* Factory */,
 				68CE8A4C1FF4CE0F003E5626 /* Domain */,
 				68CE8A3D1FF38065003E5626 /* Utils */,
@@ -1306,6 +1315,8 @@
 				68CE8A5F1FF608C4003E5626 /* SGBuff.h */,
 				68CE8A621FF60A48003E5626 /* SGBuffPool.cpp */,
 				68CE8A631FF60A48003E5626 /* SGBuffPool.h */,
+				68CE8A8E1FF68C69003E5626 /* SGSkill.cpp */,
+				68CE8A8F1FF68C69003E5626 /* SGSkill.h */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1317,6 +1328,41 @@
 				68CE8A681FF6189A003E5626 /* SGBuffFactory.h */,
 			);
 			path = Factory;
+			sourceTree = "<group>";
+		};
+		68CE8A6E1FF62BE3003E5626 /* Calculate */ = {
+			isa = PBXGroup;
+			children = (
+				68CE8A6F1FF62BFC003E5626 /* SGAttackCalculator.cpp */,
+				68CE8A701FF62BFC003E5626 /* SGAttackCalculator.h */,
+			);
+			path = Calculate;
+			sourceTree = "<group>";
+		};
+		68CE8A851FF64FB7003E5626 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				68CE8A861FF64FC2003E5626 /* CommonDefines.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		68CE8A881FF65916003E5626 /* Dispatcher */ = {
+			isa = PBXGroup;
+			children = (
+				68CE8A891FF6592F003E5626 /* SGSkillDispatcher.cpp */,
+				68CE8A8A1FF6592F003E5626 /* SGSkillDispatcher.h */,
+			);
+			path = Dispatcher;
+			sourceTree = "<group>";
+		};
+		68CE8A931FF7F929003E5626 /* Skill */ = {
+			isa = PBXGroup;
+			children = (
+				68CE8A941FF7F95A003E5626 /* SGStaticSkillMapper.cpp */,
+				68CE8A951FF7F95A003E5626 /* SGStaticSkillMapper.h */,
+			);
+			path = Skill;
 			sourceTree = "<group>";
 		};
 		68ED49C41F22403A009057C5 /* LGBase */ = {
@@ -1508,10 +1554,12 @@
 				68CBCF611FF21991001BAD6B /* BaseFactory.cpp in Sources */,
 				68CBCEA31FF217FD001BAD6B /* BaseNode.cpp in Sources */,
 				68CBCFB51FF21F33001BAD6B /* DragonFightScene.cpp in Sources */,
+				68CE8A901FF68C69003E5626 /* SGSkill.cpp in Sources */,
 				68CBCF601FF21991001BAD6B /* EventObject.cpp in Sources */,
 				68CBCED51FF2181F001BAD6B /* ReportPanelViewModel.cpp in Sources */,
 				68CBCF5C1FF21991001BAD6B /* Armature.cpp in Sources */,
 				68ED49CC1F22408B009057C5 /* LGUITheme.cpp in Sources */,
+				68CE8A711FF62BFC003E5626 /* SGAttackCalculator.cpp in Sources */,
 				68CBCEB21FF217FD001BAD6B /* UITableViewHeaderFooterView.cpp in Sources */,
 				68CBCF761FF219C2001BAD6B /* CCSlot.cpp in Sources */,
 				68CBCEDA1FF2181F001BAD6B /* LGPlayerModel.cpp in Sources */,
@@ -1545,6 +1593,7 @@
 				68CBCFBE1FF25392001BAD6B /* DragonBaseModel.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				68CBCEB11FF217FD001BAD6B /* UITableViewCell.cpp in Sources */,
+				68CE8A961FF7F95A003E5626 /* SGStaticSkillMapper.cpp in Sources */,
 				68CBCEAC1FF217FD001BAD6B /* CppRuntime.cpp in Sources */,
 				68CE8A551FF4E2DB003E5626 /* AnimationUtil.cpp in Sources */,
 				68CBCED41FF2181F001BAD6B /* ReportPanelView.cpp in Sources */,
@@ -1574,6 +1623,7 @@
 				68CBCF5B1FF21991001BAD6B /* WorldClock.cpp in Sources */,
 				68CBCF691FF21992001BAD6B /* TextureData.cpp in Sources */,
 				68CBCED31FF2181F001BAD6B /* HomeScene.cpp in Sources */,
+				68CE8A8B1FF6592F003E5626 /* SGSkillDispatcher.cpp in Sources */,
 				68CBCEED1FF21839001BAD6B /* LGRandomUtil.cpp in Sources */,
 				68CBCEAA1FF217FD001BAD6B /* UITableViewModel.cpp in Sources */,
 				68CBCF751FF219C2001BAD6B /* CCFactory.cpp in Sources */,

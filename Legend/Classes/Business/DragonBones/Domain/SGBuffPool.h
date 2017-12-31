@@ -27,6 +27,7 @@ public:
 
 #pragma mark - Opreations
     void addBuff(SGBuff *buff);
+    Vector<SGBuff *> getBuffs();
     void removeBuff(SGBuff *buff);
     void removePositiveBuffs();
     void removeNegativeBuffs();

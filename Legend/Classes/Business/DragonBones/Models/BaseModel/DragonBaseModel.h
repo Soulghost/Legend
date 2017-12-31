@@ -109,10 +109,11 @@ public:
 #pragma mark - Actions
     // move
     FiniteTimeAction* moveToAction(DragonBaseModel *destModel);
+    FiniteTimeAction* transportToAction(DragonBaseModel *destModel);
     FiniteTimeAction* moveBackAction();
     // attack
     float doAttack();
-    FiniteTimeAction* attackAction(FloatCallback startCallback);
+    FiniteTimeAction* attackAction(FloatCallback startCallback = nullptr);
     // conjure
     FiniteTimeAction* conjureAction(FloatCallback startCallback);
     // 受到攻击的后仰和伤害作用
@@ -126,6 +127,7 @@ public:
     
 #pragma mark - Indicator
     void showSkillNamed(const string &skillName);
+    void showHitAnimation(Animate *animate, float scale, float delay);
     
 #pragma mark - Shortcuts
     void runAction(Action *action);

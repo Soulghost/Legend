@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>skillName</key>
+		<string>lieyanzhan</string>
+		<key>displayName</key>
+		<string>烈焰斩</string>
+		<key>frameDuration</key>
+		<real>0.16</real>
+		<key>frameCount</key>
+		<integer>4</integer>
+		<key>scale</key>
+		<real>1.5</real>
+		<key>hitRatio</key>
+		<real>0.5</real>
+		<key>type</key>
+		<string>p</string>
+		<key>targetCount</key>
+		<integer>3</integer>
+		<key>gain</key>
+		<integer>20</integer>
+		<key>fixedAdd</key>
+		<integer>1000</integer>
+	</dict>
+</array>
+</plist>

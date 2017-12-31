@@ -85,9 +85,10 @@ void ValueDisplayNode::addNodes() {
 void ValueDisplayNode::displayOnNode(Node *node, AttackValue value) {
     _attackValue = value;
     addNodes();
-    Node *parent = node->getParent();
-    this->setPosition(node->getPositionX(), node->getPositionY() + 15);
-    parent->addChild(this);
+    Node *sceneSpace = node->getParent()->getParent();
+    this->setPosition(node->getParent()->getPositionX(), node->getParent()->getPositionY() + 15);
+    sceneSpace->addChild(this);
+    this->setLocalZOrder(ZOrder_SceneSkillNode);
     ssize_t len = _numberSprites.size();
     float delayms = 0;
     float upms = 0.05;

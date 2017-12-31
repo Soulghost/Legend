@@ -13,14 +13,48 @@
 		<string>zhanqi</string>
 		<key>skillFrames</key>
 		<integer>9</integer>
+		<key>scale</key>
+		<real>1</real>
 		<key>life</key>
-		<string>3</string>
+		<integer>3</integer>
+		<key>offsetX</key>
+		<integer>0</integer>
+		<key>offsetY</key>
+		<integer>0</integer>
 		<key>type</key>
 		<integer>1</integer>
 		<key>isNegative</key>
 		<false/>
 		<key>pgain</key>
 		<integer>20</integer>
+		<key>mgain</key>
+		<integer>20</integer>
+	</dict>
+	<dict>
+		<key>buffId</key>
+		<string>zhixing</string>
+		<key>name</key>
+		<string>止行</string>
+		<key>iconPath</key>
+		<string></string>
+		<key>skillName</key>
+		<string>zhixing</string>
+		<key>skillFrames</key>
+		<integer>9</integer>
+		<key>scale</key>
+		<real>1</real>
+		<key>life</key>
+		<integer>2</integer>
+		<key>offsetX</key>
+		<integer>0</integer>
+		<key>offsetY</key>
+		<integer>-2</integer>
+		<key>type</key>
+		<integer>14</integer>
+		<key>isNegative</key>
+		<true/>
+		<key>pgain</key>
+		<integer>0</integer>
 		<key>mgain</key>
 		<integer>0</integer>
 	</dict>

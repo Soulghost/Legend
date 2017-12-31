@@ -57,6 +57,9 @@ public:
     
     void performBuff(SGBuff *buff);
     void withdrawBuff(SGBuff *buff);
+    bool isForbiddenPhysical();
+    bool isForbiddenMagic();
+    bool isForbiddenSp();
     
 private:
     void commonInit();

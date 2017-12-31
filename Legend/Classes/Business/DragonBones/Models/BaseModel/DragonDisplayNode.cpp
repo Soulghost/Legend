@@ -39,6 +39,7 @@ void DragonDisplayNode::setupNodes() {
     this->buffNode = Sprite::create();
     this->buffNode->setScale(2);
     this->conjureNode = Sprite::create();
+    this->conjureNode->setScale(2);
     this->conjureTextNode = Node::create();
     this->addChild(skillNode);
     this->addChild(buffNode);

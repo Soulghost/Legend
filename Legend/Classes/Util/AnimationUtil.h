@@ -11,9 +11,10 @@ public:
     static Animate* createAnimate(string skillName, float duration, int count);
     static Animate* createAnimate(string skillName, int count);
     static Animate* createLoopAnimate(string skillName, int count, int loopTimes);
+    static Animate* createLoopAnimate(string skillName, int count, float duration, int loopTimes, int startIndex = 1);
     
 private:
-    static Animation* createWithSingleFrameName(const string &name, float delay, int iLoops, int count);
+    static Animation* createWithSingleFrameName(const string &name, float delay, int iLoops, int count, int startIndex = 1);
     static void pushAnimationInCache(const string &skillName);
 
 };

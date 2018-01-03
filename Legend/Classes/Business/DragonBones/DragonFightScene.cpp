@@ -20,6 +20,10 @@
 #include "SGAttackCalculator.h"
 
 #include "SGSkillDispatcher.h"
+#include "HomeTableViewModel.h"
+#include "OptionTableViewModel.h"
+
+#include "SGProgressHUD.h"
 
 DragonFightScene::DragonFightScene() {
     
@@ -72,17 +76,27 @@ void DragonFightScene::commonInit() {
     SGSkillDispatcher::getInstance()->leftSceneSkillNode = leftSkillNode;
     SGSkillDispatcher::getInstance()->rightSceneSkillNode = rightSkillNode;
     
+    Node *delayNode = Node::create();
+    this->addChild(delayNode);
+    SGSkillDispatcher::getInstance()->delayNode = delayNode;
+    
     _fp = FirePrinceModel::create();
     _fp->retain();
     _fp->setPosition(Vec2(200, 366));
+    _fp->setModelPosition(ModelPositionLeft);
+    _fp->setModelNum(2);
     _fp->bindWithPlayer(createDemoPlayer("炎魔"));
     this->addChild(_fp->getDisplayNode());
     _fp->startAnimating();
+    
+    Vector<DragonBaseModel *> leftRoles{_fp};
+    SGRoundDispatcher::getInstance()->_leftRoles = leftRoles;
     
     _oc = OrcishModel::create();
     _oc->retain();
     _oc->setPosition(Vec2(800, 366));
     _oc->setModelPosition(ModelPositionRight);
+    _oc->setModelNum(2);
     _oc->bindWithPlayer(createDemoPlayer("兽人"));
     this->addChild(_oc->getDisplayNode());
     _oc->startAnimating();
@@ -91,9 +105,13 @@ void DragonFightScene::commonInit() {
     _cow->retain();
     _cow->setPosition(Vec2(650, 366));
     _cow->setModelPosition(ModelPositionRight);
+    _cow->setModelNum(5);
     _cow->bindWithPlayer(createDemoPlayer("牛宝"));
     this->addChild(_cow->getDisplayNode());
     _cow->startAnimating();
+    
+    Vector<DragonBaseModel *> rightRoles{_oc, _cow};
+    SGRoundDispatcher::getInstance()->_rightRoles = rightRoles;
     
     LGButton *skillBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
     skillBtn->setTitle("attack");
@@ -154,4 +172,84 @@ void DragonFightScene::commonInit() {
         _fp->_player->buffPool->addBuff(zhanqiBuff);
     });
     this->addChild(addBuff);
+    
+    LGButton *resetBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
+    resetBtn->setTitle("reset");
+    resetBtn->setPosition(Vec2(660, 40));
+    resetBtn->setContentSize(Size(120, 48));
+    resetBtn->setOnClickHandler([&](Ref *sender) {
+        SGRoundDispatcher::getInstance()->newRound();
+    });
+    this->addChild(resetBtn);
+    
+    vector<pair<string, string>> operations{
+        pair<string, string>("漫天火雨", "mantianhuoyu"),
+        pair<string, string>("雷龙怒", "leilongnu"),
+        pair<string, string>("烈焰斩", "lieyanzhan")
+    };
+    _operations = operations;
+    // add menu
+    TableView *tableView = TableView::create(this, Size(120, visibleSize.height * 0.6));
+    tableView->setDelegate(this);
+    MEMSETTER(tableView);
+    this->addChild(tableView);
+    tableView->setPosition(Vec2(visibleSize.width * 0.5f - 120, 0));
+    
+    SGRoundDispatcher::getInstance()->setActionReducer([this](SGPlayerAction *action, ActionPromise actionPromise) {
+        _currentAction = action;
+        _actionPromise = actionPromise;
+        DragonBaseModel *role = action->caller;
+        if (role->getModelPosition() == ModelPositionLeft && role->getModuleNum() == 2) {
+            return;
+        }
+        action->type = SGPlayerActionTypeCommonAttack;
+        action->progress = SGPlayerActionProgressCommitted;
+        action->targets.pushBack(_fp);
+        _actionPromise(action);
+    });
+    
+    auto modelSelectListener = EventListenerCustom::create("modelSelection", [this](EventCustom *event) {
+        DragonBaseModel *target = (DragonBaseModel *) event->getUserData();
+        _currentAction->targets.pushBack(target);
+        _currentAction->progress = SGPlayerActionProgressCommitted;
+        SGRoundDispatcher::getInstance()->setRightSelectable(false);
+        _actionPromise(_currentAction);
+    });
+    this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(modelSelectListener, this);
+    
+    SGRoundDispatcher::getInstance()->newRound();
+}
+
+#pragma mark - TableView DataSource
+Size DragonFightScene::tableCellSizeForIndex(TableView* table, ssize_t idx) {
+    return Size(100, 44);
+}
+
+TableViewCell* DragonFightScene::tableCellAtIndex(TableView *table, ssize_t idx) {
+    string name = StringUtils::format("%s", _operations[idx].first.c_str());
+    TableViewCell *cell = table->dequeueCell();
+    if (cell == nullptr) {
+        cell = TableViewCell::create();
+        Label *nameLabel = Label::createWithTTF(name, "fonts/yahei.ttf", 16);
+        nameLabel->setPosition(Vec2(50, 22));
+        nameLabel->setName("nameLabel");
+        cell->addChild(nameLabel);
+    } else {
+        Label *nameLabel = dynamic_cast<Label *>(cell->getChildByName("nameLabel"));
+        nameLabel->setString(name);
+    }
+    return cell;
+}
+
+ssize_t DragonFightScene::numberOfCellsInTableView(TableView *table) {
+    return _operations.size();
+}
+
+#pragma mark - TableView Delegate
+void DragonFightScene::tableCellTouched(TableView* table, TableViewCell* cell) {
+    const string &skillName = _operations[cell->getIdx()].second;
+//    SGProgressHUD::getInstance()->showMessage(_operations[cell->getIdx()].first, this);
+    _currentAction->type = SGPlayerActionTypeMagicSkill;
+    _currentAction->name = skillName;
+    SGRoundDispatcher::getInstance()->setRightSelectable(true);
 }

@@ -13,10 +13,12 @@
 #include "UITableViewCellViewModel.h"
 #include "StatePanelView.h"
 #include "ReportPanelView.h"
+#include "OptionRowView.h"
 
 void LGRuntimeMap::registerClasses() {
     RuntimeImpl(UITableViewCellModel);
     RuntimeImpl(UITableViewCellViewModel);
     RuntimeImpl(StatePanelView);
     RuntimeImpl(ReportPanelView);
+    RuntimeImpl(OptionRowView);
 }

@@ -95,3 +95,7 @@ float UITableViewMVVMBinder::tableViewHeightForFooterInSection(UITableView *tabl
     return 0;
 }
 
+void UITableViewMVVMBinder::tableViewDidSelectRowAtIndexPath(UITableView *tableView, const UIIndexPath& indexPath) {
+    
+}
+

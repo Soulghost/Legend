@@ -20,6 +20,7 @@ class SGSkillDispatcher : public Ref {
 public:
     Sprite *leftSceneSkillNode;
     Sprite *rightSceneSkillNode;
+    Node *delayNode;
     
     SGSkillDispatcher();
     ~SGSkillDispatcher();

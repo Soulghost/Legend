@@ -21,7 +21,7 @@ bool TouchEventCapability::init() {
     return true;
 }
 
-bool TouchEventCapability::initWithLayer(cocos2d::Layer *layer) {
+bool TouchEventCapability::initWithLayer(cocos2d::Node *layer) {
     _layer = layer;
     this->bindEvent();
     return true;
@@ -49,7 +49,9 @@ void TouchEventCapability::bindEvent() {
         return false;
     };
     touch->onTouchEnded = [&](Touch *t, Event *e) {
-        if (_layer->getBoundingBox().containsPoint(t->getLocation())) {
+        Vec2 touchLocation = t->getLocation();
+        touchLocation = _layer->getParent()->convertToNodeSpace(touchLocation);
+        if (_layer->getBoundingBox().containsPoint(touchLocation)) {
             if (onClick) {
                 onClick(t, e);
             }

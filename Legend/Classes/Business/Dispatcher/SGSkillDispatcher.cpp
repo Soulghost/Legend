@@ -7,6 +7,7 @@
 //
 
 #include "SGSkillDispatcher.h"
+#include "SGRoundDispatcher.h"
 #include "AnimationUtil.h"
 #include "SGAttackCalculator.h"
 #include "SGStaticSkillMapper.h"
@@ -86,6 +87,12 @@ void SGSkillDispatcher::dispatchSceneSkill(const string &skillName, DragonBaseMo
             AttackValue v = SGAttackCalculator::calculateAttackValue(caller->_player, target->_player, options);
             target->sufferAttackWithValue(v, animationStartDelay + skillDuration * skill->hitRatio);
         }
+        auto nextAction = Sequence::create(DelayTime::create(animationStartDelay + skillDuration), CallFunc::create([this, callback]() {
+            if (callback != nullptr) {
+                callback();
+            }
+        }), NULL);
+        delayNode->runAction(nextAction);
     });
     caller->runAction(action);
 }

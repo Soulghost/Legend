@@ -16,6 +16,7 @@
 DragonBaseModel::DragonBaseModel() {
     _modelPosition = ModelPositionLeft;
     _player = nullptr;
+    _attackBackwardRatio = 0.5;
 }
 
 DragonBaseModel::~DragonBaseModel() {
@@ -34,12 +35,19 @@ void DragonBaseModel::commonInit() {
     _armatureDisplay = _dragonFactory.buildArmatureDisplay(this->armatureName);
     // setup views & nodes
     _displayNode = DragonDisplayNode::create();
+    _displayNode->bindWithModel(this);
     _displayNode->retain();
     // 先添加UI，避免技能效果被遮挡
     this->setupViews();
     _displayNode->armatureDisplay = _armatureDisplay;
     _displayNode->addChild(_armatureDisplay);
     _displayNode->setupNodes();
+    
+//    EventListenerTouchOneByOne *touch = EventListenerTouchOneByOne::create();
+//    touch->onTouchBegan = [&](Touch *t, Event *e) {
+//        return true;
+//    };
+//    _armatureDisplay->getEventDispatcher()->addEventListenerWithFixedPriority(touch, -1);
 }
 
 void DragonBaseModel::setupViews() {
@@ -175,6 +183,7 @@ void DragonBaseModel::markOriginLeftScale() {
     Vec2 nodePosition = Vec2(0, _modelHeight * 0.5f - 10);
     _displayNode->skillNode->setPosition(nodePosition);
     _displayNode->buffNode->setPosition(nodePosition);
+    _displayNode->selectRing->setPosition(Vec2(0, _modelHeight * 0.5f));
 }
 
 Vec2 DragonBaseModel::getOriginPosition() {

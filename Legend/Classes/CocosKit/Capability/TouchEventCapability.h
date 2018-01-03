@@ -24,7 +24,7 @@ public:
     static Scene* createScene();
     bool init();
     CREATE_FUNC(TouchEventCapability);
-    CREATE_FUNC_PARAMS_1(TouchEventCapability, WithLayer, Layer*, layer);
+    CREATE_FUNC_PARAMS_1(TouchEventCapability, WithLayer, Node*, layer);
     
 public:
     TouchEventCapabilityTouchCallback onTouchBegan;
@@ -35,7 +35,7 @@ public:
     void bindWithLayer(Layer *layer);
     
 private:
-    Layer *_layer;
+    Node *_layer;
     EventListener *_touchEventListener;
     
     void commonInit();

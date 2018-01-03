@@ -145,6 +145,16 @@
 		68CE8A8B1FF6592F003E5626 /* SGSkillDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A891FF6592F003E5626 /* SGSkillDispatcher.cpp */; };
 		68CE8A901FF68C69003E5626 /* SGSkill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A8E1FF68C69003E5626 /* SGSkill.cpp */; };
 		68CE8A961FF7F95A003E5626 /* SGStaticSkillMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A941FF7F95A003E5626 /* SGStaticSkillMapper.cpp */; };
+		68CE8A9A1FF8E5E2003E5626 /* OptionRowView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A981FF8E5E2003E5626 /* OptionRowView.cpp */; };
+		68CE8A9D1FF8E618003E5626 /* OptionRowViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A9B1FF8E618003E5626 /* OptionRowViewModel.cpp */; };
+		68CE8AA01FF8E769003E5626 /* OptionTableViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8A9E1FF8E769003E5626 /* OptionTableViewModel.cpp */; };
+		68CE8AA71FFB6AEB003E5626 /* SGAlertView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8AA31FFB6AEB003E5626 /* SGAlertView.cpp */; };
+		68CE8AA81FFB6AEB003E5626 /* SGProgressHUD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8AA51FFB6AEB003E5626 /* SGProgressHUD.cpp */; };
+		68CE8AAB1FFB6AFD003E5626 /* SGSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8AA91FFB6AFC003E5626 /* SGSprite.cpp */; };
+		68CE8AAE1FFB6B08003E5626 /* SGLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8AAD1FFB6B07003E5626 /* SGLabel.cpp */; };
+		68CE8AB11FFB6B22003E5626 /* SGSpriteTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8AAF1FFB6B22003E5626 /* SGSpriteTool.cpp */; };
+		68CE8AB31FFB6FD3003E5626 /* text_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 68CE8AB21FFB6FD2003E5626 /* text_bg.png */; };
+		68CE8AB61FFC82C3003E5626 /* SGRoundDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CE8AB41FFC82C3003E5626 /* SGRoundDispatcher.cpp */; };
 		68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
 		68ED49CB1F22408B009057C5 /* LGButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C61F22408B009057C5 /* LGButton.cpp */; };
 		68ED49CC1F22408B009057C5 /* LGUITheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68ED49C81F22408B009057C5 /* LGUITheme.cpp */; };
@@ -472,6 +482,25 @@
 		68CE8A8F1FF68C69003E5626 /* SGSkill.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGSkill.h; sourceTree = "<group>"; };
 		68CE8A941FF7F95A003E5626 /* SGStaticSkillMapper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGStaticSkillMapper.cpp; sourceTree = "<group>"; };
 		68CE8A951FF7F95A003E5626 /* SGStaticSkillMapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGStaticSkillMapper.h; sourceTree = "<group>"; };
+		68CE8A981FF8E5E2003E5626 /* OptionRowView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OptionRowView.cpp; sourceTree = "<group>"; };
+		68CE8A991FF8E5E2003E5626 /* OptionRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionRowView.h; sourceTree = "<group>"; };
+		68CE8A9B1FF8E618003E5626 /* OptionRowViewModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OptionRowViewModel.cpp; sourceTree = "<group>"; };
+		68CE8A9C1FF8E618003E5626 /* OptionRowViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionRowViewModel.h; sourceTree = "<group>"; };
+		68CE8A9E1FF8E769003E5626 /* OptionTableViewModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OptionTableViewModel.cpp; sourceTree = "<group>"; };
+		68CE8A9F1FF8E769003E5626 /* OptionTableViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionTableViewModel.h; sourceTree = "<group>"; };
+		68CE8AA31FFB6AEB003E5626 /* SGAlertView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SGAlertView.cpp; sourceTree = "<group>"; };
+		68CE8AA41FFB6AEB003E5626 /* SGAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAlertView.h; sourceTree = "<group>"; };
+		68CE8AA51FFB6AEB003E5626 /* SGProgressHUD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SGProgressHUD.cpp; sourceTree = "<group>"; };
+		68CE8AA61FFB6AEB003E5626 /* SGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGProgressHUD.h; sourceTree = "<group>"; };
+		68CE8AA91FFB6AFC003E5626 /* SGSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SGSprite.cpp; sourceTree = "<group>"; };
+		68CE8AAA1FFB6AFC003E5626 /* SGSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSprite.h; sourceTree = "<group>"; };
+		68CE8AAC1FFB6B07003E5626 /* SGLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGLabel.h; sourceTree = "<group>"; };
+		68CE8AAD1FFB6B07003E5626 /* SGLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SGLabel.cpp; sourceTree = "<group>"; };
+		68CE8AAF1FFB6B22003E5626 /* SGSpriteTool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SGSpriteTool.cpp; sourceTree = "<group>"; };
+		68CE8AB01FFB6B22003E5626 /* SGSpriteTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGSpriteTool.h; sourceTree = "<group>"; };
+		68CE8AB21FFB6FD2003E5626 /* text_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = text_bg.png; sourceTree = "<group>"; };
+		68CE8AB41FFC82C3003E5626 /* SGRoundDispatcher.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGRoundDispatcher.cpp; sourceTree = "<group>"; };
+		68CE8AB51FFC82C3003E5626 /* SGRoundDispatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGRoundDispatcher.h; sourceTree = "<group>"; };
 		68ED49C61F22408B009057C5 /* LGButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGButton.cpp; sourceTree = "<group>"; };
 		68ED49C71F22408B009057C5 /* LGButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGButton.h; sourceTree = "<group>"; };
 		68ED49C81F22408B009057C5 /* LGUITheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LGUITheme.cpp; sourceTree = "<group>"; };
@@ -620,6 +649,7 @@
 				46880B7619C43A67006E1F66 /* CloseNormal.png */,
 				46880B7719C43A67006E1F66 /* CloseSelected.png */,
 				46880B7A19C43A67006E1F66 /* HelloWorld.png */,
+				68CE8AB21FFB6FD2003E5626 /* text_bg.png */,
 				68CE8A591FF50CED003E5626 /* Launch Screen.storyboard */,
 			);
 			name = Resources;
@@ -884,6 +914,8 @@
 			children = (
 				68CBCEBA1FF2181F001BAD6B /* HomeTableViewModel.cpp */,
 				68CBCEBB1FF2181F001BAD6B /* HomeTableViewModel.h */,
+				68CE8A9E1FF8E769003E5626 /* OptionTableViewModel.cpp */,
+				68CE8A9F1FF8E769003E5626 /* OptionTableViewModel.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -891,6 +923,7 @@
 		68CBCEBE1FF2181F001BAD6B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8A971FF8E5C3003E5626 /* OptionRow */,
 				68CBCEBF1FF2181F001BAD6B /* ReportPanel */,
 				68CBCEC41FF2181F001BAD6B /* StatePanel */,
 			);
@@ -985,6 +1018,7 @@
 		68CBCEEF1FF21957001BAD6B /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				68CE8AA21FFB6AEB003E5626 /* SGProgressHUD */,
 				68CBCEF01FF2195E001BAD6B /* DragonBones */,
 			);
 			path = Libs;
@@ -1352,6 +1386,8 @@
 			children = (
 				68CE8A891FF6592F003E5626 /* SGSkillDispatcher.cpp */,
 				68CE8A8A1FF6592F003E5626 /* SGSkillDispatcher.h */,
+				68CE8AB41FFC82C3003E5626 /* SGRoundDispatcher.cpp */,
+				68CE8AB51FFC82C3003E5626 /* SGRoundDispatcher.h */,
 			);
 			path = Dispatcher;
 			sourceTree = "<group>";
@@ -1363,6 +1399,34 @@
 				68CE8A951FF7F95A003E5626 /* SGStaticSkillMapper.h */,
 			);
 			path = Skill;
+			sourceTree = "<group>";
+		};
+		68CE8A971FF8E5C3003E5626 /* OptionRow */ = {
+			isa = PBXGroup;
+			children = (
+				68CE8A981FF8E5E2003E5626 /* OptionRowView.cpp */,
+				68CE8A991FF8E5E2003E5626 /* OptionRowView.h */,
+				68CE8A9B1FF8E618003E5626 /* OptionRowViewModel.cpp */,
+				68CE8A9C1FF8E618003E5626 /* OptionRowViewModel.h */,
+			);
+			path = OptionRow;
+			sourceTree = "<group>";
+		};
+		68CE8AA21FFB6AEB003E5626 /* SGProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				68CE8AAF1FFB6B22003E5626 /* SGSpriteTool.cpp */,
+				68CE8AB01FFB6B22003E5626 /* SGSpriteTool.h */,
+				68CE8AAD1FFB6B07003E5626 /* SGLabel.cpp */,
+				68CE8AAC1FFB6B07003E5626 /* SGLabel.h */,
+				68CE8AA91FFB6AFC003E5626 /* SGSprite.cpp */,
+				68CE8AAA1FFB6AFC003E5626 /* SGSprite.h */,
+				68CE8AA31FFB6AEB003E5626 /* SGAlertView.cpp */,
+				68CE8AA41FFB6AEB003E5626 /* SGAlertView.h */,
+				68CE8AA51FFB6AEB003E5626 /* SGProgressHUD.cpp */,
+				68CE8AA61FFB6AEB003E5626 /* SGProgressHUD.h */,
+			);
+			path = SGProgressHUD;
 			sourceTree = "<group>";
 		};
 		68ED49C41F22403A009057C5 /* LGBase */ = {
@@ -1523,6 +1587,7 @@
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				68CBCFA51FF21AEC001BAD6B /* Ubbie in Resources */,
+				68CE8AB31FFB6FD3003E5626 /* text_bg.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				68CBCFA81FF21AEC001BAD6B /* DragonBoy in Resources */,
@@ -1567,8 +1632,10 @@
 				68CBCEAE1FF217FD001BAD6B /* UIImage.cpp in Sources */,
 				68CBCF7B1FF21A1E001BAD6B /* HelloDragonBones.cpp in Sources */,
 				68C695561FF262D50036CDEF /* OrcishModel.cpp in Sources */,
+				68CE8AAE1FFB6B08003E5626 /* SGLabel.cpp in Sources */,
 				68CBCF661FF21992001BAD6B /* TimelineData.cpp in Sources */,
 				68CBCF671FF21992001BAD6B /* DataParser.cpp in Sources */,
+				68CE8AA01FF8E769003E5626 /* OptionTableViewModel.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				68CBCED81FF2181F001BAD6B /* StatusIndicator.cpp in Sources */,
 				68CBCEB51FF217FD001BAD6B /* UITabbar.cpp in Sources */,
@@ -1578,10 +1645,12 @@
 				68CBCEB41FF217FD001BAD6B /* UILabel.cpp in Sources */,
 				68CBCF771FF219C2001BAD6B /* CCTextureData.cpp in Sources */,
 				68CBCEAD1FF217FD001BAD6B /* CppRuntimeMap.cpp in Sources */,
+				68CE8A9A1FF8E5E2003E5626 /* OptionRowView.cpp in Sources */,
 				68CBCEA41FF217FD001BAD6B /* TouchEventCapability.cpp in Sources */,
 				68CE8A4B1FF4AAF3003E5626 /* DragonDisplayNode.cpp in Sources */,
 				68CE8A411FF380C3003E5626 /* SGCommonUtils.cpp in Sources */,
 				68CE8A601FF608C4003E5626 /* SGBuff.cpp in Sources */,
+				68CE8AA81FFB6AEB003E5626 /* SGProgressHUD.cpp in Sources */,
 				6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */,
 				68CE8A481FF4A617003E5626 /* SGValueBar.cpp in Sources */,
 				68CBCED91FF2181F001BAD6B /* StatusIndicatorRound.cpp in Sources */,
@@ -1594,6 +1663,8 @@
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				68CBCEB11FF217FD001BAD6B /* UITableViewCell.cpp in Sources */,
 				68CE8A961FF7F95A003E5626 /* SGStaticSkillMapper.cpp in Sources */,
+				68CE8AAB1FFB6AFD003E5626 /* SGSprite.cpp in Sources */,
+				68CE8A9D1FF8E618003E5626 /* OptionRowViewModel.cpp in Sources */,
 				68CBCEAC1FF217FD001BAD6B /* CppRuntime.cpp in Sources */,
 				68CE8A551FF4E2DB003E5626 /* AnimationUtil.cpp in Sources */,
 				68CBCED41FF2181F001BAD6B /* ReportPanelView.cpp in Sources */,
@@ -1602,6 +1673,7 @@
 				68CBCF5E1FF21991001BAD6B /* Slot.cpp in Sources */,
 				68CBCEAF1FF217FD001BAD6B /* UIImageView.cpp in Sources */,
 				68CE8A691FF6189A003E5626 /* SGBuffFactory.cpp in Sources */,
+				68CE8AB61FFC82C3003E5626 /* SGRoundDispatcher.cpp in Sources */,
 				68CBCF631FF21992001BAD6B /* ArmatureData.cpp in Sources */,
 				68CBCEA81FF217FD001BAD6B /* UITableViewCellModel.cpp in Sources */,
 				68CBCEE91FF21835001BAD6B /* LGValueBar.cpp in Sources */,
@@ -1613,6 +1685,7 @@
 				68CBCED21FF2181F001BAD6B /* HomeTableViewModel.cpp in Sources */,
 				68CBCEA51FF217FD001BAD6B /* LayoutUtil.cpp in Sources */,
 				68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */,
+				68CE8AA71FFB6AEB003E5626 /* SGAlertView.cpp in Sources */,
 				68CBCEA91FF217FD001BAD6B /* UITableViewCellViewModel.cpp in Sources */,
 				68C695491FF2614D0036CDEF /* FirePrinceModel.cpp in Sources */,
 				68CBCF591FF21991001BAD6B /* AnimationState.cpp in Sources */,
@@ -1630,6 +1703,7 @@
 				68CBCF581FF21991001BAD6B /* Animation.cpp in Sources */,
 				68CBCF741FF219C2001BAD6B /* CCArmatureDisplay.cpp in Sources */,
 				68CBCEA71FF217FD001BAD6B /* UIScrollViewMVVMBinder.cpp in Sources */,
+				68CE8AB11FFB6B22003E5626 /* SGSpriteTool.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				68CBCF5A1FF21991001BAD6B /* TimelineState.cpp in Sources */,
 				68CBCEA21FF217FD001BAD6B /* BaseModel.cpp in Sources */,

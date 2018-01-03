@@ -136,6 +136,9 @@ public:
     void setModelPosition(ModelPosition modelPosition);
     ModelPosition getModelPosition() { return _modelPosition; }
     
+    void setModelNum(int modelNumber) { _modelNumber = modelNumber; }
+    int getModuleNum() { return _modelNumber; }
+    
 #pragma mark - Battle Operation
     void renderPlayerData();
     void setState(ModelState modelState);
@@ -154,6 +157,7 @@ public:
     Vec2 _originPosition;
     Vec2 _originLeftScale;
     float _modelHeight;
+    float _attackBackwardRatio;
     
     void initWithInfo(string dataJSONPath, string textureJSONPath, string armatureName);
     void initWithInfo(string dataJSONPath, string textureJSONPath, string armatureName, DragonActionAlias actionAlias);
@@ -161,6 +165,7 @@ public:
 private:
     // direction control
     ModelPosition _modelPosition;
+    int _modelNumber;
     
     void commonInit();
     void setupViews();

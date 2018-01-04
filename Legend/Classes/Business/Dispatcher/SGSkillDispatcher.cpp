@@ -57,6 +57,9 @@ void SGSkillDispatcher::dispatchSceneSkill(const string &skillName, DragonBaseMo
     }
     auto action = caller->conjureAction([this, skillName, caller, targets, callback](float duration) {
         SGSkill *skill = getSkillByName(skillName);
+        int targetCount = skill->targetCount;
+        Vector<DragonBaseModel *> allTargets = caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_rightRoles : SGRoundDispatcher::getInstance()->_leftRoles;
+        Vector<DragonBaseModel *> finalTargets = fullfillTargets(targets, allTargets, targetCount);
         caller->showSkillNamed(skill->displayName);
         Animate *skillAnimate = AnimationUtil::createAnimate(skillName, skill->frameDuration, skill->frameCount);
         Sprite *sceneSkillNode = nullptr;
@@ -83,7 +86,7 @@ void SGSkillDispatcher::dispatchSceneSkill(const string &skillName, DragonBaseMo
         }
         options.fixedAdd = skill->fixedAdd;
         float skillDuration = skill->frameDuration * skill->frameCount;
-        for (DragonBaseModel *target : targets) {
+        for (DragonBaseModel *target : finalTargets) {
             AttackValue v = SGAttackCalculator::calculateAttackValue(caller->_player, target->_player, options);
             target->sufferAttackWithValue(v, animationStartDelay + skillDuration * skill->hitRatio);
         }
@@ -103,23 +106,30 @@ void SGSkillDispatcher::dispatchMovementSkill(const string &skillName, DragonBas
 
 void SGSkillDispatcher::dispatchSkill(const string &skillName, DragonBaseModel *caller, Vector<DragonBaseModel *> targets, EventCallback callback) {
         CCAssert(leftSceneSkillNode != nullptr && rightSceneSkillNode != nullptr, "not bind scene skill node!");
-        auto action = caller->conjureAction([this, skillName, caller, targets, callback](float duration) {
-            caller->showSkillNamed("技能名");
-            Animate *skillAnimate = AnimationUtil::createAnimate(skillName, 0.1, 25);
-            Sprite *sceneSkillNode = nullptr;
-            if (caller->getModelPosition() == ModelPositionLeft) {
-                sceneSkillNode = rightSceneSkillNode;
-            } else {
-                sceneSkillNode = leftSceneSkillNode;
-            }
-            sceneSkillNode->setScale(1.8f);
-            sceneSkillNode->runAction(Sequence::create(DelayTime::create(duration * 0.8f), skillAnimate, NULL));
-            CalculateOptions options = CalculateOptions(AttackAttributeMagic);
-            options.mgain = 60;
-            for (DragonBaseModel *target : targets) {
-                AttackValue v = SGAttackCalculator::calculateAttackValue(caller->_player, target->_player, options);
-                target->sufferAttackWithValue(v, 2 + duration * 0.5f);
-            }
-        });
-        caller->runAction(action);
+    
+}
+
+#pragma mark - Common Methods
+Vector<DragonBaseModel *> SGSkillDispatcher::fullfillTargets(Vector<DragonBaseModel *> currentTargets, Vector<DragonBaseModel *> allTargets, int targetCount) {
+    int diff = targetCount - (int)currentTargets.size();
+    if (diff == 0) {
+        return currentTargets;
+    }
+    Vector<DragonBaseModel *> finalTargets;
+    set<DragonBaseModel *> modelContains;
+    for (DragonBaseModel *target : currentTargets) {
+        modelContains.insert(target);
+    }
+    auto engine = std::default_random_engine{};
+    shuffle(allTargets.begin(), allTargets.end(), engine);
+    for (DragonBaseModel *target : allTargets) {
+        if (modelContains.find(target) != modelContains.end()) {
+            continue;
+        }
+        finalTargets.pushBack(target);
+        if (--diff == 0) {
+            break;
+        }
+    }
+    return finalTargets;
 }

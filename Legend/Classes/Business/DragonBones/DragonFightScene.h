@@ -43,9 +43,6 @@ private:
     LGButton *_skillBtn;
     LGButton *_steadyBtn;
     LGButton *_rAttackBtn;
-    FirePrinceModel *_fp;
-    OrcishModel *_oc;
-    CowModel *_cow;
     vector<pair<string, string>> _operations;
     SGPlayerAction *_currentAction;
     ActionPromise _actionPromise;

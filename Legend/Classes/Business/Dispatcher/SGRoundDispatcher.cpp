@@ -104,6 +104,9 @@ void SGRoundDispatcher::nextAction() {
             caller->runAction(seq);
             break;
         }
+        case SGPlayerActionTypePhysicalSkill:
+            SGSkillDispatcher::getInstance()->dispatchMovementSkill(action->name, caller, targets);
+            break;
         case SGPlayerActionTypeMagicSkill:
             SGSkillDispatcher::getInstance()->dispatchSceneSkill(action->name, caller, targets, [this]() {
                 nextAction();

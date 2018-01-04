@@ -64,6 +64,12 @@ SGPlayer* DragonFightScene::createDemoPlayer(const string &name) {
 
 void DragonFightScene::commonInit() {
     Size visibleSize = Director::getInstance()->getVisibleSize();
+    // set bg
+    Sprite *bg = Sprite::create("backgrounds/fight_bg_blue.jpeg");
+    bg->setContentSize(visibleSize);
+    Layout_Center(bg);
+    this->addChild(bg);
+    
     // left and right skill node
     leftSkillNode = Sprite::create();
     leftSkillNode->setPosition(Vec2(visibleSize.width * 0.3f, visibleSize.height * 0.6f));
@@ -80,38 +86,43 @@ void DragonFightScene::commonInit() {
     this->addChild(delayNode);
     SGSkillDispatcher::getInstance()->delayNode = delayNode;
     
-    _fp = FirePrinceModel::create();
-    _fp->retain();
-    _fp->setPosition(Vec2(200, 366));
-    _fp->setModelPosition(ModelPositionLeft);
-    _fp->setModelNum(2);
-    _fp->bindWithPlayer(createDemoPlayer("炎魔"));
-    this->addChild(_fp->getDisplayNode());
-    _fp->startAnimating();
     
-    Vector<DragonBaseModel *> leftRoles{_fp};
-    SGRoundDispatcher::getInstance()->_leftRoles = leftRoles;
+    SGRoundDispatcher *dispatcher = SGRoundDispatcher::getInstance();
+    for (int i = 1; i <= 3; i++) {
+        FirePrinceModel *lfp = FirePrinceModel::create();
+        lfp->retain();
+        lfp->setModelLocation(ModelPositionLeft, i);
+        lfp->bindWithPlayer(createDemoPlayer(StringUtils::format("左炎魔%d", i)));
+        this->addChild(lfp->getDisplayNode());
+        lfp->startAnimating();
+        dispatcher->_leftRoles.pushBack(lfp);
+        
+        OrcishModel *roc = OrcishModel::create();
+        roc->retain();
+        roc->setModelLocation(ModelPositionRight, i);
+        roc->bindWithPlayer(createDemoPlayer(StringUtils::format("右兽人%d", i)));
+        this->addChild(roc->getDisplayNode());
+        roc->startAnimating();
+        dispatcher->_rightRoles.pushBack(roc);
+    }
     
-    _oc = OrcishModel::create();
-    _oc->retain();
-    _oc->setPosition(Vec2(800, 366));
-    _oc->setModelPosition(ModelPositionRight);
-    _oc->setModelNum(2);
-    _oc->bindWithPlayer(createDemoPlayer("兽人"));
-    this->addChild(_oc->getDisplayNode());
-    _oc->startAnimating();
-    
-    _cow = CowModel::create();
-    _cow->retain();
-    _cow->setPosition(Vec2(650, 366));
-    _cow->setModelPosition(ModelPositionRight);
-    _cow->setModelNum(5);
-    _cow->bindWithPlayer(createDemoPlayer("牛宝"));
-    this->addChild(_cow->getDisplayNode());
-    _cow->startAnimating();
-    
-    Vector<DragonBaseModel *> rightRoles{_oc, _cow};
-    SGRoundDispatcher::getInstance()->_rightRoles = rightRoles;
+    for (int i = 1; i <= 3; i++) {
+        CowModel *lcow = CowModel::create();
+        lcow->retain();
+        lcow->setModelLocation(ModelPositionLeft, i + 3);
+        lcow->bindWithPlayer(createDemoPlayer(StringUtils::format("左牛宝%d", i)));
+        this->addChild(lcow->getDisplayNode());
+        lcow->startAnimating();
+        dispatcher->_leftRoles.pushBack(lcow);
+        
+        CowModel *rcow = CowModel::create();
+        rcow->retain();
+        rcow->setModelLocation(ModelPositionRight, i + 3);
+        rcow->bindWithPlayer(createDemoPlayer(StringUtils::format("右牛宝%d", i)));
+        this->addChild(rcow->getDisplayNode());
+        rcow->startAnimating();
+        dispatcher->_rightRoles.pushBack(rcow);
+    }
     
     LGButton *skillBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
     skillBtn->setTitle("attack");
@@ -120,15 +131,15 @@ void DragonFightScene::commonInit() {
     _skillBtn = skillBtn;
     _skillBtn->setOnClickHandler([&](Ref *sender) {
         // simulate attack
-        auto moveTo = _fp->moveToAction(_oc);
-        auto attack = _fp->attackAction([this](float duration) {
-            CalculateOptions options = CalculateOptions(AttackAttributePhysical);
-            AttackValue v = SGAttackCalculator::calculateAttackValue(_fp->_player, _oc->_player, options);
-            _oc->sufferAttackWithValue(v, duration * 0.5f);
-        });
-        auto moveBack = _fp->moveBackAction();
-        auto seq = Sequence::create(moveTo, attack, moveBack, NULL);
-        _fp->runAction(seq);
+//        auto moveTo = _fp->moveToAction(_oc);
+//        auto attack = _fp->attackAction([this](float duration) {
+//            CalculateOptions options = CalculateOptions(AttackAttributePhysical);
+//            AttackValue v = SGAttackCalculator::calculateAttackValue(_fp->_player, _oc->_player, options);
+//            _oc->sufferAttackWithValue(v, duration * 0.5f);
+//        });
+//        auto moveBack = _fp->moveBackAction();
+//        auto seq = Sequence::create(moveTo, attack, moveBack, NULL);
+//        _fp->runAction(seq);
     });
     this->addChild(skillBtn);
     
@@ -138,8 +149,8 @@ void DragonFightScene::commonInit() {
     steadyBtn->setContentSize(Size(120, 48));
     _steadyBtn = steadyBtn;
     _steadyBtn->setOnClickHandler([this](Ref *sender) {
-        Vector<DragonBaseModel *> targets{_oc, _cow};
-        SGSkillDispatcher::getInstance()->dispatchSceneSkill("mantianhuoyu", _fp, targets);
+//        Vector<DragonBaseModel *> targets{_oc, _cow};
+//        SGSkillDispatcher::getInstance()->dispatchSceneSkill("mantianhuoyu", _fp, targets);
     });
     this->addChild(steadyBtn);
     
@@ -149,8 +160,8 @@ void DragonFightScene::commonInit() {
     rAttackBtn->setContentSize(Size(120, 48));
     _rAttackBtn = rAttackBtn;
     _rAttackBtn->setOnClickHandler([&](Ref *sender) {
-        Vector<DragonBaseModel *> targets{_oc, _cow};
-        SGSkillDispatcher::getInstance()->dispatchMovementSkill("leimingzhan", _fp, targets);
+//        Vector<DragonBaseModel *> targets{_oc, _cow};
+//        SGSkillDispatcher::getInstance()->dispatchMovementSkill("leimingzhan", _fp, targets);
     });
     this->addChild(rAttackBtn);
     
@@ -159,7 +170,7 @@ void DragonFightScene::commonInit() {
     tickBtn->setPosition(Vec2(420, 40));
     tickBtn->setContentSize(Size(120, 48));
     tickBtn->setOnClickHandler([&](Ref *sender) {
-        _fp->_player->buffPool->tick();
+//        _fp->_player->buffPool->tick();
     });
     this->addChild(tickBtn);
     
@@ -168,8 +179,8 @@ void DragonFightScene::commonInit() {
     addBuff->setPosition(Vec2(540, 40));
     addBuff->setContentSize(Size(120, 48));
     addBuff->setOnClickHandler([&](Ref *sender) {
-        SGBuff *zhanqiBuff = SGBuffFactory::getInstance()->createBuffById("zhixing");
-        _fp->_player->buffPool->addBuff(zhanqiBuff);
+//        SGBuff *zhanqiBuff = SGBuffFactory::getInstance()->createBuffById("zhixing");
+//        _fp->_player->buffPool->addBuff(zhanqiBuff);
     });
     this->addChild(addBuff);
     
@@ -199,12 +210,30 @@ void DragonFightScene::commonInit() {
         _currentAction = action;
         _actionPromise = actionPromise;
         DragonBaseModel *role = action->caller;
-        if (role->getModelPosition() == ModelPositionLeft && role->getModuleNum() == 2) {
+        if (role->getModelPosition() == ModelPositionLeft && role->getModleNum() == 2) {
             return;
         }
-        action->type = SGPlayerActionTypeCommonAttack;
+        int randomOperation = CCRANDOM_0_1() * 3;
+        vector<string> pSkills{"leimingzhan", "lieyanzhan"};
+        vector<string> mSkills{"leilongnu", "mantianhuoyu", "yanbao"};
+        switch (randomOperation) {
+            case 0:
+                action->type = SGPlayerActionTypeCommonAttack;
+                break;
+            case 1:
+                action->type = SGPlayerActionTypePhysicalSkill;
+                action->name = pSkills.at(CCRANDOM_0_1() * pSkills.size());
+                break;
+            case 2:
+                action->type = SGPlayerActionTypeMagicSkill;
+                action->name = mSkills.at(CCRANDOM_0_1() * mSkills.size());
+                break;
+            default:
+                break;
+        }
         action->progress = SGPlayerActionProgressCommitted;
-        action->targets.pushBack(_fp);
+        DragonBaseModel *randomTarget = action->caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_rightRoles.getRandomObject() : SGRoundDispatcher::getInstance()->_leftRoles.getRandomObject();
+        action->targets.pushBack(randomTarget);
         _actionPromise(action);
     });
     
@@ -217,7 +246,7 @@ void DragonFightScene::commonInit() {
     });
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(modelSelectListener, this);
     
-    SGRoundDispatcher::getInstance()->newRound();
+//    SGRoundDispatcher::getInstance()->newRound();
 }
 
 #pragma mark - TableView DataSource

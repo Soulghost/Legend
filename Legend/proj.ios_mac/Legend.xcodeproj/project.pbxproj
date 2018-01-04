@@ -60,6 +60,8 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F79C1F1A851E00384C35 /* LGRuntimeMap.cpp */; };
 		681ED5001FF33B8C005461CC /* ValueDisplayNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 681ED4FE1FF33B8C005461CC /* ValueDisplayNode.cpp */; };
+		68633B911FFE0FBB00B70377 /* KnightModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68633B8F1FFE0FBB00B70377 /* KnightModel.cpp */; };
+		68633B931FFE151D00B70377 /* backgrounds in Resources */ = {isa = PBXBuildFile; fileRef = 68633B921FFE151D00B70377 /* backgrounds */; };
 		68C695491FF2614D0036CDEF /* FirePrinceModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68C695471FF2614C0036CDEF /* FirePrinceModel.cpp */; };
 		68C695561FF262D50036CDEF /* OrcishModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68C695541FF262D50036CDEF /* OrcishModel.cpp */; };
 		68C695581FF264D20036CDEF /* ocrish in Resources */ = {isa = PBXBuildFile; fileRef = 68C695571FF264D20036CDEF /* ocrish */; };
@@ -122,11 +124,6 @@
 		68CBCF761FF219C2001BAD6B /* CCSlot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCF701FF219C2001BAD6B /* CCSlot.cpp */; };
 		68CBCF771FF219C2001BAD6B /* CCTextureData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCF721FF219C2001BAD6B /* CCTextureData.cpp */; };
 		68CBCF7B1FF21A1E001BAD6B /* HelloDragonBones.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCF791FF21A1E001BAD6B /* HelloDragonBones.cpp */; };
-		68CBCFA51FF21AEC001BAD6B /* Ubbie in Resources */ = {isa = PBXBuildFile; fileRef = 68CBCFA01FF21AEC001BAD6B /* Ubbie */; };
-		68CBCFA61FF21AEC001BAD6B /* AnimationBaseTest in Resources */ = {isa = PBXBuildFile; fileRef = 68CBCFA11FF21AEC001BAD6B /* AnimationBaseTest */; };
-		68CBCFA71FF21AEC001BAD6B /* Knight in Resources */ = {isa = PBXBuildFile; fileRef = 68CBCFA21FF21AEC001BAD6B /* Knight */; };
-		68CBCFA81FF21AEC001BAD6B /* DragonBoy in Resources */ = {isa = PBXBuildFile; fileRef = 68CBCFA31FF21AEC001BAD6B /* DragonBoy */; };
-		68CBCFA91FF21AEC001BAD6B /* CoreElement in Resources */ = {isa = PBXBuildFile; fileRef = 68CBCFA41FF21AEC001BAD6B /* CoreElement */; };
 		68CBCFAC1FF21B5B001BAD6B /* fire in Resources */ = {isa = PBXBuildFile; fileRef = 68CBCFAB1FF21B5B001BAD6B /* fire */; };
 		68CBCFB51FF21F33001BAD6B /* DragonFightScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCFB31FF21F33001BAD6B /* DragonFightScene.cpp */; };
 		68CBCFBE1FF25392001BAD6B /* DragonBaseModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68CBCFBC1FF25392001BAD6B /* DragonBaseModel.cpp */; };
@@ -264,6 +261,9 @@
 		6803F79D1F1A851E00384C35 /* LGRuntimeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGRuntimeMap.h; sourceTree = "<group>"; };
 		681ED4FE1FF33B8C005461CC /* ValueDisplayNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ValueDisplayNode.cpp; sourceTree = "<group>"; };
 		681ED4FF1FF33B8C005461CC /* ValueDisplayNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValueDisplayNode.h; sourceTree = "<group>"; };
+		68633B8F1FFE0FBB00B70377 /* KnightModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KnightModel.cpp; sourceTree = "<group>"; };
+		68633B901FFE0FBB00B70377 /* KnightModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KnightModel.h; sourceTree = "<group>"; };
+		68633B921FFE151D00B70377 /* backgrounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = backgrounds; sourceTree = "<group>"; };
 		68B729301F123ECF003EFCC1 /* Legend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Legend.h; sourceTree = "<group>"; };
 		68C695471FF2614C0036CDEF /* FirePrinceModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FirePrinceModel.cpp; sourceTree = "<group>"; };
 		68C695541FF262D50036CDEF /* OrcishModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrcishModel.cpp; sourceTree = "<group>"; };
@@ -443,11 +443,6 @@
 		68CBCF731FF219C2001BAD6B /* CCTextureData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTextureData.h; sourceTree = "<group>"; };
 		68CBCF791FF21A1E001BAD6B /* HelloDragonBones.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelloDragonBones.cpp; sourceTree = "<group>"; };
 		68CBCF7A1FF21A1E001BAD6B /* HelloDragonBones.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelloDragonBones.h; sourceTree = "<group>"; };
-		68CBCFA01FF21AEC001BAD6B /* Ubbie */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Ubbie; path = ../../../../git/DragonBonesCPP/Cocos2DX_3.x/Demos/Resources/res/Ubbie; sourceTree = "<group>"; };
-		68CBCFA11FF21AEC001BAD6B /* AnimationBaseTest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AnimationBaseTest; path = ../../../../git/DragonBonesCPP/Cocos2DX_3.x/Demos/Resources/res/AnimationBaseTest; sourceTree = "<group>"; };
-		68CBCFA21FF21AEC001BAD6B /* Knight */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Knight; path = ../../../../git/DragonBonesCPP/Cocos2DX_3.x/Demos/Resources/res/Knight; sourceTree = "<group>"; };
-		68CBCFA31FF21AEC001BAD6B /* DragonBoy */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DragonBoy; path = ../../../../git/DragonBonesCPP/Cocos2DX_3.x/Demos/Resources/res/DragonBoy; sourceTree = "<group>"; };
-		68CBCFA41FF21AEC001BAD6B /* CoreElement */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CoreElement; path = ../../../../git/DragonBonesCPP/Cocos2DX_3.x/Demos/Resources/res/CoreElement; sourceTree = "<group>"; };
 		68CBCFAB1FF21B5B001BAD6B /* fire */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fire; sourceTree = "<group>"; };
 		68CBCFB31FF21F33001BAD6B /* DragonFightScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DragonFightScene.cpp; sourceTree = "<group>"; };
 		68CBCFB41FF21F33001BAD6B /* DragonFightScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragonFightScene.h; sourceTree = "<group>"; };
@@ -640,6 +635,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				68633B921FFE151D00B70377 /* backgrounds */,
 				68CE8A6A1FF61B90003E5626 /* plist */,
 				68CE8A571FF4FD45003E5626 /* skills */,
 				68CBCF7C1FF21AC7001BAD6B /* dragondemo */,
@@ -734,6 +730,15 @@
 				681ED4FF1FF33B8C005461CC /* ValueDisplayNode.h */,
 			);
 			path = Attack;
+			sourceTree = "<group>";
+		};
+		68633B8D1FFE0EAC00B70377 /* Knight */ = {
+			isa = PBXGroup;
+			children = (
+				68633B8F1FFE0FBB00B70377 /* KnightModel.cpp */,
+				68633B901FFE0FBB00B70377 /* KnightModel.h */,
+			);
+			path = Knight;
 			sourceTree = "<group>";
 		};
 		68B7292F1F123EB7003EFCC1 /* Core */ = {
@@ -1282,11 +1287,6 @@
 				68C695591FF266400036CDEF /* cow */,
 				68C695571FF264D20036CDEF /* ocrish */,
 				68CBCFAB1FF21B5B001BAD6B /* fire */,
-				68CBCFA11FF21AEC001BAD6B /* AnimationBaseTest */,
-				68CBCFA41FF21AEC001BAD6B /* CoreElement */,
-				68CBCFA31FF21AEC001BAD6B /* DragonBoy */,
-				68CBCFA21FF21AEC001BAD6B /* Knight */,
-				68CBCFA01FF21AEC001BAD6B /* Ubbie */,
 			);
 			path = dragondemo;
 			sourceTree = "<group>";
@@ -1294,6 +1294,7 @@
 		68CBCFB61FF2429D001BAD6B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				68633B8D1FFE0EAC00B70377 /* Knight */,
 				68C6955B1FF266460036CDEF /* Cow */,
 				68C695531FF262C30036CDEF /* Orcish */,
 				68CBCFBB1FF2537C001BAD6B /* BaseModel */,
@@ -1566,14 +1567,11 @@
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
-				68CBCFA61FF21AEC001BAD6B /* AnimationBaseTest in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				68CBCFAC1FF21B5B001BAD6B /* fire in Resources */,
 				68ED49D81F225C6F009057C5 /* assets in Resources */,
 				68C6955A1FF266410036CDEF /* cow in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
-				68CBCFA91FF21AEC001BAD6B /* CoreElement in Resources */,
-				68CBCFA71FF21AEC001BAD6B /* Knight in Resources */,
 				68C695581FF264D20036CDEF /* ocrish in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
@@ -1586,11 +1584,10 @@
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
-				68CBCFA51FF21AEC001BAD6B /* Ubbie in Resources */,
 				68CE8AB31FFB6FD3003E5626 /* text_bg.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
-				68CBCFA81FF21AEC001BAD6B /* DragonBoy in Resources */,
+				68633B931FFE151D00B70377 /* backgrounds in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1642,6 +1639,7 @@
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				68CE8A4F1FF4CE5B003E5626 /* SGPlayer.cpp in Sources */,
 				68C6955E1FF2664F0036CDEF /* CowModel.cpp in Sources */,
+				68633B911FFE0FBB00B70377 /* KnightModel.cpp in Sources */,
 				68CBCEB41FF217FD001BAD6B /* UILabel.cpp in Sources */,
 				68CBCF771FF219C2001BAD6B /* CCTextureData.cpp in Sources */,
 				68CBCEAD1FF217FD001BAD6B /* CppRuntimeMap.cpp in Sources */,

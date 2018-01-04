@@ -52,27 +52,27 @@ void DragonBaseModel::commonInit() {
 
 void DragonBaseModel::setupViews() {
     // name label
-    Label *nameLabel = Label::createWithTTF("", "fonts/yahei.ttf", 20);
+    Label *nameLabel = Label::createWithTTF("", "fonts/langqian.ttf", 20);
     _nameLabel = nameLabel;
-    Color4B textColor = Color4B(0x5A, 0xD8, 0x50, 0xFF);
+    Color4B textColor = Color4B(0xFE, 0xCD, 0x50, 0xFF);
     nameLabel->setTextColor(textColor);
     Color4B shadowColor = Color4B::BLACK;
-//    nameLabel->enableOutline(shadowColor, 1);
-    nameLabel->enableShadow(shadowColor, Size(0, 0), 1);
-    nameLabel->enableBold();
-    nameLabel->setPositionY(-24);
+    nameLabel->enableShadow(shadowColor, Size(1, -1), 1);
+//    nameLabel->enableBold();
+    nameLabel->setPositionY(-16);
     _displayNode->addChild(nameLabel);
     
-    // hp bar
+    // mp bar
     float barW = 50;
-    float barH = 5;
+    float barH = 3;
     float barX = -barW * 0.5f;
-    float mpY = _modelHeight + barW * 0.5f + 5;
+    float mpY = _modelHeight + barH + 24;
     _mpBar = SGValueBar::valueBarWithType(SGValueBarTypeMpbar, Rect(barX, mpY, barW, barH));
     _mpBar->setProgress(1.0);
     _displayNode->addChild(_mpBar);
-    // mp bar
+    // hp bar
     float hpY = mpY + barH;
+    barH += 2;
     _hpBar = SGValueBar::valueBarWithType(SGValueBarTypeHpbar, Rect(barX, hpY, barW, barH));
     _hpBar->setProgress(1.0);
     _displayNode->addChild(_hpBar);
@@ -170,6 +170,84 @@ void DragonBaseModel::setPosition(float x, float y) {
 
 void DragonBaseModel::setPosition(const Vec2& pos) {
     _displayNode->setPosition(pos);
+}
+
+void DragonBaseModel::setModelLocation(ModelPosition position, int num) {
+    _modelPosition = position;
+    this->setModelPosition(position);
+    _modelNum = num;
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    float marginH = 200;
+    float modelMarginH = 130;
+    float leftX = marginH;
+    float left2X = leftX + modelMarginH;
+    float rightX = visibleSize.width - marginH;
+    float right2X = rightX - modelMarginH;
+    float centerY = (visibleSize.height - _modelHeight) * 0.5f;
+    float centerYOffset = _modelHeight + 80;
+    float bottomY = centerY - centerYOffset;
+    float topY = centerY + centerYOffset;
+    float x, y;
+    switch (position) {
+        case ModelPositionLeft: {
+            switch (num) {
+                case 1:
+                    x = leftX;
+                    y = topY;
+                    break;
+                case 2:
+                    x = leftX;
+                    y = centerY;
+                    break;
+                case 3:
+                    x = leftX;
+                    y = bottomY;
+                    break;
+                case 4:
+                    x = left2X;
+                    y = topY;
+                    break;
+                case 5:
+                    x = left2X;
+                    y = centerY;
+                    break;
+                case 6:
+                    x = left2X;
+                    y = bottomY;
+                    break;
+            }
+            break;
+        }
+        case ModelPositionRight:
+            switch (num) {
+                case 1:
+                    x = rightX;
+                    y = topY;
+                    break;
+                case 2:
+                    x = rightX;
+                    y = centerY;
+                    break;
+                case 3:
+                    x = rightX;
+                    y = bottomY;
+                    break;
+                case 4:
+                    x = right2X;
+                    y = topY;
+                    break;
+                case 5:
+                    x = right2X;
+                    y = centerY;
+                    break;
+                case 6:
+                    x = right2X;
+                    y = bottomY;
+                    break;
+            }
+            break;
+    }
+    this->setPosition(x, y);
 }
 
 #pragma mark - Calculate

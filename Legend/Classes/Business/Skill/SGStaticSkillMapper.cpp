@@ -11,6 +11,8 @@
 #include "AnimationUtil.h"
 #include "SGBuffPool.h"
 #include "SGBuffFactory.h"
+#include "SGSkillDispatcher.h"
+#include "SGRoundDispatcher.h"
 
 SGStaticSkillMapper::SGStaticSkillMapper() {
     
@@ -52,7 +54,10 @@ FiniteTimeAction* showSkillNameAndMoveTo(const string &skillName, DragonBaseMode
 void skill_lieyanzhan(const string &skillName, const SGSkillDTO &dto) {
     Vector<FiniteTimeAction *> actions;
     DragonBaseModel *caller = dto.caller;
-    const Vector<DragonBaseModel *> &targets = dto.targets;
+    int targetCount = 3;
+    Vector<DragonBaseModel *> allTargets = caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_rightRoles : SGRoundDispatcher::getInstance()->_leftRoles;
+    Vector<DragonBaseModel *> finalTargets = SGSkillDispatcher::getInstance()->fullfillTargets(dto.targets, allTargets, targetCount);
+    const Vector<DragonBaseModel *> &targets = finalTargets;
     DragonBaseModel *firstTarget = targets.at(0);
     auto showAndMoveTo = showSkillNameAndMoveTo("烈焰斩", caller, firstTarget);
     actions.pushBack(showAndMoveTo);
@@ -100,6 +105,9 @@ void skill_leimingzhan(const string &skillName, const SGSkillDTO &dto) {
     actions.pushBack(addBuff);
     auto moveBack = caller->moveBackAction();
     actions.pushBack(moveBack);
+    actions.pushBack(CallFunc::create([]() {
+        SGRoundDispatcher::getInstance()->nextAction();
+    }));
     caller->runAction(Sequence::create(actions));
 }
 

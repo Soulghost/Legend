@@ -80,6 +80,10 @@ public:
     string armatureName;
     DragonActionAlias actionAlias;
     
+    bool operator = (DragonBaseModel *other) const {
+        return _modelPosition == other->getModelPosition() && _modelNum == other->getModleNum();
+    }
+    
 #pragma mark - battle data
     SGPlayer *_player;
     ModelState _modelState;
@@ -136,8 +140,10 @@ public:
     void setModelPosition(ModelPosition modelPosition);
     ModelPosition getModelPosition() { return _modelPosition; }
     
-    void setModelNum(int modelNumber) { _modelNumber = modelNumber; }
-    int getModuleNum() { return _modelNumber; }
+    void setModelNum(int modelNum) { _modelNum = modelNum; }
+    int getModleNum() { return _modelNum; }
+    
+    void setModelLocation(ModelPosition position, int num);
     
 #pragma mark - Battle Operation
     void renderPlayerData();
@@ -165,7 +171,7 @@ public:
 private:
     // direction control
     ModelPosition _modelPosition;
-    int _modelNumber;
+    int _modelNum;
     
     void commonInit();
     void setupViews();

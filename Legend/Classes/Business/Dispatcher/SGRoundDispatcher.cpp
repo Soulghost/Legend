@@ -9,10 +9,11 @@
 #include "SGRoundDispatcher.h"
 #include "SGSkillDispatcher.h"
 #include "SGAttackCalculator.h"
+#include "SGPlayer.h"
 #include <algorithm>
 
 SGRoundDispatcher::SGRoundDispatcher() {
-    
+    roundNum = 0;
 }
 
 SGRoundDispatcher::~SGRoundDispatcher() {
@@ -44,6 +45,7 @@ void SGRoundDispatcher::setSelectable(Vector<DragonBaseModel *> roles, bool sele
 }
 
 void SGRoundDispatcher::newRound() {
+    roundNum++;
     Vector<DragonBaseModel *> roles{_leftRoles};
     roles.pushBack(_rightRoles);
     roundActions.clear();
@@ -54,6 +56,7 @@ void SGRoundDispatcher::newRound() {
     }
     roundIdx = 0;
     doNext();
+    SGLog::info("新的回合开始，当前是第%d回合", (int)roundNum);
 }
 
 void SGRoundDispatcher::doNext() {
@@ -71,10 +74,29 @@ void SGRoundDispatcher::doNext() {
     _actionReducer(action, _actionPromise);
 }
 
+class ActionSorter {
+public:
+    bool static descend(SGPlayerAction *a, SGPlayerAction *b) {
+        return a->caller->_player->speed > b->caller->_player->speed;
+    }
+};
+
+void dlog(const char *fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    cocos2d::cc_inner_log(fmt, args);
+    va_end(args);
+}
+
 void SGRoundDispatcher::performActions() {
     // 按照速度排序
-    sort(roundActions.begin(), roundActions.end());
+    sort(roundActions.begin(), roundActions.end(), ActionSorter::descend);
     actionIdx = 0;
+    SGLog::info("%d, 指令已全部下达，开始按照速度顺序行动，当前速度排序如下", 123);
+    for (SGPlayerAction *action : roundActions) {
+        SGPlayer *player = action->caller->_player;
+        SGLog::info("%s 速度: %d", player->name.c_str(), player->speed);
+    }
     nextAction();
 }
 
@@ -105,13 +127,8 @@ void SGRoundDispatcher::nextAction() {
             break;
         }
         case SGPlayerActionTypePhysicalSkill:
-            SGSkillDispatcher::getInstance()->dispatchMovementSkill(action->name, caller, targets);
-            break;
         case SGPlayerActionTypeMagicSkill:
-            SGSkillDispatcher::getInstance()->dispatchSceneSkill(action->name, caller, targets, [this]() {
-                nextAction();
-            });
-            break;
+            SGSkillDispatcher::getInstance()->dispatchSkill(action->name, caller, targets);
         default:
             break;
     }

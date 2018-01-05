@@ -60,8 +60,10 @@
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F79C1F1A851E00384C35 /* LGRuntimeMap.cpp */; };
 		681ED5001FF33B8C005461CC /* ValueDisplayNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 681ED4FE1FF33B8C005461CC /* ValueDisplayNode.cpp */; };
+		682939891FFF7DCB00DF02B7 /* SGLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939871FFF7DCB00DF02B7 /* SGLog.cpp */; };
 		68633B911FFE0FBB00B70377 /* KnightModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68633B8F1FFE0FBB00B70377 /* KnightModel.cpp */; };
 		68633B931FFE151D00B70377 /* backgrounds in Resources */ = {isa = PBXBuildFile; fileRef = 68633B921FFE151D00B70377 /* backgrounds */; };
+		68633B961FFF542100B70377 /* SGObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68633B941FFF542100B70377 /* SGObject.cpp */; };
 		68C695491FF2614D0036CDEF /* FirePrinceModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68C695471FF2614C0036CDEF /* FirePrinceModel.cpp */; };
 		68C695561FF262D50036CDEF /* OrcishModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68C695541FF262D50036CDEF /* OrcishModel.cpp */; };
 		68C695581FF264D20036CDEF /* ocrish in Resources */ = {isa = PBXBuildFile; fileRef = 68C695571FF264D20036CDEF /* ocrish */; };
@@ -261,9 +263,13 @@
 		6803F79D1F1A851E00384C35 /* LGRuntimeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGRuntimeMap.h; sourceTree = "<group>"; };
 		681ED4FE1FF33B8C005461CC /* ValueDisplayNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ValueDisplayNode.cpp; sourceTree = "<group>"; };
 		681ED4FF1FF33B8C005461CC /* ValueDisplayNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValueDisplayNode.h; sourceTree = "<group>"; };
+		682939871FFF7DCB00DF02B7 /* SGLog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGLog.cpp; sourceTree = "<group>"; };
+		682939881FFF7DCB00DF02B7 /* SGLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGLog.h; sourceTree = "<group>"; };
 		68633B8F1FFE0FBB00B70377 /* KnightModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KnightModel.cpp; sourceTree = "<group>"; };
 		68633B901FFE0FBB00B70377 /* KnightModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KnightModel.h; sourceTree = "<group>"; };
 		68633B921FFE151D00B70377 /* backgrounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = backgrounds; sourceTree = "<group>"; };
+		68633B941FFF542100B70377 /* SGObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGObject.cpp; sourceTree = "<group>"; };
+		68633B951FFF542100B70377 /* SGObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGObject.h; sourceTree = "<group>"; };
 		68B729301F123ECF003EFCC1 /* Legend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Legend.h; sourceTree = "<group>"; };
 		68C695471FF2614C0036CDEF /* FirePrinceModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FirePrinceModel.cpp; sourceTree = "<group>"; };
 		68C695541FF262D50036CDEF /* OrcishModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrcishModel.cpp; sourceTree = "<group>"; };
@@ -732,6 +738,15 @@
 			path = Attack;
 			sourceTree = "<group>";
 		};
+		682939851FFF7D9F00DF02B7 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				682939871FFF7DCB00DF02B7 /* SGLog.cpp */,
+				682939881FFF7DCB00DF02B7 /* SGLog.h */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
 		68633B8D1FFE0EAC00B70377 /* Knight */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,6 +787,7 @@
 		68CBCE691FF217FD001BAD6B /* CocosKit */ = {
 			isa = PBXGroup;
 			children = (
+				682939851FFF7D9F00DF02B7 /* Log */,
 				68CBCE6A1FF217FD001BAD6B /* Base */,
 				68CBCE721FF217FD001BAD6B /* Capability */,
 				68CBCE761FF217FD001BAD6B /* Common */,
@@ -1352,6 +1368,8 @@
 				68CE8A631FF60A48003E5626 /* SGBuffPool.h */,
 				68CE8A8E1FF68C69003E5626 /* SGSkill.cpp */,
 				68CE8A8F1FF68C69003E5626 /* SGSkill.h */,
+				68633B941FFF542100B70377 /* SGObject.cpp */,
+				68633B951FFF542100B70377 /* SGObject.h */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1654,6 +1672,7 @@
 				68CBCED91FF2181F001BAD6B /* StatusIndicatorRound.cpp in Sources */,
 				68CBCEE71FF21835001BAD6B /* LGLabel.cpp in Sources */,
 				68CBCEE81FF21835001BAD6B /* LGUITheme.cpp in Sources */,
+				68633B961FFF542100B70377 /* SGObject.cpp in Sources */,
 				68CBCEAB1FF217FD001BAD6B /* UITableViewMVVMBinder.cpp in Sources */,
 				68CBCF651FF21992001BAD6B /* FrameData.cpp in Sources */,
 				68CBCEB31FF217FD001BAD6B /* UIControl.cpp in Sources */,
@@ -1680,6 +1699,7 @@
 				68CBCEB01FF217FD001BAD6B /* UITableView.cpp in Sources */,
 				68CBCF5F1FF21991001BAD6B /* BaseObject.cpp in Sources */,
 				68CE8A641FF60A48003E5626 /* SGBuffPool.cpp in Sources */,
+				682939891FFF7DCB00DF02B7 /* SGLog.cpp in Sources */,
 				68CBCED21FF2181F001BAD6B /* HomeTableViewModel.cpp in Sources */,
 				68CBCEA51FF217FD001BAD6B /* LayoutUtil.cpp in Sources */,
 				68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */,

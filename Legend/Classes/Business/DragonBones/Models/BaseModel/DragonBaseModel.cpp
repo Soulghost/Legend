@@ -12,6 +12,7 @@
 #include "SGValueBar.h"
 #include "AnimationUtil.h"
 #include "SGBuffPool.h"
+#include "SGSkill.h"
 
 DragonBaseModel::DragonBaseModel() {
     _modelPosition = ModelPositionLeft;
@@ -143,8 +144,26 @@ void DragonBaseModel::startAnimating() {
     _displayNode->buffNode->setPositionY(16);
 }
 
-void DragonBaseModel::playAnimationNamed(string name, unsigned int times) {
+void DragonBaseModel::playAnimationNamed(string name, unsigned int times, EventCallback finishCallback) {
     _armatureDisplay->getAnimation().play(name, times);
+}
+
+void DragonBaseModel::playSkill(SGSkill *skill, float afterDelay, EventCallback finishCallback) {
+    Vector<FiniteTimeAction *> actions;
+    if (afterDelay != -1) {
+        actions.pushBack(DelayTime::create(afterDelay));
+    }
+    auto play = AnimationUtil::createAnimate(skill->skillName, skill->frameDuration, skill->frameCount);
+    actions.pushBack(play);
+    if (finishCallback != nullptr) {
+        auto callback = CallFunc::create([finishCallback]() {
+            finishCallback();
+        });
+        actions.pushBack(callback);
+    }
+    _displayNode->skillNode->setScale(skill->scale);
+    auto seq = Sequence::create(actions);
+    _displayNode->skillNode->runAction(seq);
 }
 
 #pragma mark - Protected Methods

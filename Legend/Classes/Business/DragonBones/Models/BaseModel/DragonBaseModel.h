@@ -19,6 +19,7 @@ USING_NS_CC;
 using namespace std;
 
 class SGValueBar;
+class SGSkill;
 
 typedef function<void ()> EventCallback;
 typedef function<void (float)> FloatCallback;
@@ -95,7 +96,8 @@ public:
     
     DragonDisplayNode* getDisplayNode();
     void startAnimating();
-    void playAnimationNamed(string name, unsigned int times);
+    void playAnimationNamed(string name, unsigned int times, EventCallback finishCallback = nullptr);
+    void playSkill(SGSkill *skill, float afterDelay = -1, EventCallback finishCallback = nullptr);
     
     // data
     void bindWithPlayer(SGPlayer *player);

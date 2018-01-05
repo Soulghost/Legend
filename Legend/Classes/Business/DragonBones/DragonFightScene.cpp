@@ -24,6 +24,7 @@
 #include "OptionTableViewModel.h"
 
 #include "SGProgressHUD.h"
+#include "SGObject.h"
 
 DragonFightScene::DragonFightScene() {
     
@@ -93,6 +94,9 @@ void DragonFightScene::commonInit() {
         lfp->retain();
         lfp->setModelLocation(ModelPositionLeft, i);
         lfp->bindWithPlayer(createDemoPlayer(StringUtils::format("左炎魔%d", i)));
+        if (i == 2) {
+            lfp->_player->speed = 10000;
+        }
         this->addChild(lfp->getDisplayNode());
         lfp->startAnimating();
         dispatcher->_leftRoles.pushBack(lfp);
@@ -213,22 +217,21 @@ void DragonFightScene::commonInit() {
         if (role->getModelPosition() == ModelPositionLeft && role->getModleNum() == 2) {
             return;
         }
-        int randomOperation = CCRANDOM_0_1() * 3;
+        int randomOperation = CCRANDOM_0_1() * 5;
         vector<string> pSkills{"leimingzhan", "lieyanzhan"};
-        vector<string> mSkills{"leilongnu", "mantianhuoyu", "yanbao"};
+        vector<string> mSkills{"yanbao"};
         switch (randomOperation) {
             case 0:
                 action->type = SGPlayerActionTypeCommonAttack;
                 break;
             case 1:
+            case 2:
                 action->type = SGPlayerActionTypePhysicalSkill;
                 action->name = pSkills.at(CCRANDOM_0_1() * pSkills.size());
                 break;
-            case 2:
+            default:
                 action->type = SGPlayerActionTypeMagicSkill;
                 action->name = mSkills.at(CCRANDOM_0_1() * mSkills.size());
-                break;
-            default:
                 break;
         }
         action->progress = SGPlayerActionProgressCommitted;
@@ -246,7 +249,7 @@ void DragonFightScene::commonInit() {
     });
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(modelSelectListener, this);
     
-//    SGRoundDispatcher::getInstance()->newRound();
+    SGRoundDispatcher::getInstance()->newRound();
 }
 
 #pragma mark - TableView DataSource

@@ -33,7 +33,8 @@ typedef enum SGPlayerActionProgress {
     SGPlayerActionProgressFinished = 3
 } SGPlayerActionProgress;
 
-typedef struct SGPlayerAction {
+class SGPlayerAction {
+public:
     DragonBaseModel *caller;
     Vector<DragonBaseModel *> targets;
     SGPlayerActionType type;
@@ -45,10 +46,10 @@ typedef struct SGPlayerAction {
         type = SGPlayerActionTypeInvalid;
     }
     
-    bool operator < (const SGPlayerAction &other) const {
-        return caller->_player->speed > other.caller->_player->speed;
-    }
-} SGPlayerAction;
+//    bool operator < (SGPlayerAction *other) {
+//        return caller->_player->speed > other->caller->_player->speed;
+//    }
+};
 
 typedef std::function<void (SGPlayerAction *)> ActionPromise;
 typedef std::function<void (SGPlayerAction *, ActionPromise)> ActionReducer;

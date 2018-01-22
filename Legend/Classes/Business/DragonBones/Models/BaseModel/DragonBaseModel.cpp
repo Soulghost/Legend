@@ -18,10 +18,14 @@ DragonBaseModel::DragonBaseModel() {
     _modelPosition = ModelPositionLeft;
     _player = nullptr;
     _attackBackwardRatio = 0.5;
+    _skillConjureRatio = 0.6;
+    nameLabelOffsetY = 0;
 }
 
 DragonBaseModel::~DragonBaseModel() {
-    _player->release();
+    if (_player) {
+        _player->release();
+    }
 }
 
 bool DragonBaseModel::init() {
@@ -60,7 +64,7 @@ void DragonBaseModel::setupViews() {
     Color4B shadowColor = Color4B::BLACK;
     nameLabel->enableShadow(shadowColor, Size(1, -1), 1);
 //    nameLabel->enableBold();
-    nameLabel->setPositionY(-16);
+    nameLabel->setPositionY(-16 + nameLabelOffsetY);
     _displayNode->addChild(nameLabel);
     
     // mp bar
@@ -81,9 +85,11 @@ void DragonBaseModel::setupViews() {
 
 #pragma mark - Data
 void DragonBaseModel::bindWithPlayer(SGPlayer *player) {
-    player->retain();
     if (_player != nullptr) {
+        player->retain();
         _player->release();
+    } else {
+        player->retain();
     }
     _player = player;
     _nameLabel->setString(player->name);
@@ -277,9 +283,10 @@ void DragonBaseModel::markOriginPosition() {
 void DragonBaseModel::markOriginLeftScale() {
     _originLeftScale = Vec2(_armatureDisplay->getScaleX(), _armatureDisplay->getScaleY());
     // make skill position
-    Vec2 nodePosition = Vec2(0, _modelHeight * 0.5f - 10);
-    _displayNode->skillNode->setPosition(nodePosition);
-    _displayNode->buffNode->setPosition(nodePosition);
+    Vec2 skillPosition = Vec2(0, _modelHeight * 0.5f + 10);
+    Vec2 buffPosition = Vec2(0, _modelHeight * 0.5f - 10);
+    _displayNode->skillNode->setPosition(skillPosition);
+    _displayNode->buffNode->setPosition(buffPosition);
     _displayNode->selectRing->setPosition(Vec2(0, _modelHeight * 0.5f));
 }
 
@@ -298,7 +305,6 @@ Vec2 DragonBaseModel::getAttackPosition() {
             dest.x -= 90;
             break;
     }
-    CCLOG("get attack position for %s at %s, the value is (%d, %d)", _player->name.c_str(), _modelPosition == 0 ? "left" : "right", (int)dest.x, (int)dest.y);
     return dest;
 }
 
@@ -422,7 +428,7 @@ void DragonBaseModel::showSkillNamed(const string &skillName) {
     auto addLabel = CallFunc::create([this, skillName]() {
         auto textColor = Color4B(0xfc, 0xcc, 0x35, 0xff);
         auto borderColor = Color4B(0xdc, 0x52, 0x4a, 0xff);
-        Label *skillNameLabel = Label::createWithTTF(skillName, "fonts/yahei.ttf", 20);
+        Label *skillNameLabel = Label::createWithTTF(skillName, "fonts/langqian.ttf", 20);
         skillNameLabel->setTextColor(textColor);
         skillNameLabel->enableOutline(borderColor, 1);
         _displayNode->conjureTextNode->addChild(skillNameLabel, 1, 100);

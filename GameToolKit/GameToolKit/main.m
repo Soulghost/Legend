@@ -8,10 +8,36 @@
 
 #import <Foundation/Foundation.h>
 
+NSString* nameMapper(NSString *name) {
+    NSInteger location = [name rangeOfString:@"_"].location;
+    if (location == NSNotFound) {
+        return name;
+    }
+    int num = [[name substringToIndex:location] intValue];
+    num -= 789999;
+    return [NSString stringWithFormat:@"zhixing%d.png", num];
+}
+
+void changeNames() {
+    NSString *path = @"/Users/soulghost/Downloads/休息";
+    NSString *output = @"zhixing";
+    NSString *outputDir = [path stringByAppendingPathComponent:output];
+    NSArray *items = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
+    [[NSFileManager defaultManager] createDirectoryAtPath:outputDir withIntermediateDirectories:YES attributes:nil error:nil];
+    for (NSString *item in items) {
+        if ([item hasSuffix:@".png"]) {
+            NSString *filePath = [path stringByAppendingPathComponent:item];
+            NSData *file = [NSData dataWithContentsOfFile:filePath];
+            NSString *name = nameMapper(item);
+            NSString *outputPath = [outputDir stringByAppendingPathComponent:name];
+            [file writeToFile:outputPath atomically:YES];
+        }
+    }
+}
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        changeNames();
     }
     return 0;
 }

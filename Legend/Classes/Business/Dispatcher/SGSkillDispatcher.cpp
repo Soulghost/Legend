@@ -43,6 +43,13 @@ void SGSkillDispatcher::loadSkills() {
             _skillMap.insert(skill->skillName, skill);
         }
     }
+    // preload
+//    std::thread preload_t([]() {
+//        AnimationUtil::createAnimate("mantianhuoyu", 0.1, 25);
+//        AnimationUtil::createAnimate("yanbao", 0.16, 16);
+//        SGLog::info("技能预加载完成");
+//    });
+//    preload_t.detach();
 }
 
 SGSkill* SGSkillDispatcher::getSkillByName(const string &name) {
@@ -57,12 +64,9 @@ void SGSkillDispatcher::dispatchNodeSkill(SGSkill *skill, DragonBaseModel *calle
         return;
     }
     auto action = caller->conjureAction([this, skill, caller, targets, callback](float duration) {
-        int targetCount = skill->targetCount;
-        Vector<DragonBaseModel *> allTargets = caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_rightRoles : SGRoundDispatcher::getInstance()->_leftRoles;
-        Vector<DragonBaseModel *> finalTargets = fullfillTargets(targets, allTargets, targetCount);
         caller->showSkillNamed(skill->displayName);
         // 法术在施法动作执行了80%的时候播放
-        float animationStartDelay = duration * 0.8f;
+        float animationStartDelay = duration * caller->_skillConjureRatio;
         AttackAttribute attribute = skill->type == "p" ? AttackAttributePhysical : AttackAttributeMagic;
         CalculateOptions options = CalculateOptions(attribute);
         switch (attribute) {
@@ -78,7 +82,7 @@ void SGSkillDispatcher::dispatchNodeSkill(SGSkill *skill, DragonBaseModel *calle
         options.fixedAdd = skill->fixedAdd;
         float skillDuration = skill->frameDuration * skill->frameCount;
         float sufferAttackDelay = animationStartDelay + skillDuration * skill->hitRatio;
-        for (DragonBaseModel *target : finalTargets) {
+        for (DragonBaseModel *target : targets) {
             target->playSkill(skill, animationStartDelay);
             AttackValue v = SGAttackCalculator::calculateAttackValue(caller->_player, target->_player, options);
             target->sufferAttackWithValue(v, sufferAttackDelay);
@@ -100,9 +104,6 @@ void SGSkillDispatcher::dispatchSceneSkill(SGSkill *skill, DragonBaseModel *call
         return;
     }
     auto action = caller->conjureAction([this, skill, caller, targets, callback](float duration) {
-        int targetCount = skill->targetCount;
-        Vector<DragonBaseModel *> allTargets = caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_rightRoles : SGRoundDispatcher::getInstance()->_leftRoles;
-        Vector<DragonBaseModel *> finalTargets = fullfillTargets(targets, allTargets, targetCount);
         caller->showSkillNamed(skill->displayName);
         Animate *skillAnimate = AnimationUtil::createAnimate(skill->skillName, skill->frameDuration, skill->frameCount);
         Sprite *sceneSkillNode = nullptr;
@@ -113,7 +114,7 @@ void SGSkillDispatcher::dispatchSceneSkill(SGSkill *skill, DragonBaseModel *call
         }
         sceneSkillNode->setScale(skill->scale);
         // 法术在施法动作执行了80%的时候播放
-        float animationStartDelay = duration * 0.8f;
+        float animationStartDelay = duration * caller->_skillConjureRatio;
         sceneSkillNode->runAction(Sequence::create(DelayTime::create(animationStartDelay), skillAnimate, NULL));
         AttackAttribute attribute = skill->type == "p" ? AttackAttributePhysical : AttackAttributeMagic;
         CalculateOptions options = CalculateOptions(attribute);
@@ -129,7 +130,7 @@ void SGSkillDispatcher::dispatchSceneSkill(SGSkill *skill, DragonBaseModel *call
         }
         options.fixedAdd = skill->fixedAdd;
         float skillDuration = skill->frameDuration * skill->frameCount;
-        for (DragonBaseModel *target : finalTargets) {
+        for (DragonBaseModel *target : targets) {
             AttackValue v = SGAttackCalculator::calculateAttackValue(caller->_player, target->_player, options);
             target->sufferAttackWithValue(v, animationStartDelay + skillDuration * skill->hitRatio);
         }
@@ -150,17 +151,22 @@ void SGSkillDispatcher::dispatchMovementSkill(SGSkill *skill, DragonBaseModel *c
 void SGSkillDispatcher::dispatchSkill(const string &skillName, DragonBaseModel *caller, Vector<DragonBaseModel *> targets, EventCallback callback) {
     CCAssert(leftSceneSkillNode != nullptr && rightSceneSkillNode != nullptr, "not bind scene skill node!");
     SGSkill *skill = getSkillByName(skillName);
+    SGLog::info("%s 对 %s 使用了技能 %s", caller->_player->name.c_str(), targets.at(0)->_player->name.c_str(), skill->displayName.c_str());
     string domain = skill->domain;
+    // 目标补全
+    int targetCount = skill->targetCount;
+    Vector<DragonBaseModel *> allTargets = caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_rightRoles : SGRoundDispatcher::getInstance()->_leftRoles;
+    Vector<DragonBaseModel *> finalTargets = fullfillTargets(targets, allTargets, targetCount);
     if (domain == "node") {
-        dispatchNodeSkill(skill, caller, targets);
+        dispatchNodeSkill(skill, caller, finalTargets, callback);
         return;
     }
     if (domain == "scene") {
-        dispatchSceneSkill(skill, caller, targets);
+        dispatchSceneSkill(skill, caller, finalTargets, callback);
         return;
     }
     if (domain == "movement") {
-        dispatchMovementSkill(skill, caller, targets);
+        dispatchMovementSkill(skill, caller, finalTargets, callback);
         return;
     }
 }
@@ -171,10 +177,12 @@ Vector<DragonBaseModel *> SGSkillDispatcher::fullfillTargets(Vector<DragonBaseMo
     if (diff == 0) {
         return currentTargets;
     }
-    Vector<DragonBaseModel *> finalTargets;
+    Vector<DragonBaseModel *> finalTargets{currentTargets};
     set<DragonBaseModel *> modelContains;
+    std::string targetsInfo = "";
     for (DragonBaseModel *target : currentTargets) {
         modelContains.insert(target);
+        targetsInfo += " " + target->_player->name;
     }
     auto engine = std::default_random_engine{};
     shuffle(allTargets.begin(), allTargets.end(), engine);
@@ -183,9 +191,11 @@ Vector<DragonBaseModel *> SGSkillDispatcher::fullfillTargets(Vector<DragonBaseMo
             continue;
         }
         finalTargets.pushBack(target);
+        targetsInfo += " " + target->_player->name;
         if (--diff == 0) {
             break;
         }
     }
+    SGLog::info("技能的作用目标数为%d, 分别为%s", targetCount, targetsInfo.c_str());
     return finalTargets;
 }

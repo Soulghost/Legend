@@ -107,11 +107,18 @@ void SGRoundDispatcher::nextAction() {
     }
     SGPlayerAction *action = roundActions.at(actionIdx);
     DragonBaseModel *caller = action->caller;
+    // 已死亡的角色无法行动
+    if (caller->_player->hp == 0) {
+        actionIdx++;
+        nextAction();
+        return;
+    }
     Vector<DragonBaseModel *> targets = action->targets;
     switch (action->type) {
         case SGPlayerActionTypeCommonAttack: {
             // simulate attack
             DragonBaseModel *target = targets.at(0);
+            SGLog::info("%s 对 %s 发动了普通攻击", caller->_player->name.c_str(), target->_player->name.c_str());
             auto moveTo = caller->moveToAction(target);
             auto attack = caller->attackAction([this, caller, target](float duration) {
                 CalculateOptions options = CalculateOptions(AttackAttributePhysical);
@@ -128,7 +135,10 @@ void SGRoundDispatcher::nextAction() {
         }
         case SGPlayerActionTypePhysicalSkill:
         case SGPlayerActionTypeMagicSkill:
-            SGSkillDispatcher::getInstance()->dispatchSkill(action->name, caller, targets);
+            SGSkillDispatcher::getInstance()->dispatchSkill(action->name, caller, targets, [this, action]() {
+                SGLog::info("技能id=%s 释放完毕，%s 行动结束", action->name.c_str(), action->caller->_player->name.c_str());
+                nextAction();
+            });
         default:
             break;
     }

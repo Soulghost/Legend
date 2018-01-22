@@ -35,7 +35,7 @@ FiniteTimeAction* createAttackAction(DragonBaseModel *caller, DragonBaseModel *t
     hitAnimate->retain();
     auto attack = caller->attackAction([caller, target, hitAnimate, options] (float duration){
         AttackValue v = SGAttackCalculator::calculateAttackValue(caller->_player, target->_player, options);
-        target->sufferAttackWithValue(v, duration * 0.5f);
+        target->sufferAttackWithValue(v, duration * caller->_attackBackwardRatio);
         target->showHitAnimation(hitAnimate, 1.5f, duration * 0.5f);
         hitAnimate->release();
     });
@@ -54,10 +54,7 @@ FiniteTimeAction* showSkillNameAndMoveTo(const string &skillName, DragonBaseMode
 void skill_lieyanzhan(const string &skillName, const SGSkillDTO &dto) {
     Vector<FiniteTimeAction *> actions;
     DragonBaseModel *caller = dto.caller;
-    int targetCount = 3;
-    Vector<DragonBaseModel *> allTargets = caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_rightRoles : SGRoundDispatcher::getInstance()->_leftRoles;
-    Vector<DragonBaseModel *> finalTargets = SGSkillDispatcher::getInstance()->fullfillTargets(dto.targets, allTargets, targetCount);
-    const Vector<DragonBaseModel *> &targets = finalTargets;
+    const Vector<DragonBaseModel *> &targets = dto.targets;
     DragonBaseModel *firstTarget = targets.at(0);
     auto showAndMoveTo = showSkillNameAndMoveTo("烈焰斩", caller, firstTarget);
     actions.pushBack(showAndMoveTo);

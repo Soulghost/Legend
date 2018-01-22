@@ -61,6 +61,24 @@
 		6803F79E1F1A851E00384C35 /* LGRuntimeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6803F79C1F1A851E00384C35 /* LGRuntimeMap.cpp */; };
 		681ED5001FF33B8C005461CC /* ValueDisplayNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 681ED4FE1FF33B8C005461CC /* ValueDisplayNode.cpp */; };
 		682939891FFF7DCB00DF02B7 /* SGLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939871FFF7DCB00DF02B7 /* SGLog.cpp */; };
+		6829399820149B3A00DF02B7 /* ice_penguin in Resources */ = {isa = PBXBuildFile; fileRef = 6829399620149B3A00DF02B7 /* ice_penguin */; };
+		6829399F20149B7100DF02B7 /* IcePenguinModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6829399D20149B7100DF02B7 /* IcePenguinModel.cpp */; };
+		682939AE2014C42900DF02B7 /* erlangshen in Resources */ = {isa = PBXBuildFile; fileRef = 682939A12014C42700DF02B7 /* erlangshen */; };
+		682939AF2014C42900DF02B7 /* zhuque in Resources */ = {isa = PBXBuildFile; fileRef = 682939A22014C42700DF02B7 /* zhuque */; };
+		682939B02014C42900DF02B7 /* yegui in Resources */ = {isa = PBXBuildFile; fileRef = 682939A32014C42700DF02B7 /* yegui */; };
+		682939B22014C42900DF02B7 /* diyuqibing in Resources */ = {isa = PBXBuildFile; fileRef = 682939A52014C42800DF02B7 /* diyuqibing */; };
+		682939B32014C42900DF02B7 /* youhun in Resources */ = {isa = PBXBuildFile; fileRef = 682939A62014C42800DF02B7 /* youhun */; };
+		682939B42014C42900DF02B7 /* lanlong in Resources */ = {isa = PBXBuildFile; fileRef = 682939A72014C42800DF02B7 /* lanlong */; };
+		682939B52014C42900DF02B7 /* shibing in Resources */ = {isa = PBXBuildFile; fileRef = 682939A82014C42800DF02B7 /* shibing */; };
+		682939B62014C42900DF02B7 /* changexianzi in Resources */ = {isa = PBXBuildFile; fileRef = 682939A92014C42800DF02B7 /* changexianzi */; };
+		682939B92014C42900DF02B7 /* xingtian in Resources */ = {isa = PBXBuildFile; fileRef = 682939AC2014C42900DF02B7 /* xingtian */; };
+		682939BD2014C4DE00DF02B7 /* BlueDragonModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939BB2014C4DE00DF02B7 /* BlueDragonModel.cpp */; };
+		682939C120158FF400DF02B7 /* DiyuqbModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939BF20158FF400DF02B7 /* DiyuqbModel.cpp */; };
+		682939C5201591D000DF02B7 /* ErlangshenModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939C3201591D000DF02B7 /* ErlangshenModel.cpp */; };
+		682939C82015BFD700DF02B7 /* moqiang in Resources */ = {isa = PBXBuildFile; fileRef = 682939C62015BFD600DF02B7 /* moqiang */; };
+		682939C92015BFD700DF02B7 /* xueqishi in Resources */ = {isa = PBXBuildFile; fileRef = 682939C72015BFD600DF02B7 /* xueqishi */; };
+		682939CD2015BFF400DF02B7 /* MoqiangModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939CB2015BFF400DF02B7 /* MoqiangModel.cpp */; };
+		682939D02015C04700DF02B7 /* XueqiModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939CE2015C04700DF02B7 /* XueqiModel.cpp */; };
 		68633B911FFE0FBB00B70377 /* KnightModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68633B8F1FFE0FBB00B70377 /* KnightModel.cpp */; };
 		68633B931FFE151D00B70377 /* backgrounds in Resources */ = {isa = PBXBuildFile; fileRef = 68633B921FFE151D00B70377 /* backgrounds */; };
 		68633B961FFF542100B70377 /* SGObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68633B941FFF542100B70377 /* SGObject.cpp */; };
@@ -265,6 +283,30 @@
 		681ED4FF1FF33B8C005461CC /* ValueDisplayNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValueDisplayNode.h; sourceTree = "<group>"; };
 		682939871FFF7DCB00DF02B7 /* SGLog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SGLog.cpp; sourceTree = "<group>"; };
 		682939881FFF7DCB00DF02B7 /* SGLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SGLog.h; sourceTree = "<group>"; };
+		6829399620149B3A00DF02B7 /* ice_penguin */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ice_penguin; sourceTree = "<group>"; };
+		6829399D20149B7100DF02B7 /* IcePenguinModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IcePenguinModel.cpp; sourceTree = "<group>"; };
+		6829399E20149B7100DF02B7 /* IcePenguinModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcePenguinModel.h; sourceTree = "<group>"; };
+		682939A12014C42700DF02B7 /* erlangshen */ = {isa = PBXFileReference; lastKnownFileType = folder; path = erlangshen; sourceTree = "<group>"; };
+		682939A22014C42700DF02B7 /* zhuque */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zhuque; sourceTree = "<group>"; };
+		682939A32014C42700DF02B7 /* yegui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = yegui; sourceTree = "<group>"; };
+		682939A52014C42800DF02B7 /* diyuqibing */ = {isa = PBXFileReference; lastKnownFileType = folder; path = diyuqibing; sourceTree = "<group>"; };
+		682939A62014C42800DF02B7 /* youhun */ = {isa = PBXFileReference; lastKnownFileType = folder; path = youhun; sourceTree = "<group>"; };
+		682939A72014C42800DF02B7 /* lanlong */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lanlong; sourceTree = "<group>"; };
+		682939A82014C42800DF02B7 /* shibing */ = {isa = PBXFileReference; lastKnownFileType = folder; path = shibing; sourceTree = "<group>"; };
+		682939A92014C42800DF02B7 /* changexianzi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = changexianzi; sourceTree = "<group>"; };
+		682939AC2014C42900DF02B7 /* xingtian */ = {isa = PBXFileReference; lastKnownFileType = folder; path = xingtian; sourceTree = "<group>"; };
+		682939BB2014C4DE00DF02B7 /* BlueDragonModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlueDragonModel.cpp; sourceTree = "<group>"; };
+		682939BC2014C4DE00DF02B7 /* BlueDragonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueDragonModel.h; sourceTree = "<group>"; };
+		682939BF20158FF400DF02B7 /* DiyuqbModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DiyuqbModel.cpp; sourceTree = "<group>"; };
+		682939C020158FF400DF02B7 /* DiyuqbModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiyuqbModel.h; sourceTree = "<group>"; };
+		682939C3201591D000DF02B7 /* ErlangshenModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ErlangshenModel.cpp; sourceTree = "<group>"; };
+		682939C4201591D000DF02B7 /* ErlangshenModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErlangshenModel.h; sourceTree = "<group>"; };
+		682939C62015BFD600DF02B7 /* moqiang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = moqiang; sourceTree = "<group>"; };
+		682939C72015BFD600DF02B7 /* xueqishi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = xueqishi; sourceTree = "<group>"; };
+		682939CB2015BFF400DF02B7 /* MoqiangModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MoqiangModel.cpp; sourceTree = "<group>"; };
+		682939CC2015BFF400DF02B7 /* MoqiangModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoqiangModel.h; sourceTree = "<group>"; };
+		682939CE2015C04700DF02B7 /* XueqiModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = XueqiModel.cpp; sourceTree = "<group>"; };
+		682939CF2015C04700DF02B7 /* XueqiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XueqiModel.h; sourceTree = "<group>"; };
 		68633B8F1FFE0FBB00B70377 /* KnightModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KnightModel.cpp; sourceTree = "<group>"; };
 		68633B901FFE0FBB00B70377 /* KnightModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KnightModel.h; sourceTree = "<group>"; };
 		68633B921FFE151D00B70377 /* backgrounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = backgrounds; sourceTree = "<group>"; };
@@ -745,6 +787,53 @@
 				682939881FFF7DCB00DF02B7 /* SGLog.h */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		6829399920149B4C00DF02B7 /* IcePenguin */ = {
+			isa = PBXGroup;
+			children = (
+				6829399D20149B7100DF02B7 /* IcePenguinModel.cpp */,
+				6829399E20149B7100DF02B7 /* IcePenguinModel.h */,
+			);
+			path = IcePenguin;
+			sourceTree = "<group>";
+		};
+		682939BA2014C4CA00DF02B7 /* Lanlong */ = {
+			isa = PBXGroup;
+			children = (
+				682939BB2014C4DE00DF02B7 /* BlueDragonModel.cpp */,
+				682939BC2014C4DE00DF02B7 /* BlueDragonModel.h */,
+			);
+			path = Lanlong;
+			sourceTree = "<group>";
+		};
+		682939BE20158FE200DF02B7 /* Diyuqibing */ = {
+			isa = PBXGroup;
+			children = (
+				682939BF20158FF400DF02B7 /* DiyuqbModel.cpp */,
+				682939C020158FF400DF02B7 /* DiyuqbModel.h */,
+			);
+			path = Diyuqibing;
+			sourceTree = "<group>";
+		};
+		682939C2201591B500DF02B7 /* Erlangshen */ = {
+			isa = PBXGroup;
+			children = (
+				682939C3201591D000DF02B7 /* ErlangshenModel.cpp */,
+				682939C4201591D000DF02B7 /* ErlangshenModel.h */,
+			);
+			path = Erlangshen;
+			sourceTree = "<group>";
+		};
+		682939CA2015BFE200DF02B7 /* MainRoles */ = {
+			isa = PBXGroup;
+			children = (
+				682939CB2015BFF400DF02B7 /* MoqiangModel.cpp */,
+				682939CC2015BFF400DF02B7 /* MoqiangModel.h */,
+				682939CE2015C04700DF02B7 /* XueqiModel.cpp */,
+				682939CF2015C04700DF02B7 /* XueqiModel.h */,
+			);
+			path = MainRoles;
 			sourceTree = "<group>";
 		};
 		68633B8D1FFE0EAC00B70377 /* Knight */ = {
@@ -1300,6 +1389,18 @@
 		68CBCF7C1FF21AC7001BAD6B /* dragondemo */ = {
 			isa = PBXGroup;
 			children = (
+				682939C62015BFD600DF02B7 /* moqiang */,
+				682939C72015BFD600DF02B7 /* xueqishi */,
+				682939A92014C42800DF02B7 /* changexianzi */,
+				682939A52014C42800DF02B7 /* diyuqibing */,
+				682939A12014C42700DF02B7 /* erlangshen */,
+				682939A72014C42800DF02B7 /* lanlong */,
+				682939A82014C42800DF02B7 /* shibing */,
+				682939AC2014C42900DF02B7 /* xingtian */,
+				682939A32014C42700DF02B7 /* yegui */,
+				682939A62014C42800DF02B7 /* youhun */,
+				682939A22014C42700DF02B7 /* zhuque */,
+				6829399620149B3A00DF02B7 /* ice_penguin */,
 				68C695591FF266400036CDEF /* cow */,
 				68C695571FF264D20036CDEF /* ocrish */,
 				68CBCFAB1FF21B5B001BAD6B /* fire */,
@@ -1310,11 +1411,16 @@
 		68CBCFB61FF2429D001BAD6B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				682939CA2015BFE200DF02B7 /* MainRoles */,
+				682939C2201591B500DF02B7 /* Erlangshen */,
+				682939BE20158FE200DF02B7 /* Diyuqibing */,
+				682939BA2014C4CA00DF02B7 /* Lanlong */,
+				6829399920149B4C00DF02B7 /* IcePenguin */,
 				68633B8D1FFE0EAC00B70377 /* Knight */,
 				68C6955B1FF266460036CDEF /* Cow */,
 				68C695531FF262C30036CDEF /* Orcish */,
-				68CBCFBB1FF2537C001BAD6B /* BaseModel */,
 				68CBCFB71FF242A1001BAD6B /* FirePrince */,
+				68CBCFBB1FF2537C001BAD6B /* BaseModel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1575,14 +1681,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				682939C82015BFD700DF02B7 /* moqiang in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				682939B62014C42900DF02B7 /* changexianzi in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				68CE8A5A1FF50CED003E5626 /* Launch Screen.storyboard in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				68CE8A581FF4FD45003E5626 /* skills in Resources */,
+				682939C92015BFD700DF02B7 /* xueqishi in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
+				682939B02014C42900DF02B7 /* yegui in Resources */,
+				682939B42014C42900DF02B7 /* lanlong in Resources */,
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
+				682939AF2014C42900DF02B7 /* zhuque in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
@@ -1595,13 +1707,19 @@
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
+				6829399820149B3A00DF02B7 /* ice_penguin in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
+				682939B22014C42900DF02B7 /* diyuqibing in Resources */,
+				682939B52014C42900DF02B7 /* shibing in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				68CE8A6B1FF61B90003E5626 /* plist in Resources */,
+				682939AE2014C42900DF02B7 /* erlangshen in Resources */,
+				682939B32014C42900DF02B7 /* youhun in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
+				682939B92014C42900DF02B7 /* xingtian in Resources */,
 				68CE8AB31FFB6FD3003E5626 /* text_bg.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
@@ -1638,6 +1756,7 @@
 				68CBCF601FF21991001BAD6B /* EventObject.cpp in Sources */,
 				68CBCED51FF2181F001BAD6B /* ReportPanelViewModel.cpp in Sources */,
 				68CBCF5C1FF21991001BAD6B /* Armature.cpp in Sources */,
+				6829399F20149B7100DF02B7 /* IcePenguinModel.cpp in Sources */,
 				68ED49CC1F22408B009057C5 /* LGUITheme.cpp in Sources */,
 				68CE8A711FF62BFC003E5626 /* SGAttackCalculator.cpp in Sources */,
 				68CBCEB21FF217FD001BAD6B /* UITableViewHeaderFooterView.cpp in Sources */,
@@ -1654,9 +1773,11 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				68CBCED81FF2181F001BAD6B /* StatusIndicator.cpp in Sources */,
 				68CBCEB51FF217FD001BAD6B /* UITabbar.cpp in Sources */,
+				682939BD2014C4DE00DF02B7 /* BlueDragonModel.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				68CE8A4F1FF4CE5B003E5626 /* SGPlayer.cpp in Sources */,
 				68C6955E1FF2664F0036CDEF /* CowModel.cpp in Sources */,
+				682939CD2015BFF400DF02B7 /* MoqiangModel.cpp in Sources */,
 				68633B911FFE0FBB00B70377 /* KnightModel.cpp in Sources */,
 				68CBCEB41FF217FD001BAD6B /* UILabel.cpp in Sources */,
 				68CBCF771FF219C2001BAD6B /* CCTextureData.cpp in Sources */,
@@ -1687,6 +1808,7 @@
 				68CBCED41FF2181F001BAD6B /* ReportPanelView.cpp in Sources */,
 				68CBCED71FF2181F001BAD6B /* StatePanelViewModel.cpp in Sources */,
 				68CBCF5D1FF21991001BAD6B /* Bone.cpp in Sources */,
+				682939C120158FF400DF02B7 /* DiyuqbModel.cpp in Sources */,
 				68CBCF5E1FF21991001BAD6B /* Slot.cpp in Sources */,
 				68CBCEAF1FF217FD001BAD6B /* UIImageView.cpp in Sources */,
 				68CE8A691FF6189A003E5626 /* SGBuffFactory.cpp in Sources */,
@@ -1699,9 +1821,11 @@
 				68CBCEB01FF217FD001BAD6B /* UITableView.cpp in Sources */,
 				68CBCF5F1FF21991001BAD6B /* BaseObject.cpp in Sources */,
 				68CE8A641FF60A48003E5626 /* SGBuffPool.cpp in Sources */,
+				682939D02015C04700DF02B7 /* XueqiModel.cpp in Sources */,
 				682939891FFF7DCB00DF02B7 /* SGLog.cpp in Sources */,
 				68CBCED21FF2181F001BAD6B /* HomeTableViewModel.cpp in Sources */,
 				68CBCEA51FF217FD001BAD6B /* LayoutUtil.cpp in Sources */,
+				682939C5201591D000DF02B7 /* ErlangshenModel.cpp in Sources */,
 				68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */,
 				68CE8AA71FFB6AEB003E5626 /* SGAlertView.cpp in Sources */,
 				68CBCEA91FF217FD001BAD6B /* UITableViewCellViewModel.cpp in Sources */,

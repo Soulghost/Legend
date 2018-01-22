@@ -52,7 +52,7 @@ private:
     TableView *_tableView;
     void commonInit();
     
-    SGPlayer* createDemoPlayer(const string &name);
+    SGPlayer* createDemoPlayer(const string &name, float scale = 1.0f);
 };
 
 #endif

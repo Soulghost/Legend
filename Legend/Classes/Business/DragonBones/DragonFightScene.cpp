@@ -10,6 +10,13 @@
 #include "FirePrinceModel.h"
 #include "OrcishModel.h"
 #include "CowModel.h"
+#include "IcePenguinModel.h"
+#include "ErlangshenModel.h"
+#include "DiyuqbModel.h"
+#include "BlueDragonModel.h"
+#include "XueqiModel.h"
+#include "MoqiangModel.h"
+
 #include "LGButton.h"
 #include "SGCommonUtils.h"
 
@@ -49,17 +56,17 @@ bool DragonFightScene::init() {
     return true;
 }
 
-SGPlayer* DragonFightScene::createDemoPlayer(const string &name) {
+SGPlayer* DragonFightScene::createDemoPlayer(const string &name, float scale) {
     SGPlayer *p = SGPlayer::create();
     p->name = name;
     p->hp = p->hpmax = 16000;
     p->mp = p->mpmax = 1000;
-    p->pl = 1000;
-    p->ph = 1000;
-    p->ml = 1000;
-    p->mh = 1000;
-    p->speed = 120;
-    p->pd = 150;
+    p->pl = 1000 * scale;
+    p->ph = 1000 * scale;
+    p->ml = 1000 * scale;
+    p->mh = 1000 * scale;
+    p->speed = 120 * scale;
+    p->pd = 150 * scale;
     return p;
 }
 
@@ -89,43 +96,80 @@ void DragonFightScene::commonInit() {
     
     
     SGRoundDispatcher *dispatcher = SGRoundDispatcher::getInstance();
-    for (int i = 1; i <= 3; i++) {
-        FirePrinceModel *lfp = FirePrinceModel::create();
-        lfp->retain();
-        lfp->setModelLocation(ModelPositionLeft, i);
-        lfp->bindWithPlayer(createDemoPlayer(StringUtils::format("左炎魔%d", i)));
-        if (i == 2) {
-            lfp->_player->speed = 10000;
-        }
-        this->addChild(lfp->getDisplayNode());
-        lfp->startAnimating();
-        dispatcher->_leftRoles.pushBack(lfp);
-        
-        OrcishModel *roc = OrcishModel::create();
-        roc->retain();
-        roc->setModelLocation(ModelPositionRight, i);
-        roc->bindWithPlayer(createDemoPlayer(StringUtils::format("右兽人%d", i)));
-        this->addChild(roc->getDisplayNode());
-        roc->startAnimating();
-        dispatcher->_rightRoles.pushBack(roc);
-    }
+    // 配置左侧
+    Vector<DragonBaseModel *> leftRoles {
+        XueqiModel::create(),
+        MoqiangModel::create(),
+        DiyuqbModel::create()
+    };
+    Vector<SGPlayer *> leftRolePlayers {
+        createDemoPlayer("血骑士"),
+        createDemoPlayer("魔枪兵"),
+        createDemoPlayer("地狱骑士")
+    };
+    Vector<DragonBaseModel *> leftPets {
+        CowModel::create(),
+        CowModel::create(),
+        IcePenguinModel::create()
+    };
+    Vector<SGPlayer *> leftPetPlayers {
+        createDemoPlayer("炎魔2号"),
+        createDemoPlayer("炎魔3号"),
+        createDemoPlayer("冰雪企鹅", 10.0f)
+    };
     
-    for (int i = 1; i <= 3; i++) {
-        CowModel *lcow = CowModel::create();
-        lcow->retain();
-        lcow->setModelLocation(ModelPositionLeft, i + 3);
-        lcow->bindWithPlayer(createDemoPlayer(StringUtils::format("左牛宝%d", i)));
-        this->addChild(lcow->getDisplayNode());
-        lcow->startAnimating();
-        dispatcher->_leftRoles.pushBack(lcow);
-        
-        CowModel *rcow = CowModel::create();
-        rcow->retain();
-        rcow->setModelLocation(ModelPositionRight, i + 3);
-        rcow->bindWithPlayer(createDemoPlayer(StringUtils::format("右牛宝%d", i)));
-        this->addChild(rcow->getDisplayNode());
-        rcow->startAnimating();
-        dispatcher->_rightRoles.pushBack(rcow);
+    // 配置右侧
+    Vector<DragonBaseModel *> rightRoles {
+        OrcishModel::create(),
+        OrcishModel::create(),
+        BlueDragonModel::create()
+    };
+    Vector<SGPlayer *> rightRolePlayers {
+        createDemoPlayer("兽人1号"),
+        createDemoPlayer("兽人2号"),
+        createDemoPlayer("蓝龙1号")
+    };
+    Vector<DragonBaseModel *> rightPets {
+        CowModel::create(),
+        CowModel::create(),
+        CowModel::create()
+    };
+    Vector<SGPlayer *> rightPetPlayers {
+        createDemoPlayer("炎魔1号"),
+        createDemoPlayer("炎魔2号"),
+        createDemoPlayer("冰雪企鹅", 10.0f)
+    };
+    
+    // 部署战场
+    for (int p = 0; p < 2; p++) {
+        ModelPosition position = p == 0 ? ModelPositionLeft : ModelPositionRight;
+        for (int i = 0; i < (int)leftRoles.size(); i++) {
+            int pos = i + 1;
+            int petPos = 3 + pos;
+            DragonBaseModel *role = p == 0 ? leftRoles.at(i) : rightRoles.at(i);
+            role->setModelLocation(position, pos);
+            role->bindWithPlayer(p == 0 ? leftRolePlayers.at(i) : rightRolePlayers.at(i));
+            if (p == 0) {
+                dispatcher->_leftRoles.pushBack(role);
+            } else {
+                dispatcher->_rightRoles.pushBack(role);
+            }
+            this->addChild(role->getDisplayNode());
+            role->startAnimating();
+            if ((p == 0 && leftPets.size() > i) ||
+                (p == 1 && rightPets.size() > i)) {
+                DragonBaseModel *pet = p == 0 ? leftPets.at(i) : rightPets.at(i);
+                pet->setModelLocation(position, petPos);
+                pet->bindWithPlayer(p == 0 ? leftPetPlayers.at(i) : rightPetPlayers.at(i));
+                if (p == 0) {
+                    dispatcher->_leftRoles.pushBack(pet);
+                } else {
+                    dispatcher->_rightRoles.pushBack(pet);
+                }
+                this->addChild(pet->getDisplayNode());
+                pet->startAnimating();
+            }
+        }
     }
     
     LGButton *skillBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
@@ -220,7 +264,7 @@ void DragonFightScene::commonInit() {
         int randomOperation = CCRANDOM_0_1() * 5;
         vector<string> pSkills{"leimingzhan", "lieyanzhan"};
         vector<string> mSkills{"yanbao"};
-        switch (randomOperation) {
+        switch (randomOperation - randomOperation + 3) {
             case 0:
                 action->type = SGPlayerActionTypeCommonAttack;
                 break;

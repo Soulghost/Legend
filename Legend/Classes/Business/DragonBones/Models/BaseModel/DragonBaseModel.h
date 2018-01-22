@@ -161,11 +161,13 @@ public:
     SGValueBar *_hpBar;
     SGValueBar *_mpBar;
     Label *_nameLabel;
+    float nameLabelOffsetY;
     
     Vec2 _originPosition;
     Vec2 _originLeftScale;
     float _modelHeight;
     float _attackBackwardRatio;
+    float _skillConjureRatio;
     
     void initWithInfo(string dataJSONPath, string textureJSONPath, string armatureName);
     void initWithInfo(string dataJSONPath, string textureJSONPath, string armatureName, DragonActionAlias actionAlias);

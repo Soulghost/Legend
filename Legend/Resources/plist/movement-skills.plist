@@ -24,5 +24,27 @@
 		<key>fixedAdd</key>
 		<integer>1000</integer>
 	</dict>
+	<dict>
+		<key>skillName</key>
+		<string>leimingzhan</string>
+		<key>displayName</key>
+		<string>雷鸣斩</string>
+		<key>frameDuration</key>
+		<real>0.16</real>
+		<key>frameCount</key>
+		<integer>5</integer>
+		<key>scale</key>
+		<real>1.5</real>
+		<key>hitRatio</key>
+		<real>0.5</real>
+		<key>type</key>
+		<string>p</string>
+		<key>targetCount</key>
+		<integer>3</integer>
+		<key>gain</key>
+		<integer>20</integer>
+		<key>fixedAdd</key>
+		<integer>1000</integer>
+	</dict>
 </array>
 </plist>

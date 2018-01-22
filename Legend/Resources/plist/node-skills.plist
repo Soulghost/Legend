@@ -24,5 +24,29 @@
 		<key>fixedAdd</key>
 		<integer>1500</integer>
 	</dict>
+	<dict>
+		<key>skillName</key>
+		<string>zhufuzhizhen</string>
+		<key>displayName</key>
+		<string>祝福之阵</string>
+		<key>frameDuration</key>
+		<real>0.16</real>
+		<key>frameCount</key>
+		<integer>17</integer>
+		<key>scale</key>
+		<integer>1</integer>
+		<key>hitRatio</key>
+		<real>0.6</real>
+		<key>type</key>
+		<string>m</string>
+		<key>subtype</key>
+		<string>heal</string>
+		<key>targetCount</key>
+		<integer>3</integer>
+		<key>gain</key>
+		<integer>20</integer>
+		<key>fixedAdd</key>
+		<integer>500</integer>
+	</dict>
 </array>
 </plist>

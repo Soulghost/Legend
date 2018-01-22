@@ -23,6 +23,7 @@ public:
     float scale;
     float hitRatio;
     string type;
+    string subtype;
     string domain;
     int targetCount;
     int gain;

@@ -116,8 +116,17 @@ void SGRoundDispatcher::nextAction() {
     Vector<DragonBaseModel *> targets = action->targets;
     switch (action->type) {
         case SGPlayerActionTypeCommonAttack: {
-            // simulate attack
             DragonBaseModel *target = targets.at(0);
+            // 如果所选目标已经死亡
+            if (target->_player->hp == 0) {
+                SGLog::info("%s 的所选目标已经死亡，尝试重新选择");
+                target = SGSkillDispatcher::getInstance()->randomLiveTarget(caller, true);
+                if (target == nullptr) {
+                    SGLog::info("无目标可选，在普通攻击前战斗结束");
+                    return;
+                }
+                SGLog::info("重新选择了目标 %s", target->_player->name.c_str());
+            }
             SGLog::info("%s 对 %s 发动了普通攻击", caller->_player->name.c_str(), target->_player->name.c_str());
             auto moveTo = caller->moveToAction(target);
             auto attack = caller->attackAction([this, caller, target](float duration) {

@@ -58,8 +58,11 @@ void ValueDisplayNode::addNodes() {
     } else {
         startX = 0;
     }
-    string prefix = "assets/numbers";
+    string prefix = "";
     switch (_attackValue.type) {
+        case ValueTypeCommon:
+            prefix = StringUtils::format("assets/numbers/common");
+            break;
         case ValueTypeCrit:
             prefix = StringUtils::format("assets/numbers/crit");
             break;

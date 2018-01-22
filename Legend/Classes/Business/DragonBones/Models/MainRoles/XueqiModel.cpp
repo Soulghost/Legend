@@ -22,7 +22,7 @@ bool XueqiModel::init() {
 }
 
 void XueqiModel::commonInit() {
-    this->_modelHeight = 100;
+    this->_modelHeight = 105;
     this->_attackBackwardRatio = 0.6;
     this->initWithInfo("xueqishi/xueqishi_ske.json", "xueqishi/xueqishi_tex.json", "armatureName", DragonActionAlias("stand", "stand", "attack", "death", "skill"));
     _armatureDisplay->setScale(1.0f);

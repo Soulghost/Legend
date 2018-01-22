@@ -22,8 +22,8 @@ bool OrcishModel::init() {
 }
 
 void OrcishModel::commonInit() {
-    this->_modelHeight = 90;
+    this->_modelHeight = 80;
     this->initWithInfo("ocrish/ocrish_ske.json", "ocrish/ocrish_tex.json", "armatureName", DragonActionAlias("main", "run", "attack_02", "death", "main_5_tolk"));
-    _armatureDisplay->setScale(.7f);
+    _armatureDisplay->setScale(.65f);
     this->markOriginLeftScale();
 }

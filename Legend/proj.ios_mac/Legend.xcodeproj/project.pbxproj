@@ -73,12 +73,20 @@
 		682939B62014C42900DF02B7 /* changexianzi in Resources */ = {isa = PBXBuildFile; fileRef = 682939A92014C42800DF02B7 /* changexianzi */; };
 		682939B92014C42900DF02B7 /* xingtian in Resources */ = {isa = PBXBuildFile; fileRef = 682939AC2014C42900DF02B7 /* xingtian */; };
 		682939BD2014C4DE00DF02B7 /* BlueDragonModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939BB2014C4DE00DF02B7 /* BlueDragonModel.cpp */; };
-		682939C120158FF400DF02B7 /* DiyuqbModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939BF20158FF400DF02B7 /* DiyuqbModel.cpp */; };
 		682939C5201591D000DF02B7 /* ErlangshenModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939C3201591D000DF02B7 /* ErlangshenModel.cpp */; };
 		682939C82015BFD700DF02B7 /* moqiang in Resources */ = {isa = PBXBuildFile; fileRef = 682939C62015BFD600DF02B7 /* moqiang */; };
 		682939C92015BFD700DF02B7 /* xueqishi in Resources */ = {isa = PBXBuildFile; fileRef = 682939C72015BFD600DF02B7 /* xueqishi */; };
 		682939CD2015BFF400DF02B7 /* MoqiangModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939CB2015BFF400DF02B7 /* MoqiangModel.cpp */; };
 		682939D02015C04700DF02B7 /* XueqiModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939CE2015C04700DF02B7 /* XueqiModel.cpp */; };
+		682939D32015C2AA00DF02B7 /* DiyuqbModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939D12015C2A900DF02B7 /* DiyuqbModel.cpp */; };
+		682939F42015C51A00DF02B7 /* tianshi in Resources */ = {isa = PBXBuildFile; fileRef = 682939F02015C51900DF02B7 /* tianshi */; };
+		682939F52015C51A00DF02B7 /* bailong in Resources */ = {isa = PBXBuildFile; fileRef = 682939F12015C51900DF02B7 /* bailong */; };
+		682939F62015C51A00DF02B7 /* zhankuang in Resources */ = {isa = PBXBuildFile; fileRef = 682939F22015C51A00DF02B7 /* zhankuang */; };
+		682939F72015C51A00DF02B7 /* moling in Resources */ = {isa = PBXBuildFile; fileRef = 682939F32015C51A00DF02B7 /* moling */; };
+		682939FA2015C53100DF02B7 /* BailongModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939F82015C53100DF02B7 /* BailongModel.cpp */; };
+		682939FD2015C54300DF02B7 /* MolingModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939FB2015C54300DF02B7 /* MolingModel.cpp */; };
+		68293A002015C55000DF02B7 /* TianshiModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 682939FE2015C55000DF02B7 /* TianshiModel.cpp */; };
+		68293A032015C55D00DF02B7 /* ZhankuangModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68293A012015C55D00DF02B7 /* ZhankuangModel.cpp */; };
 		68633B911FFE0FBB00B70377 /* KnightModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68633B8F1FFE0FBB00B70377 /* KnightModel.cpp */; };
 		68633B931FFE151D00B70377 /* backgrounds in Resources */ = {isa = PBXBuildFile; fileRef = 68633B921FFE151D00B70377 /* backgrounds */; };
 		68633B961FFF542100B70377 /* SGObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68633B941FFF542100B70377 /* SGObject.cpp */; };
@@ -297,8 +305,6 @@
 		682939AC2014C42900DF02B7 /* xingtian */ = {isa = PBXFileReference; lastKnownFileType = folder; path = xingtian; sourceTree = "<group>"; };
 		682939BB2014C4DE00DF02B7 /* BlueDragonModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BlueDragonModel.cpp; sourceTree = "<group>"; };
 		682939BC2014C4DE00DF02B7 /* BlueDragonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlueDragonModel.h; sourceTree = "<group>"; };
-		682939BF20158FF400DF02B7 /* DiyuqbModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DiyuqbModel.cpp; sourceTree = "<group>"; };
-		682939C020158FF400DF02B7 /* DiyuqbModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiyuqbModel.h; sourceTree = "<group>"; };
 		682939C3201591D000DF02B7 /* ErlangshenModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ErlangshenModel.cpp; sourceTree = "<group>"; };
 		682939C4201591D000DF02B7 /* ErlangshenModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErlangshenModel.h; sourceTree = "<group>"; };
 		682939C62015BFD600DF02B7 /* moqiang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = moqiang; sourceTree = "<group>"; };
@@ -307,6 +313,20 @@
 		682939CC2015BFF400DF02B7 /* MoqiangModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoqiangModel.h; sourceTree = "<group>"; };
 		682939CE2015C04700DF02B7 /* XueqiModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = XueqiModel.cpp; sourceTree = "<group>"; };
 		682939CF2015C04700DF02B7 /* XueqiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XueqiModel.h; sourceTree = "<group>"; };
+		682939D12015C2A900DF02B7 /* DiyuqbModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiyuqbModel.cpp; sourceTree = "<group>"; };
+		682939D22015C2AA00DF02B7 /* DiyuqbModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiyuqbModel.h; sourceTree = "<group>"; };
+		682939F02015C51900DF02B7 /* tianshi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tianshi; sourceTree = "<group>"; };
+		682939F12015C51900DF02B7 /* bailong */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bailong; sourceTree = "<group>"; };
+		682939F22015C51A00DF02B7 /* zhankuang */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zhankuang; sourceTree = "<group>"; };
+		682939F32015C51A00DF02B7 /* moling */ = {isa = PBXFileReference; lastKnownFileType = folder; path = moling; sourceTree = "<group>"; };
+		682939F82015C53100DF02B7 /* BailongModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BailongModel.cpp; sourceTree = "<group>"; };
+		682939F92015C53100DF02B7 /* BailongModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BailongModel.h; sourceTree = "<group>"; };
+		682939FB2015C54300DF02B7 /* MolingModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MolingModel.cpp; sourceTree = "<group>"; };
+		682939FC2015C54300DF02B7 /* MolingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MolingModel.h; sourceTree = "<group>"; };
+		682939FE2015C55000DF02B7 /* TianshiModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TianshiModel.cpp; sourceTree = "<group>"; };
+		682939FF2015C55000DF02B7 /* TianshiModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TianshiModel.h; sourceTree = "<group>"; };
+		68293A012015C55D00DF02B7 /* ZhankuangModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ZhankuangModel.cpp; sourceTree = "<group>"; };
+		68293A022015C55D00DF02B7 /* ZhankuangModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZhankuangModel.h; sourceTree = "<group>"; };
 		68633B8F1FFE0FBB00B70377 /* KnightModel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KnightModel.cpp; sourceTree = "<group>"; };
 		68633B901FFE0FBB00B70377 /* KnightModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KnightModel.h; sourceTree = "<group>"; };
 		68633B921FFE151D00B70377 /* backgrounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = backgrounds; sourceTree = "<group>"; };
@@ -807,15 +827,6 @@
 			path = Lanlong;
 			sourceTree = "<group>";
 		};
-		682939BE20158FE200DF02B7 /* Diyuqibing */ = {
-			isa = PBXGroup;
-			children = (
-				682939BF20158FF400DF02B7 /* DiyuqbModel.cpp */,
-				682939C020158FF400DF02B7 /* DiyuqbModel.h */,
-			);
-			path = Diyuqibing;
-			sourceTree = "<group>";
-		};
 		682939C2201591B500DF02B7 /* Erlangshen */ = {
 			isa = PBXGroup;
 			children = (
@@ -828,10 +839,20 @@
 		682939CA2015BFE200DF02B7 /* MainRoles */ = {
 			isa = PBXGroup;
 			children = (
+				682939D12015C2A900DF02B7 /* DiyuqbModel.cpp */,
+				682939D22015C2AA00DF02B7 /* DiyuqbModel.h */,
 				682939CB2015BFF400DF02B7 /* MoqiangModel.cpp */,
 				682939CC2015BFF400DF02B7 /* MoqiangModel.h */,
 				682939CE2015C04700DF02B7 /* XueqiModel.cpp */,
 				682939CF2015C04700DF02B7 /* XueqiModel.h */,
+				682939F82015C53100DF02B7 /* BailongModel.cpp */,
+				682939F92015C53100DF02B7 /* BailongModel.h */,
+				682939FB2015C54300DF02B7 /* MolingModel.cpp */,
+				682939FC2015C54300DF02B7 /* MolingModel.h */,
+				682939FE2015C55000DF02B7 /* TianshiModel.cpp */,
+				682939FF2015C55000DF02B7 /* TianshiModel.h */,
+				68293A012015C55D00DF02B7 /* ZhankuangModel.cpp */,
+				68293A022015C55D00DF02B7 /* ZhankuangModel.h */,
 			);
 			path = MainRoles;
 			sourceTree = "<group>";
@@ -1389,6 +1410,10 @@
 		68CBCF7C1FF21AC7001BAD6B /* dragondemo */ = {
 			isa = PBXGroup;
 			children = (
+				682939F12015C51900DF02B7 /* bailong */,
+				682939F32015C51A00DF02B7 /* moling */,
+				682939F02015C51900DF02B7 /* tianshi */,
+				682939F22015C51A00DF02B7 /* zhankuang */,
 				682939C62015BFD600DF02B7 /* moqiang */,
 				682939C72015BFD600DF02B7 /* xueqishi */,
 				682939A92014C42800DF02B7 /* changexianzi */,
@@ -1413,7 +1438,6 @@
 			children = (
 				682939CA2015BFE200DF02B7 /* MainRoles */,
 				682939C2201591B500DF02B7 /* Erlangshen */,
-				682939BE20158FE200DF02B7 /* Diyuqibing */,
 				682939BA2014C4CA00DF02B7 /* Lanlong */,
 				6829399920149B4C00DF02B7 /* IcePenguin */,
 				68633B8D1FFE0EAC00B70377 /* Knight */,
@@ -1708,6 +1732,7 @@
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				6829399820149B3A00DF02B7 /* ice_penguin in Resources */,
+				682939F52015C51A00DF02B7 /* bailong in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				682939B22014C42900DF02B7 /* diyuqibing in Resources */,
 				682939B52014C42900DF02B7 /* shibing in Resources */,
@@ -1717,11 +1742,14 @@
 				682939AE2014C42900DF02B7 /* erlangshen in Resources */,
 				682939B32014C42900DF02B7 /* youhun in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
+				682939F42015C51A00DF02B7 /* tianshi in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				682939B92014C42900DF02B7 /* xingtian in Resources */,
 				68CE8AB31FFB6FD3003E5626 /* text_bg.png in Resources */,
+				682939F62015C51A00DF02B7 /* zhankuang in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
+				682939F72015C51A00DF02B7 /* moling in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				68633B931FFE151D00B70377 /* backgrounds in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
@@ -1808,7 +1836,7 @@
 				68CBCED41FF2181F001BAD6B /* ReportPanelView.cpp in Sources */,
 				68CBCED71FF2181F001BAD6B /* StatePanelViewModel.cpp in Sources */,
 				68CBCF5D1FF21991001BAD6B /* Bone.cpp in Sources */,
-				682939C120158FF400DF02B7 /* DiyuqbModel.cpp in Sources */,
+				68293A032015C55D00DF02B7 /* ZhankuangModel.cpp in Sources */,
 				68CBCF5E1FF21991001BAD6B /* Slot.cpp in Sources */,
 				68CBCEAF1FF217FD001BAD6B /* UIImageView.cpp in Sources */,
 				68CE8A691FF6189A003E5626 /* SGBuffFactory.cpp in Sources */,
@@ -1816,6 +1844,7 @@
 				68CBCF631FF21992001BAD6B /* ArmatureData.cpp in Sources */,
 				68CBCEA81FF217FD001BAD6B /* UITableViewCellModel.cpp in Sources */,
 				68CBCEE91FF21835001BAD6B /* LGValueBar.cpp in Sources */,
+				68293A002015C55000DF02B7 /* TianshiModel.cpp in Sources */,
 				681ED5001FF33B8C005461CC /* ValueDisplayNode.cpp in Sources */,
 				68CBCF641FF21992001BAD6B /* DragonBonesData.cpp in Sources */,
 				68CBCEB01FF217FD001BAD6B /* UITableView.cpp in Sources */,
@@ -1827,11 +1856,13 @@
 				68CBCEA51FF217FD001BAD6B /* LayoutUtil.cpp in Sources */,
 				682939C5201591D000DF02B7 /* ErlangshenModel.cpp in Sources */,
 				68ED49CA1F22408B009057C5 /* LGButton.cpp in Sources */,
+				682939FD2015C54300DF02B7 /* MolingModel.cpp in Sources */,
 				68CE8AA71FFB6AEB003E5626 /* SGAlertView.cpp in Sources */,
 				68CBCEA91FF217FD001BAD6B /* UITableViewCellViewModel.cpp in Sources */,
 				68C695491FF2614D0036CDEF /* FirePrinceModel.cpp in Sources */,
 				68CBCF591FF21991001BAD6B /* AnimationState.cpp in Sources */,
 				68CBCF621FF21992001BAD6B /* AnimationData.cpp in Sources */,
+				682939FA2015C53100DF02B7 /* BailongModel.cpp in Sources */,
 				68CBCEA61FF217FD001BAD6B /* MemoryUtil.cpp in Sources */,
 				68CBCEA11FF217FD001BAD6B /* BaseLayer.cpp in Sources */,
 				68CBCF681FF21992001BAD6B /* JSONDataParser.cpp in Sources */,
@@ -1845,6 +1876,7 @@
 				68CBCF581FF21991001BAD6B /* Animation.cpp in Sources */,
 				68CBCF741FF219C2001BAD6B /* CCArmatureDisplay.cpp in Sources */,
 				68CBCEA71FF217FD001BAD6B /* UIScrollViewMVVMBinder.cpp in Sources */,
+				682939D32015C2AA00DF02B7 /* DiyuqbModel.cpp in Sources */,
 				68CE8AB11FFB6B22003E5626 /* SGSpriteTool.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				68CBCF5A1FF21991001BAD6B /* TimelineState.cpp in Sources */,

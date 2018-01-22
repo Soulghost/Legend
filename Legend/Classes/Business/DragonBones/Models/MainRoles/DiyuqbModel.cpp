@@ -22,9 +22,9 @@ bool DiyuqbModel::init() {
 }
 
 void DiyuqbModel::commonInit() {
-    this->_modelHeight = 115;
+    this->_modelHeight = 110;
     this->_attackBackwardRatio = 0.6;
     this->initWithInfo("diyuqibing/diyuqb_ske.json", "diyuqibing/diyuqb_tex.json", "armatureName", DragonActionAlias("stand", "stand", "attack", "death", "skill01"));
-    _armatureDisplay->setScale(.8f);
+    _armatureDisplay->setScale(.75f);
     this->markOriginLeftScale();
 }

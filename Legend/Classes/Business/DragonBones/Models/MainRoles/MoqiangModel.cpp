@@ -24,6 +24,6 @@ bool MoqiangModel::init() {
 void MoqiangModel::commonInit() {
     this->_modelHeight = 100;
     this->initWithInfo("moqiang/moqiang_ske.json", "moqiang/moqiang_tex.json", "armatureName", DragonActionAlias("stand", "stand", "attack", "death", "skill"));
-    _armatureDisplay->setScale(1.3f);
+    _armatureDisplay->setScale(1.25f);
     this->markOriginLeftScale();
 }

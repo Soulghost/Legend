@@ -47,8 +47,11 @@ AttackValue SGAttackCalculator::calculateAttackValue(SGPlayer *attacker, SGPlaye
         case AttackAttributeMagic: {
             // 计算基础伤害
             int base = RandomHelper::random_int(attacker->ml, attacker->mh);
-            int defence = target->md * (100 - options.mignore) / 100.0f;
-            base -= defence;
+            // 治疗技能不减伤
+            if (!options.isHeal) {
+                int defence = target->md * (100 - options.mignore) / 100.0f;
+                base -= defence;
+            }
             // 最低伤害修正
             if (base <= 0) {
                 base = 1;
@@ -60,7 +63,10 @@ AttackValue SGAttackCalculator::calculateAttackValue(SGPlayer *attacker, SGPlaye
             if (LGRandomUtil::genTrig(pcrit)) {
                 int critGain = attacker->critGain + options.critGain;
                 base *= (200 + critGain) / 100.0f;
-                value.type = ValueTypeCrit;
+                // 治疗技能暴击不飘红
+                if (!options.isHeal) {
+                    value.type = ValueTypeCrit;
+                }
             }
             value.value = base + options.fixedAdd;
             break;

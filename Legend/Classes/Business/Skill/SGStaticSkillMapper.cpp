@@ -76,6 +76,9 @@ void skill_lieyanzhan(const string &skillName, const SGSkillDTO &dto) {
     actions.pushBack(addBuff);
     auto moveBack = caller->moveBackAction();
     actions.pushBack(moveBack);
+    actions.pushBack(CallFunc::create([dto]() {
+        dto.callback();
+    }));
     caller->runAction(Sequence::create(actions));
 }
 
@@ -102,8 +105,8 @@ void skill_leimingzhan(const string &skillName, const SGSkillDTO &dto) {
     actions.pushBack(addBuff);
     auto moveBack = caller->moveBackAction();
     actions.pushBack(moveBack);
-    actions.pushBack(CallFunc::create([]() {
-        SGRoundDispatcher::getInstance()->nextAction();
+    actions.pushBack(CallFunc::create([dto]() {
+        dto.callback();
     }));
     caller->runAction(Sequence::create(actions));
 }

@@ -18,7 +18,7 @@
 		<key>type</key>
 		<string>p</string>
 		<key>targetCount</key>
-		<integer>3</integer>
+		<integer>6</integer>
 		<key>gain</key>
 		<integer>20</integer>
 		<key>fixedAdd</key>
@@ -40,7 +40,7 @@
 		<key>type</key>
 		<string>p</string>
 		<key>targetCount</key>
-		<integer>3</integer>
+		<integer>1</integer>
 		<key>gain</key>
 		<integer>20</integer>
 		<key>fixedAdd</key>

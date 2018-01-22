@@ -33,6 +33,11 @@ void SGSkill::initWithValueMap(const ValueMap &vm) {
     scale = vm.at("scale").asFloat();
     hitRatio = vm.at("hitRatio").asFloat();
     type = vm.at("type").asString();
+    if (vm.find("subtype") != vm.end()) {
+        subtype = vm.at("subtype").asString();
+    } else {
+        subtype = "hurt";
+    }
     targetCount = vm.at("targetCount").asInt();
     gain = vm.at("gain").asInt();
     fixedAdd = vm.at("fixedAdd").asInt();

@@ -126,6 +126,8 @@ public:
     void backwardInDelays(float seconds, EventCallback callback);
     void sufferAttackWithValue(AttackValue value, float afterDelay);
     void sufferAttackWithValue(AttackValue value, float afterDelay, EventCallback callback);
+    // 受到治疗的气血恢复
+    void underHealWithValue(AttackValue value, float afterDelay);
     
 #pragma mark - Action Descriptions
     float durationForAttack();

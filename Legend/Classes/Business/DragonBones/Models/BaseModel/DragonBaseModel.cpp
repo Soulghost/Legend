@@ -396,6 +396,26 @@ void DragonBaseModel::sufferAttackWithValue(AttackValue value, float afterDelay,
     });
 }
 
+void DragonBaseModel::underHealWithValue(AttackValue value, float afterDelay) {
+    // 边界处理
+    int delta = 0;
+    int hp = _player->hp;
+    int hpmax = _player->hpmax;
+    int diff = hpmax - hp;
+    if (diff > value.value) {
+        delta = value.value;
+    } else {
+        delta = diff;
+    }
+    value.value = delta;
+    
+    _armatureDisplay->runAction(Sequence::create(DelayTime::create(afterDelay), CallFunc::create([this, hp, delta, value]() {
+        _player->hp = hp + delta;
+        ValueDisplayNode::showInNode(_armatureDisplay, value);
+        this->renderPlayerData();
+    }), NULL));
+}
+
 #pragma mark - Action Desc
 float DragonBaseModel::durationForAttack() {
     return SGCommonUtils::getDurationForAnimationInModel(this, this->actionAlias.attackName);

@@ -69,6 +69,10 @@ void SGSkillDispatcher::dispatchNodeSkill(SGSkill *skill, DragonBaseModel *calle
         float animationStartDelay = duration * caller->_skillConjureRatio;
         AttackAttribute attribute = skill->type == "p" ? AttackAttributePhysical : AttackAttributeMagic;
         CalculateOptions options = CalculateOptions(attribute);
+        bool isHeal = skill->subtype == "heal";
+        if (isHeal) {
+            options.isHeal = true;
+        }
         switch (attribute) {
             case AttackAttributePhysical:
                 options.pgain = skill->gain;
@@ -81,11 +85,16 @@ void SGSkillDispatcher::dispatchNodeSkill(SGSkill *skill, DragonBaseModel *calle
         }
         options.fixedAdd = skill->fixedAdd;
         float skillDuration = skill->frameDuration * skill->frameCount;
-        float sufferAttackDelay = animationStartDelay + skillDuration * skill->hitRatio;
+        float showValueDelay = animationStartDelay + skillDuration * skill->hitRatio;
         for (DragonBaseModel *target : targets) {
             target->playSkill(skill, animationStartDelay);
             AttackValue v = SGAttackCalculator::calculateAttackValue(caller->_player, target->_player, options);
-            target->sufferAttackWithValue(v, sufferAttackDelay);
+            if (!isHeal) {
+                target->sufferAttackWithValue(v, showValueDelay);
+            } else {
+                v.type = ValueTypeHeal;
+                target->underHealWithValue(v, showValueDelay);
+            }
         }
         auto nextAction = Sequence::create(DelayTime::create(animationStartDelay + skillDuration), CallFunc::create([this, callback]() {
             if (callback != nullptr) {
@@ -153,10 +162,23 @@ void SGSkillDispatcher::dispatchSkill(const string &skillName, DragonBaseModel *
     SGSkill *skill = getSkillByName(skillName);
     SGLog::info("%s 对 %s 使用了技能 %s", caller->_player->name.c_str(), targets.at(0)->_player->name.c_str(), skill->displayName.c_str());
     string domain = skill->domain;
+    string subtype = skill->subtype;
     // 目标补全
     int targetCount = skill->targetCount;
-    Vector<DragonBaseModel *> allTargets = caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_rightRoles : SGRoundDispatcher::getInstance()->_leftRoles;
-    Vector<DragonBaseModel *> finalTargets = fullfillTargets(targets, allTargets, targetCount);
+    DragonBaseModel *firstTarget = targets.at(0);
+//    Vector<DragonBaseModel *> allTargets = caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_rightRoles : SGRoundDispatcher::getInstance()->_leftRoles;
+    Vector<DragonBaseModel *> allTargets = firstTarget->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_leftRoles : SGRoundDispatcher::getInstance()->_rightRoles;
+    TargetFullFillRule rule = TargetFullFillRuleRandom;
+    if (subtype == "heal") {
+        rule = TargetFullFillRuleLessHp;
+    } else if (subtype == "buff") {
+        rule = TargetFullFillRuleNotUnder;
+    }
+    Vector<DragonBaseModel *> finalTargets = fullfillTargets(targets, allTargets, targetCount, rule);
+    if (finalTargets.size() == 0) {
+        SGLog::info("在技能释放前战斗结束");
+        return;
+    }
     if (domain == "node") {
         dispatchNodeSkill(skill, caller, finalTargets, callback);
         return;
@@ -172,7 +194,15 @@ void SGSkillDispatcher::dispatchSkill(const string &skillName, DragonBaseModel *
 }
 
 #pragma mark - Common Methods
-Vector<DragonBaseModel *> SGSkillDispatcher::fullfillTargets(Vector<DragonBaseModel *> currentTargets, Vector<DragonBaseModel *> allTargets, int targetCount) {
+#pragma mark - Full Fill Algorithm
+class ModelSorter {
+public:
+    bool static hpLessSorter(DragonBaseModel *a, DragonBaseModel *b) {
+        return a->_player->hp < b->_player->hp;
+    }
+};
+
+Vector<DragonBaseModel *> SGSkillDispatcher::fullfillTargets(Vector<DragonBaseModel *> currentTargets, Vector<DragonBaseModel *> allTargets, int targetCount, TargetFullFillRule rule) {
     int diff = targetCount - (int)currentTargets.size();
     if (diff == 0) {
         return currentTargets;
@@ -184,18 +214,86 @@ Vector<DragonBaseModel *> SGSkillDispatcher::fullfillTargets(Vector<DragonBaseMo
         modelContains.insert(target);
         targetsInfo += " " + target->_player->name;
     }
-    auto engine = std::default_random_engine{};
-    shuffle(allTargets.begin(), allTargets.end(), engine);
+    switch (rule) {
+        case TargetFullFillRuleRandom: {
+            auto engine = std::default_random_engine{};
+            shuffle(allTargets.begin(), allTargets.end(), engine);
+            break;
+        }
+        case TargetFullFillRuleLessHp: {
+            sort(allTargets.begin(), allTargets.end(), ModelSorter::hpLessSorter);
+            break;
+        }
+        case TargetFullFillRuleNotUnder: {
+            
+        }
+        default: {
+            
+            break;
+        }
+    }
     for (DragonBaseModel *target : allTargets) {
+        // 如果目标在已有目标内，不再继续选择
         if (modelContains.find(target) != modelContains.end()) {
             continue;
         }
+        // 如果目标已经死亡，并且不是复活类技能，不再继续选择
+        if (target->_player->hp == 0 && rule != TargetFullFillRuleResurgence) {
+            continue;
+        }
         finalTargets.pushBack(target);
-        targetsInfo += " " + target->_player->name;
         if (--diff == 0) {
             break;
         }
     }
-    SGLog::info("技能的作用目标数为%d, 分别为%s", targetCount, targetsInfo.c_str());
-    return finalTargets;
+    // 最终目标剔除
+    if (rule != TargetFullFillRuleResurgence) {
+        Vector<DragonBaseModel *> filterTargets;
+        // 剔除所有死亡的目标
+        for (DragonBaseModel *target : finalTargets) {
+            if (target->_player->hp == 0 && rule != TargetFullFillRuleResurgence) {
+                continue;
+            }
+            filterTargets.pushBack(target);
+        }
+        if (filterTargets.size() != 0) {
+#ifdef DEBUG
+            targetsInfo += " " + target->_player->name;
+            SGLog::info("技能的作用目标数为%d, 分别为%s", targetCount, targetsInfo.c_str());
+#endif
+            return filterTargets;
+        }
+        // 无目标，尝试选择一个非0目标
+        for (DragonBaseModel *target : allTargets) {
+            if (target->_player->hp > 0) {
+                SGLog::info("选定的目标已全部死亡，随机选择了未死亡的 %s", target->_player->name.c_str());
+                Vector<DragonBaseModel *> singleTargetWrap{target};
+                return singleTargetWrap;
+            }
+        }
+        Vector<DragonBaseModel *> nonTargetWrap;
+        SGLog::info("无目标可选，战斗已经结束");
+        return nonTargetWrap;
+    } else {
+#ifdef DEBUG
+        targetsInfo += " " + target->_player->name;
+        SGLog::info("技能的作用目标数为%d, 分别为%s", targetCount, targetsInfo.c_str());
+#endif
+        return finalTargets;
+    }
+}
+
+DragonBaseModel* SGSkillDispatcher::randomLiveTarget(DragonBaseModel *caller, bool opposite) {
+    Vector<DragonBaseModel *> allTargets;
+    if (caller->getModelPosition() == ModelPositionLeft) {
+        allTargets = opposite ? SGRoundDispatcher::getInstance()->_rightRoles : SGRoundDispatcher::getInstance()->_leftRoles;
+    } else {
+        allTargets = opposite ? SGRoundDispatcher::getInstance()->_leftRoles : SGRoundDispatcher::getInstance()->_rightRoles;
+    }
+    for (DragonBaseModel *target : allTargets) {
+        if (target->_player->hp > 0) {
+            return target;
+        }
+    }
+    return nullptr;
 }

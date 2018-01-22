@@ -16,6 +16,10 @@
 #include "BlueDragonModel.h"
 #include "XueqiModel.h"
 #include "MoqiangModel.h"
+#include "BailongModel.h"
+#include "MolingModel.h"
+#include "TianshiModel.h"
+#include "ZhankuangModel.h"
 
 #include "LGButton.h"
 #include "SGCommonUtils.h"
@@ -59,7 +63,8 @@ bool DragonFightScene::init() {
 SGPlayer* DragonFightScene::createDemoPlayer(const string &name, float scale) {
     SGPlayer *p = SGPlayer::create();
     p->name = name;
-    p->hp = p->hpmax = 16000;
+    p->hp = 16000 * scale;
+    p->hpmax = 16000 * scale;
     p->mp = p->mpmax = 1000;
     p->pl = 1000 * scale;
     p->ph = 1000 * scale;
@@ -67,6 +72,7 @@ SGPlayer* DragonFightScene::createDemoPlayer(const string &name, float scale) {
     p->mh = 1000 * scale;
     p->speed = 120 * scale;
     p->pd = 150 * scale;
+    p->pcrit = 50;
     return p;
 }
 
@@ -103,7 +109,7 @@ void DragonFightScene::commonInit() {
         DiyuqbModel::create()
     };
     Vector<SGPlayer *> leftRolePlayers {
-        createDemoPlayer("血骑士"),
+        createDemoPlayer("血骑士", 16),
         createDemoPlayer("魔枪兵"),
         createDemoPlayer("地狱骑士")
     };
@@ -115,29 +121,29 @@ void DragonFightScene::commonInit() {
     Vector<SGPlayer *> leftPetPlayers {
         createDemoPlayer("炎魔2号"),
         createDemoPlayer("炎魔3号"),
-        createDemoPlayer("冰雪企鹅", 10.0f)
+        createDemoPlayer("冰雪企鹅", 3)
     };
     
     // 配置右侧
     Vector<DragonBaseModel *> rightRoles {
+        BailongModel::create(),
+        MolingModel::create(),
+        TianshiModel::create()
+    };
+    Vector<SGPlayer *> rightRolePlayers {
+        createDemoPlayer("白龙"),
+        createDemoPlayer("魔灵"),
+        createDemoPlayer("天师", 15)
+    };
+    Vector<DragonBaseModel *> rightPets {
         OrcishModel::create(),
         OrcishModel::create(),
         BlueDragonModel::create()
     };
-    Vector<SGPlayer *> rightRolePlayers {
-        createDemoPlayer("兽人1号"),
-        createDemoPlayer("兽人2号"),
-        createDemoPlayer("蓝龙1号")
-    };
-    Vector<DragonBaseModel *> rightPets {
-        CowModel::create(),
-        CowModel::create(),
-        CowModel::create()
-    };
     Vector<SGPlayer *> rightPetPlayers {
-        createDemoPlayer("炎魔1号"),
-        createDemoPlayer("炎魔2号"),
-        createDemoPlayer("冰雪企鹅", 10.0f)
+        createDemoPlayer("兽人"),
+        createDemoPlayer("魔兽"),
+        createDemoPlayer("蓝龙")
     };
     
     // 部署战场
@@ -244,7 +250,8 @@ void DragonFightScene::commonInit() {
     vector<pair<string, string>> operations{
         pair<string, string>("漫天火雨", "mantianhuoyu"),
         pair<string, string>("雷龙怒", "leilongnu"),
-        pair<string, string>("烈焰斩", "lieyanzhan")
+        pair<string, string>("烈焰斩", "lieyanzhan"),
+        pair<string, string>("雷鸣斩", "leimingzhan")
     };
     _operations = operations;
     // add menu
@@ -258,13 +265,22 @@ void DragonFightScene::commonInit() {
         _currentAction = action;
         _actionPromise = actionPromise;
         DragonBaseModel *role = action->caller;
-        if (role->getModelPosition() == ModelPositionLeft && role->getModleNum() == 2) {
+        if (role->getModelPosition() == ModelPositionLeft && role->getModleNum() == 1) {
+            return;
+        }
+        if (role->_player->name == "天师") {
+            action->type = SGPlayerActionTypeMagicSkill;
+            action->name = "zhufuzhizhen";
+            action->progress = SGPlayerActionProgressCommitted;
+            DragonBaseModel *randomTarget = action->caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_leftRoles.getRandomObject() : SGRoundDispatcher::getInstance()->_rightRoles.getRandomObject();
+            action->targets.pushBack(randomTarget);
+            _actionPromise(action);
             return;
         }
         int randomOperation = CCRANDOM_0_1() * 5;
         vector<string> pSkills{"leimingzhan", "lieyanzhan"};
         vector<string> mSkills{"yanbao"};
-        switch (randomOperation - randomOperation + 3) {
+        switch (randomOperation - randomOperation) {
             case 0:
                 action->type = SGPlayerActionTypeCommonAttack;
                 break;
@@ -306,8 +322,9 @@ TableViewCell* DragonFightScene::tableCellAtIndex(TableView *table, ssize_t idx)
     TableViewCell *cell = table->dequeueCell();
     if (cell == nullptr) {
         cell = TableViewCell::create();
-        Label *nameLabel = Label::createWithTTF(name, "fonts/yahei.ttf", 16);
-        nameLabel->setPosition(Vec2(50, 22));
+        Label *nameLabel = Label::createWithTTF(name, "fonts/langqian.ttf", 18);
+        nameLabel->setColor(Color3B::BLACK);
+        nameLabel->setPosition(Vec2(50, 18));
         nameLabel->setName("nameLabel");
         cell->addChild(nameLabel);
     } else {

@@ -28,6 +28,7 @@ typedef struct CalculateOptions {
     int pcrit, critGain;
     // 忽视防御
     int pignore, mignore;
+    bool isHeal;
     
     CalculateOptions(AttackAttribute _attribute) {
         attribute = _attribute;

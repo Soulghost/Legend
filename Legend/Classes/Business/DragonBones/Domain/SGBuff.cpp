@@ -36,7 +36,27 @@ void SGBuff::initWithValueMap(const ValueMap &vm) {
     offsetY = vm.at("offsetY").asFloat();
     life = vm.at("life").asInt();
     type = static_cast<SGBuffType>(vm.at("type").asInt());
+    if (vm.find("subtype") != vm.end()) {
+        subtype = static_cast<SGBuffSubType>(vm.at("subtype").asInt());
+    } else {
+        subtype = SGBuffSubtypeNone;
+    }
     isNegative = vm.at("isNegative").asBool();
     pgain = vm.at("pgain").asInt();
     mgain = vm.at("mgain").asInt();
+    if (vm.find("fixedValue") != vm.end()) {
+        fixedValue = vm.at("fixedValue").asInt();
+    } else {
+        fixedValue = 0;
+    }
+    if (vm.find("percentValue") != vm.end()) {
+        percentValue = vm.at("percentValue").asInt();
+    } else {
+        percentValue = 0;
+    }
+    if (vm.find("baseMax") != vm.end()) {
+        baseMax = vm.at("baseMax").asBool();
+    } else {
+        baseMax = true;
+    }
 }

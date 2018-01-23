@@ -46,6 +46,14 @@ void SGPlayer::withdrawBuff(SGBuff *buff) {
     mgain -= buff->mgain;
 }
 
+bool SGPlayer::isDead() {
+    return hp == 0;
+}
+
+bool SGPlayer::isFullHp() {
+    return hp == hpmax;
+}
+
 bool SGPlayer::isForbiddenPhysical() {
     Vector<SGBuff *> buffs = buffPool->getBuffs();
     for (SGBuff *buff : buffs) {

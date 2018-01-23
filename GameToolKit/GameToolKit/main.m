@@ -13,14 +13,14 @@ NSString* nameMapper(NSString *name) {
 //    if (location == NSNotFound) {
 //        return name;
 //    }
-//    int num = [[name substringToIndex:location] intValue];
-//    num -= 789999;
-    return [NSString stringWithFormat:@"zhufuzhizhen%@", name];
+    NSString *numStr = [name substringToIndex:6];
+    int num = [numStr intValue] - 909999;
+    return [NSString stringWithFormat:@"puduzhongsheng%d.png", num];
 }
 
 void changeNames() {
-    NSString *path = @"/Users/soulghost/Downloads/zhufuzhizhen/游戏技能特效素材(17)/";
-    NSString *output = @"zhufuzhizhen";
+    NSString *path = @"/Users/soulghost/Downloads/普度众生/";
+    NSString *output = @"puduzhongsheng";
     NSString *outputDir = [path stringByAppendingPathComponent:output];
     NSArray *items = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
     [[NSFileManager defaultManager] createDirectoryAtPath:outputDir withIntermediateDirectories:YES attributes:nil error:nil];

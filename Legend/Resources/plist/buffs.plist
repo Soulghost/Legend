@@ -58,5 +58,39 @@
 		<key>mgain</key>
 		<integer>0</integer>
 	</dict>
+	<dict>
+		<key>buffId</key>
+		<string>pudu</string>
+		<key>name</key>
+		<string>普渡</string>
+		<key>iconPath</key>
+		<string></string>
+		<key>skillName</key>
+		<string>pudu_buff</string>
+		<key>skillFrames</key>
+		<integer>4</integer>
+		<key>scale</key>
+		<real>0.3</real>
+		<key>life</key>
+		<integer>5</integer>
+		<key>offsetX</key>
+		<integer>0</integer>
+		<key>offsetY</key>
+		<integer>50</integer>
+		<key>type</key>
+		<integer>32</integer>
+		<key>subtype</key>
+		<integer>1</integer>
+		<key>isNegative</key>
+		<true/>
+		<key>pgain</key>
+		<integer>0</integer>
+		<key>mgain</key>
+		<integer>0</integer>
+		<key>fixedValue</key>
+		<integer>200</integer>
+		<key>percentValue</key>
+		<integer>10</integer>
+	</dict>
 </array>
 </plist>

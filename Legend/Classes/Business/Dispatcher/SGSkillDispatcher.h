@@ -23,6 +23,11 @@ typedef enum TargetFullFillRule {
     TargetFullFillRuleResurgence = 3
 } TargetFullFillRule;
 
+typedef enum TargetRidRule {
+    TargetRidRuleNone = 0,
+    TargetRidRuleFullHp = 1
+} TargetRidRule;
+
 class SGSkillDispatcher : public Ref {
 public:
     Sprite *leftSceneSkillNode;
@@ -38,7 +43,7 @@ public:
     void dispatchNodeSkill(SGSkill *skill, DragonBaseModel *caller, Vector<DragonBaseModel *> targets, EventCallback callback = nullptr);
     void dispatchSceneSkill(SGSkill *skill, DragonBaseModel *caller, Vector<DragonBaseModel *> targets, EventCallback callback = nullptr);
     void dispatchMovementSkill(SGSkill *skill, DragonBaseModel *caller, Vector<DragonBaseModel *> targets, EventCallback callback = nullptr);
-    Vector<DragonBaseModel *> fullfillTargets(Vector<DragonBaseModel *> currentTargets, Vector<DragonBaseModel *> allTargets, int targetCount, TargetFullFillRule rule = TargetFullFillRuleRandom);
+    Vector<DragonBaseModel *> fullfillTargets(Vector<DragonBaseModel *> currentTargets, Vector<DragonBaseModel *> allTargets, int targetCount, TargetFullFillRule rule = TargetFullFillRuleRandom, TargetRidRule ridRule = TargetRidRuleNone, void *data = nullptr);
     DragonBaseModel* randomLiveTarget(DragonBaseModel *caller, bool opposite);
     
 private:

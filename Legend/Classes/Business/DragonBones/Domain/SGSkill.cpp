@@ -22,7 +22,7 @@ bool SGSkill::init() {
 }
 
 void SGSkill::commonInit() {
-    
+    pureBuffSkill = false;
 }
 
 void SGSkill::initWithValueMap(const ValueMap &vm) {
@@ -41,4 +41,20 @@ void SGSkill::initWithValueMap(const ValueMap &vm) {
     targetCount = vm.at("targetCount").asInt();
     gain = vm.at("gain").asInt();
     fixedAdd = vm.at("fixedAdd").asInt();
+    if (vm.find("offsetY") != vm.end()) {
+        offsetY = vm.at("offsetY").asFloat();
+    }
+    // buff add
+    isBuffAdd = vm.find("buffId") != vm.end();
+    if (isBuffAdd) {
+        buffId = vm.at("buffId").asString();
+        if (vm.find("buffAddP") == vm.end()) {
+            buffAddP = 100;
+        } else {
+            buffAddP = vm.at("buffAddP").asInt();
+        }
+        if (vm.find("pureBuffSkill") != vm.end()) {
+            pureBuffSkill = vm.at("pureBuffSkill").asBool();
+        }
+    }
 }

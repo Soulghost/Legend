@@ -27,6 +27,7 @@ public:
 
 #pragma mark - Opreations
     void addBuff(SGBuff *buff);
+    SGBuff* getBuffById(const std::string &buffId);
     Vector<SGBuff *> getBuffs();
     void removeBuff(SGBuff *buff);
     void removePositiveBuffs();
@@ -39,6 +40,7 @@ protected:
     
 private:
     void logPoolState();
+    void performBuff(SGBuff *buff);
     
 private:
     void commonInit();

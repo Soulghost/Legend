@@ -78,11 +78,41 @@ void SGBuffPool::tick() {
     vector<string> keys = _buffMap.keys();
     for (const string &key : keys) {
         SGBuff *buff = _buffMap.at(key);
+        // 回合末buff效果
+        this->performBuff(buff);
         if (--buff->life == 0) {
             this->removeBuff(buff);
         }
     }
     this->logPoolState();
+}
+
+void SGBuffPool::performBuff(SGBuff *buff) {
+    SGBuffType buffType = buff->type;
+    int value = buff->fixedValue;
+    int percentAdd;
+    bool bmax = buff->baseMax;
+    switch (buff->subtype) {
+        case SGBuffSubtypeHp:
+            percentAdd = buff->percentValue * (bmax ? _model->_player->hpmax : _model->_player->hp) / 100;
+            break;
+        case SGBuffSubtypeMp:
+            percentAdd = buff->percentValue * (bmax ? _model->_player->mpmax : _model->_player->mp) / 100;
+            break;
+        case SGBuffSubtypeSp:
+            percentAdd = buff->percentValue * (bmax ? _model->_player->spmax : _model->_player->sp) / 100;
+            break;
+        default:
+            break;
+    }
+    value += percentAdd;
+    if (buffType & SGBuffTypeHurt) {
+    
+    }
+    if (buffType & SGBuffTypeHeal) {
+        AttackValue attackValue = AttackValue(value, ValueTypeHeal);
+        _model->underHealWithValue(attackValue, -1);
+    }
 }
 
 Vector<SGBuff *> SGBuffPool::getBuffs() {
@@ -93,6 +123,13 @@ Vector<SGBuff *> SGBuffPool::getBuffs() {
         buffs.pushBack(buff);
     }
     return buffs;
+}
+
+SGBuff* SGBuffPool::getBuffById(const std::string &buffId) {
+    if (_buffMap.find(buffId) != _buffMap.end()) {
+        return _buffMap.at(buffId);
+    }
+    return nullptr;
 }
 
 void SGBuffPool::logPoolState() {

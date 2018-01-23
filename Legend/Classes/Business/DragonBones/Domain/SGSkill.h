@@ -28,6 +28,13 @@ public:
     int targetCount;
     int gain;
     int fixedAdd;
+    float offsetY;
+    
+    // buff add
+    bool pureBuffSkill;
+    bool isBuffAdd;
+    string buffId;
+    int buffAddP;
     
     SGSkill();
     ~SGSkill();

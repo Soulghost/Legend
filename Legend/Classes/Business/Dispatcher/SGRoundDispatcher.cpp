@@ -10,6 +10,7 @@
 #include "SGSkillDispatcher.h"
 #include "SGAttackCalculator.h"
 #include "SGPlayer.h"
+#include "SGBuffPool.h"
 #include <algorithm>
 
 SGRoundDispatcher::SGRoundDispatcher() {
@@ -50,6 +51,7 @@ void SGRoundDispatcher::newRound() {
     roles.pushBack(_rightRoles);
     roundActions.clear();
     for (DragonBaseModel *role : roles) {
+        role->_player->buffPool->tick();
         SGPlayerAction *action = new SGPlayerAction();
         action->caller = role;
         roundActions.push_back(action);
@@ -116,10 +118,17 @@ void SGRoundDispatcher::nextAction() {
     Vector<DragonBaseModel *> targets = action->targets;
     switch (action->type) {
         case SGPlayerActionTypeCommonAttack: {
+            // 处于禁止状态的角色无法行动
+            if (caller->_player->isForbiddenPhysical()) {
+                actionIdx++;
+                nextAction();
+                SGLog::info("%s 禁止物理攻击", caller->_player->name.c_str());
+                return;
+            }
             DragonBaseModel *target = targets.at(0);
             // 如果所选目标已经死亡
             if (target->_player->hp == 0) {
-                SGLog::info("%s 的所选目标已经死亡，尝试重新选择");
+                SGLog::info("%s 的所选目标已经死亡，尝试重新选择", caller->_player->name.c_str());
                 target = SGSkillDispatcher::getInstance()->randomLiveTarget(caller, true);
                 if (target == nullptr) {
                     SGLog::info("无目标可选，在普通攻击前战斗结束");
@@ -136,6 +145,7 @@ void SGRoundDispatcher::nextAction() {
             });
             auto moveBack = caller->moveBackAction();
             auto finish = CallFunc::create([this]() {
+                actionIdx++;
                 nextAction();
             });
             auto seq = Sequence::create(moveTo, attack, moveBack, finish, NULL);
@@ -143,13 +153,24 @@ void SGRoundDispatcher::nextAction() {
             break;
         }
         case SGPlayerActionTypePhysicalSkill:
-        case SGPlayerActionTypeMagicSkill:
+        case SGPlayerActionTypeMagicSkill: {
+            // 处于禁止状态的角色无法行动
+            if (caller->_player->isForbiddenMagic()) {
+                actionIdx++;
+                nextAction();
+                SGLog::info("%s 禁止法术攻击", caller->_player->name.c_str());
+                return;
+            }
             SGSkillDispatcher::getInstance()->dispatchSkill(action->name, caller, targets, [this, action]() {
                 SGLog::info("技能id=%s 释放完毕，%s 行动结束", action->name.c_str(), action->caller->_player->name.c_str());
+                actionIdx++;
                 nextAction();
             });
+            break;
+        }
         default:
+            actionIdx++;
+            nextAction();
             break;
     }
-    actionIdx++;
 }

@@ -109,7 +109,7 @@ void DragonFightScene::commonInit() {
         DiyuqbModel::create()
     };
     Vector<SGPlayer *> leftRolePlayers {
-        createDemoPlayer("血骑士", 16),
+        createDemoPlayer("血骑士", 8),
         createDemoPlayer("魔枪兵"),
         createDemoPlayer("地狱骑士")
     };
@@ -133,7 +133,7 @@ void DragonFightScene::commonInit() {
     Vector<SGPlayer *> rightRolePlayers {
         createDemoPlayer("白龙"),
         createDemoPlayer("魔灵"),
-        createDemoPlayer("天师", 15)
+        createDemoPlayer("天师", 25)
     };
     Vector<DragonBaseModel *> rightPets {
         OrcishModel::create(),
@@ -270,13 +270,19 @@ void DragonFightScene::commonInit() {
         }
         if (role->_player->name == "天师") {
             action->type = SGPlayerActionTypeMagicSkill;
-            action->name = "zhufuzhizhen";
+            action->name = "puduzhongsheng";
             action->progress = SGPlayerActionProgressCommitted;
             DragonBaseModel *randomTarget = action->caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_leftRoles.getRandomObject() : SGRoundDispatcher::getInstance()->_rightRoles.getRandomObject();
             action->targets.pushBack(randomTarget);
             _actionPromise(action);
             return;
         }
+        // auto tick
+        action->type = SGPlayerActionTypeDenfense;
+        action->progress = SGPlayerActionProgressCommitted;
+        _actionPromise(action);
+        return;
+        
         int randomOperation = CCRANDOM_0_1() * 5;
         vector<string> pSkills{"leimingzhan", "lieyanzhan"};
         vector<string> mSkills{"yanbao"};

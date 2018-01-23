@@ -42,11 +42,41 @@
 		<key>subtype</key>
 		<string>heal</string>
 		<key>targetCount</key>
+		<integer>6</integer>
+		<key>gain</key>
+		<integer>20</integer>
+		<key>fixedAdd</key>
+		<integer>500</integer>
+	</dict>
+	<dict>
+		<key>skillName</key>
+		<string>puduzhongsheng</string>
+		<key>displayName</key>
+		<string>普度众生</string>
+		<key>frameDuration</key>
+		<real>0.16</real>
+		<key>frameCount</key>
+		<integer>18</integer>
+		<key>offsetY</key>
+		<integer>-10</integer>
+		<key>scale</key>
+		<integer>2</integer>
+		<key>hitRatio</key>
+		<real>0.6</real>
+		<key>type</key>
+		<string>m</string>
+		<key>subtype</key>
+		<string>heal</string>
+		<key>targetCount</key>
 		<integer>3</integer>
 		<key>gain</key>
 		<integer>20</integer>
 		<key>fixedAdd</key>
 		<integer>500</integer>
+		<key>buffId</key>
+		<string>pudu</string>
+		<key>pureBuffSkill</key>
+		<true/>
 	</dict>
 </array>
 </plist>

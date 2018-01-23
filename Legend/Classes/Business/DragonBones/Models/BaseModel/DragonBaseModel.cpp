@@ -168,6 +168,7 @@ void DragonBaseModel::playSkill(SGSkill *skill, float afterDelay, EventCallback 
         actions.pushBack(callback);
     }
     _displayNode->skillNode->setScale(skill->scale);
+    _displayNode->skillNode->setPositionY(_skillPosition.y + skill->offsetY);
     auto seq = Sequence::create(actions);
     _displayNode->skillNode->runAction(seq);
 }
@@ -284,6 +285,7 @@ void DragonBaseModel::markOriginLeftScale() {
     _originLeftScale = Vec2(_armatureDisplay->getScaleX(), _armatureDisplay->getScaleY());
     // make skill position
     Vec2 skillPosition = Vec2(0, _modelHeight * 0.5f + 10);
+    _skillPosition = skillPosition;
     Vec2 buffPosition = Vec2(0, _modelHeight * 0.5f - 10);
     _displayNode->skillNode->setPosition(skillPosition);
     _displayNode->buffNode->setPosition(buffPosition);
@@ -401,6 +403,9 @@ void DragonBaseModel::underHealWithValue(AttackValue value, float afterDelay) {
     int delta = 0;
     int hp = _player->hp;
     int hpmax = _player->hpmax;
+    if (hp == hpmax) {
+        return;
+    }
     int diff = hpmax - hp;
     if (diff > value.value) {
         delta = value.value;
@@ -408,12 +413,56 @@ void DragonBaseModel::underHealWithValue(AttackValue value, float afterDelay) {
         delta = diff;
     }
     value.value = delta;
-    
-    _armatureDisplay->runAction(Sequence::create(DelayTime::create(afterDelay), CallFunc::create([this, hp, delta, value]() {
+    Vector<FiniteTimeAction *> actions;
+    if (afterDelay != -1) {
+        actions.pushBack(DelayTime::create(afterDelay));
+    }
+    actions.pushBack(CallFunc::create([this, hp, delta, value]() {
         _player->hp = hp + delta;
         ValueDisplayNode::showInNode(_armatureDisplay, value);
         this->renderPlayerData();
-    }), NULL));
+    }));
+    _armatureDisplay->runAction(Sequence::create(actions));
+}
+
+void DragonBaseModel::underHurtWithValue(AttackValue value, float afterDelay) {
+    // 边界处理
+    int delta = 0;
+    int hp = _player->hp;
+    int diff = hp;
+    if (value.value > diff) {
+        // 造成的伤害大于hp上限
+        delta = diff;
+    } else {
+        delta = value.value;
+    }
+    value.value = delta;
+    Vector<FiniteTimeAction *> actions;
+    if (afterDelay != -1) {
+        actions.pushBack(DelayTime::create(afterDelay));
+    }
+    actions.pushBack(CallFunc::create([this, hp, delta, value]() {
+        _player->hp = hp - delta;
+        ValueDisplayNode::showInNode(_armatureDisplay, value);
+        this->renderPlayerData();
+        if (_player->hp == 0) {
+            this->setState(ModelStateDeath);
+        }
+    }));
+    _armatureDisplay->runAction(Sequence::create(actions));
+}
+
+void DragonBaseModel::addBuffAfterDelay(SGBuff *buff, float afterDelay) {
+    Vector<FiniteTimeAction *> actions;
+    buff->retain();
+    if (afterDelay != -1) {
+        actions.pushBack(DelayTime::create(afterDelay));
+    }
+    actions.pushBack(CallFunc::create([this, buff]() {
+        _player->buffPool->addBuff(buff);
+        buff->release();
+    }));
+    _armatureDisplay->runAction(Sequence::create(actions));
 }
 
 #pragma mark - Action Desc

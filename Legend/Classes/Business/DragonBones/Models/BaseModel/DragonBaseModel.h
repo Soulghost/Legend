@@ -126,8 +126,11 @@ public:
     void backwardInDelays(float seconds, EventCallback callback);
     void sufferAttackWithValue(AttackValue value, float afterDelay);
     void sufferAttackWithValue(AttackValue value, float afterDelay, EventCallback callback);
-    // 受到治疗的气血恢复
-    void underHealWithValue(AttackValue value, float afterDelay);
+    // 直接数值处理
+    void underHealWithValue(AttackValue value, float afterDelay = -1);
+    void underHurtWithValue(AttackValue value, float afterDelay = -1);
+    // buff附加
+    void addBuffAfterDelay(SGBuff *buff, float afterDelay = -1);
     
 #pragma mark - Action Descriptions
     float durationForAttack();
@@ -167,6 +170,7 @@ public:
     
     Vec2 _originPosition;
     Vec2 _originLeftScale;
+    Vec2 _skillPosition;
     float _modelHeight;
     float _attackBackwardRatio;
     float _skillConjureRatio;

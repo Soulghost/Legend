@@ -72,6 +72,14 @@ AttackValue SGAttackCalculator::calculateAttackValue(SGPlayer *attacker, SGPlaye
             break;
         }
     }
+    // 波动计算
+    if (options.isWave) {
+        int v = value.value;
+        int from = options.waveFrom;
+        int to = options.waveTo;
+        int res = LGRandomUtil::genRandom(from, to);
+        value.value = v * res / 100;
+    }
     return value;
 }
 

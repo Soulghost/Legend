@@ -129,6 +129,7 @@ public:
     // 直接数值处理
     void underHealWithValue(AttackValue value, float afterDelay = -1);
     void underHurtWithValue(AttackValue value, float afterDelay = -1);
+    void resurgeWithValue(AttackValue value, float afterDelay = -1);
     // buff附加
     void addBuffAfterDelay(SGBuff *buff, float afterDelay = -1);
     

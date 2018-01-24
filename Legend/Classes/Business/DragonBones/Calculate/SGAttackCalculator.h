@@ -29,6 +29,10 @@ typedef struct CalculateOptions {
     // 忽视防御
     int pignore, mignore;
     bool isHeal;
+    // 波动
+    bool isWave;
+    int waveFrom;
+    int waveTo;
     
     CalculateOptions(AttackAttribute _attribute) {
         attribute = _attribute;
@@ -37,6 +41,8 @@ typedef struct CalculateOptions {
         fixedAdd = 0;
         pcrit = critGain = 0;
         pignore = mignore = 0;
+        waveFrom = waveTo = 100;
+        isWave = false;
     }
     
 } CalculateOptions;

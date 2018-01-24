@@ -57,4 +57,17 @@ void SGSkill::initWithValueMap(const ValueMap &vm) {
             pureBuffSkill = vm.at("pureBuffSkill").asBool();
         }
     }
+    // wave
+    if (vm.find("waveFrom") != vm.end()) {
+        isWave = true;
+        waveFrom = vm.at("waveFrom").asInt();
+    } else {
+        waveFrom = 100;
+    }
+    if (vm.find("waveTo") != vm.end()) {
+        isWave = true;
+        waveTo = vm.at("waveTo").asInt();
+    } else {
+        waveTo = 100;
+    }
 }

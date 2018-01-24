@@ -50,6 +50,32 @@
 	</dict>
 	<dict>
 		<key>skillName</key>
+		<string>jufengzhou</string>
+		<key>displayName</key>
+		<string>飓风咒</string>
+		<key>frameDuration</key>
+		<real>0.16</real>
+		<key>frameCount</key>
+		<integer>9</integer>
+		<key>scale</key>
+		<integer>1</integer>
+		<key>hitRatio</key>
+		<real>0.6</real>
+		<key>type</key>
+		<string>m</string>
+		<key>targetCount</key>
+		<integer>4</integer>
+		<key>gain</key>
+		<integer>0</integer>
+		<key>fixedAdd</key>
+		<integer>0</integer>
+		<key>waveFrom</key>
+		<integer>50</integer>
+		<key>waveTo</key>
+		<integer>200</integer>
+	</dict>
+	<dict>
+		<key>skillName</key>
 		<string>puduzhongsheng</string>
 		<key>displayName</key>
 		<string>普度众生</string>
@@ -58,7 +84,7 @@
 		<key>frameCount</key>
 		<integer>18</integer>
 		<key>offsetY</key>
-		<integer>-10</integer>
+		<integer>20</integer>
 		<key>scale</key>
 		<integer>2</integer>
 		<key>hitRatio</key>
@@ -76,7 +102,33 @@
 		<key>buffId</key>
 		<string>pudu</string>
 		<key>pureBuffSkill</key>
-		<true/>
+		<false/>
+	</dict>
+	<dict>
+		<key>skillName</key>
+		<string>fusushu</string>
+		<key>displayName</key>
+		<string>复苏术</string>
+		<key>frameDuration</key>
+		<real>0.16</real>
+		<key>frameCount</key>
+		<integer>10</integer>
+		<key>offsetY</key>
+		<integer>20</integer>
+		<key>scale</key>
+		<integer>2</integer>
+		<key>hitRatio</key>
+		<real>0.6</real>
+		<key>type</key>
+		<string>m</string>
+		<key>subtype</key>
+		<string>resurge</string>
+		<key>targetCount</key>
+		<integer>2</integer>
+		<key>gain</key>
+		<integer>10</integer>
+		<key>fixedAdd</key>
+		<integer>500</integer>
 	</dict>
 </array>
 </plist>

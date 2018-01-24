@@ -108,6 +108,11 @@ void DragonBaseModel::renderPlayerData() {
 void DragonBaseModel::setState(ModelState modelState) {
     switch (modelState) {
         case ModelStateIdle:
+            // 如果是从死亡恢复过来，重新显示生命和魔法
+            if (_modelState == ModelStateDeath) {
+                _hpBar->setVisible(true);
+                _mpBar->setVisible(true);
+            }
             _displayNode->setLocalZOrder(0);
             if (_player->hp == 0) {
                 this->setState(ModelStateDeath);
@@ -448,6 +453,26 @@ void DragonBaseModel::underHurtWithValue(AttackValue value, float afterDelay) {
         if (_player->hp == 0) {
             this->setState(ModelStateDeath);
         }
+    }));
+    _armatureDisplay->runAction(Sequence::create(actions));
+}
+
+void DragonBaseModel::resurgeWithValue(AttackValue value, float afterDelay) {
+    int hpmax = _player->hpmax;
+    int delta = value.value;
+    if (value.value > hpmax) {
+        delta = hpmax;
+    }
+    value.value = delta;
+    Vector<FiniteTimeAction *> actions;
+    if (afterDelay != -1) {
+        actions.pushBack(DelayTime::create(afterDelay));
+    }
+    actions.pushBack(CallFunc::create([this, delta, value]() {
+        _player->hp = delta;
+        ValueDisplayNode::showInNode(_armatureDisplay, value);
+        this->renderPlayerData();
+        this->setState(ModelStateIdle);
     }));
     _armatureDisplay->runAction(Sequence::create(actions));
 }

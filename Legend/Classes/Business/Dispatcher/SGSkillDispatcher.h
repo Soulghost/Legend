@@ -28,6 +28,12 @@ typedef enum TargetRidRule {
     TargetRidRuleFullHp = 1
 } TargetRidRule;
 
+typedef enum SkillMode {
+    SkillModeHurt = 0,
+    SkillModeHeal = 1,
+    SkillModeResurge = 2
+} SkillMode;
+
 class SGSkillDispatcher : public Ref {
 public:
     Sprite *leftSceneSkillNode;

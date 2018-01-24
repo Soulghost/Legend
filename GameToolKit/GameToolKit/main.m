@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 
 NSString* nameMapper(NSString *name) {
-//    NSInteger location = [name rangeOfString:@"_"].location;
-//    if (location == NSNotFound) {
-//        return name;
-//    }
-    NSString *numStr = [name substringToIndex:6];
-    int num = [numStr intValue] - 909999;
-    return [NSString stringWithFormat:@"puduzhongsheng%d.png", num];
+    NSInteger location = [name rangeOfString:@"_"].location;
+    if (location == NSNotFound) {
+        return name;
+    }
+    NSString *numStr = [name substringToIndex:location];
+    numStr = [numStr substringFromIndex:numStr.length - 3];
+    return [NSString stringWithFormat:@"fusushu%d.png", [numStr integerValue] + 1];
 }
 
 void changeNames() {
-    NSString *path = @"/Users/soulghost/Downloads/普度众生/";
-    NSString *output = @"puduzhongsheng";
+    NSString *path = @"/Users/soulghost/Downloads/紫莲花/";
+    NSString *output = @"fusushu";
     NSString *outputDir = [path stringByAppendingPathComponent:output];
     NSArray *items = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
     [[NSFileManager defaultManager] createDirectoryAtPath:outputDir withIntermediateDirectories:YES attributes:nil error:nil];

@@ -36,6 +36,11 @@ public:
     string buffId;
     int buffAddP;
     
+    // ware
+    bool isWave;
+    int waveFrom;
+    int waveTo;
+    
     SGSkill();
     ~SGSkill();
     

@@ -77,30 +77,7 @@ SGPlayer* DragonFightScene::createDemoPlayer(const string &name, float scale) {
 }
 
 void DragonFightScene::commonInit() {
-    Size visibleSize = Director::getInstance()->getVisibleSize();
-    // set bg
-    Sprite *bg = Sprite::create("backgrounds/fight_bg_blue.jpeg");
-    bg->setContentSize(visibleSize);
-    Layout_Center(bg);
-    this->addChild(bg);
-    
-    // left and right skill node
-    leftSkillNode = Sprite::create();
-    leftSkillNode->setPosition(Vec2(visibleSize.width * 0.3f, visibleSize.height * 0.6f));
-    this->addChild(leftSkillNode);
-    rightSkillNode = Sprite::create();
-    rightSkillNode->setPosition(Vec2(visibleSize.width * 0.7f, visibleSize.height * 0.6f));
-    this->addChild(rightSkillNode);
-    leftSkillNode->setLocalZOrder(ZOrder_SceneSkillNode);
-    rightSkillNode->setLocalZOrder(ZOrder_SceneSkillNode);
-    SGSkillDispatcher::getInstance()->leftSceneSkillNode = leftSkillNode;
-    SGSkillDispatcher::getInstance()->rightSceneSkillNode = rightSkillNode;
-    
-    Node *delayNode = Node::create();
-    this->addChild(delayNode);
-    SGSkillDispatcher::getInstance()->delayNode = delayNode;
-    
-    
+    setupViews();
     SGRoundDispatcher *dispatcher = SGRoundDispatcher::getInstance();
     // 配置左侧
     Vector<DragonBaseModel *> leftRoles {
@@ -111,7 +88,7 @@ void DragonFightScene::commonInit() {
     Vector<SGPlayer *> leftRolePlayers {
         createDemoPlayer("血骑士", 8),
         createDemoPlayer("魔枪兵"),
-        createDemoPlayer("地狱骑士")
+        createDemoPlayer("地狱骑士", 100)
     };
     Vector<DragonBaseModel *> leftPets {
         CowModel::create(),
@@ -133,7 +110,7 @@ void DragonFightScene::commonInit() {
     Vector<SGPlayer *> rightRolePlayers {
         createDemoPlayer("白龙"),
         createDemoPlayer("魔灵"),
-        createDemoPlayer("天师", 25)
+        createDemoPlayer("天师", 80)
     };
     Vector<DragonBaseModel *> rightPets {
         OrcishModel::create(),
@@ -178,89 +155,6 @@ void DragonFightScene::commonInit() {
         }
     }
     
-    LGButton *skillBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
-    skillBtn->setTitle("attack");
-    skillBtn->setPosition(60, 40);
-    skillBtn->setContentSize(Size(120, 48));
-    _skillBtn = skillBtn;
-    _skillBtn->setOnClickHandler([&](Ref *sender) {
-        // simulate attack
-//        auto moveTo = _fp->moveToAction(_oc);
-//        auto attack = _fp->attackAction([this](float duration) {
-//            CalculateOptions options = CalculateOptions(AttackAttributePhysical);
-//            AttackValue v = SGAttackCalculator::calculateAttackValue(_fp->_player, _oc->_player, options);
-//            _oc->sufferAttackWithValue(v, duration * 0.5f);
-//        });
-//        auto moveBack = _fp->moveBackAction();
-//        auto seq = Sequence::create(moveTo, attack, moveBack, NULL);
-//        _fp->runAction(seq);
-    });
-    this->addChild(skillBtn);
-    
-    LGButton *steadyBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
-    steadyBtn->setTitle("conjure");
-    steadyBtn->setPosition(Vec2(180, 40));
-    steadyBtn->setContentSize(Size(120, 48));
-    _steadyBtn = steadyBtn;
-    _steadyBtn->setOnClickHandler([this](Ref *sender) {
-//        Vector<DragonBaseModel *> targets{_oc, _cow};
-//        SGSkillDispatcher::getInstance()->dispatchSceneSkill("mantianhuoyu", _fp, targets);
-    });
-    this->addChild(steadyBtn);
-    
-    LGButton *rAttackBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
-    rAttackBtn->setTitle("pSkill");
-    rAttackBtn->setPosition(Vec2(300, 40));
-    rAttackBtn->setContentSize(Size(120, 48));
-    _rAttackBtn = rAttackBtn;
-    _rAttackBtn->setOnClickHandler([&](Ref *sender) {
-//        Vector<DragonBaseModel *> targets{_oc, _cow};
-//        SGSkillDispatcher::getInstance()->dispatchMovementSkill("leimingzhan", _fp, targets);
-    });
-    this->addChild(rAttackBtn);
-    
-    LGButton *tickBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
-    tickBtn->setTitle("tick");
-    tickBtn->setPosition(Vec2(420, 40));
-    tickBtn->setContentSize(Size(120, 48));
-    tickBtn->setOnClickHandler([&](Ref *sender) {
-//        _fp->_player->buffPool->tick();
-    });
-    this->addChild(tickBtn);
-    
-    LGButton *addBuff = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
-    addBuff->setTitle("addBuff");
-    addBuff->setPosition(Vec2(540, 40));
-    addBuff->setContentSize(Size(120, 48));
-    addBuff->setOnClickHandler([&](Ref *sender) {
-//        SGBuff *zhanqiBuff = SGBuffFactory::getInstance()->createBuffById("zhixing");
-//        _fp->_player->buffPool->addBuff(zhanqiBuff);
-    });
-    this->addChild(addBuff);
-    
-    LGButton *resetBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
-    resetBtn->setTitle("reset");
-    resetBtn->setPosition(Vec2(660, 40));
-    resetBtn->setContentSize(Size(120, 48));
-    resetBtn->setOnClickHandler([&](Ref *sender) {
-        SGRoundDispatcher::getInstance()->newRound();
-    });
-    this->addChild(resetBtn);
-    
-    vector<pair<string, string>> operations{
-        pair<string, string>("漫天火雨", "mantianhuoyu"),
-        pair<string, string>("雷龙怒", "leilongnu"),
-        pair<string, string>("烈焰斩", "lieyanzhan"),
-        pair<string, string>("雷鸣斩", "leimingzhan")
-    };
-    _operations = operations;
-    // add menu
-    TableView *tableView = TableView::create(this, Size(120, visibleSize.height * 0.6));
-    tableView->setDelegate(this);
-    MEMSETTER(tableView);
-    this->addChild(tableView);
-    tableView->setPosition(Vec2(visibleSize.width * 0.5f - 120, 0));
-    
     SGRoundDispatcher::getInstance()->setActionReducer([this](SGPlayerAction *action, ActionPromise actionPromise) {
         _currentAction = action;
         _actionPromise = actionPromise;
@@ -270,9 +164,18 @@ void DragonFightScene::commonInit() {
         }
         if (role->_player->name == "天师") {
             action->type = SGPlayerActionTypeMagicSkill;
-            action->name = "puduzhongsheng";
+            action->name = "fusushu";
             action->progress = SGPlayerActionProgressCommitted;
             DragonBaseModel *randomTarget = action->caller->getModelPosition() == ModelPositionLeft ? SGRoundDispatcher::getInstance()->_leftRoles.getRandomObject() : SGRoundDispatcher::getInstance()->_rightRoles.getRandomObject();
+            action->targets.pushBack(randomTarget);
+            _actionPromise(action);
+            return;
+        }
+        if (role->_player->name == "地狱骑士") {
+            action->type = SGPlayerActionTypeMagicSkill;
+            action->name = "jufengzhou";
+            action->progress = SGPlayerActionProgressCommitted;
+            DragonBaseModel *randomTarget = action->caller->getModelPosition() == ModelPositionRight ? SGRoundDispatcher::getInstance()->_leftRoles.getRandomObject() : SGRoundDispatcher::getInstance()->_rightRoles.getRandomObject();
             action->targets.pushBack(randomTarget);
             _actionPromise(action);
             return;
@@ -316,6 +219,113 @@ void DragonFightScene::commonInit() {
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(modelSelectListener, this);
     
     SGRoundDispatcher::getInstance()->newRound();
+}
+
+void DragonFightScene::setupViews() {
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    // set bg
+    Sprite *bg = Sprite::create("backgrounds/fight_bg_blue.jpeg");
+    bg->setContentSize(visibleSize);
+    Layout_Center(bg);
+    this->addChild(bg);
+    
+    LGButton *skillBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
+    skillBtn->setTitle("attack");
+    skillBtn->setPosition(60, 40);
+    skillBtn->setContentSize(Size(120, 48));
+    _skillBtn = skillBtn;
+    _skillBtn->setOnClickHandler([&](Ref *sender) {
+        // simulate attack
+        //        auto moveTo = _fp->moveToAction(_oc);
+        //        auto attack = _fp->attackAction([this](float duration) {
+        //            CalculateOptions options = CalculateOptions(AttackAttributePhysical);
+        //            AttackValue v = SGAttackCalculator::calculateAttackValue(_fp->_player, _oc->_player, options);
+        //            _oc->sufferAttackWithValue(v, duration * 0.5f);
+        //        });
+        //        auto moveBack = _fp->moveBackAction();
+        //        auto seq = Sequence::create(moveTo, attack, moveBack, NULL);
+        //        _fp->runAction(seq);
+    });
+    this->addChild(skillBtn);
+    
+    LGButton *steadyBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
+    steadyBtn->setTitle("conjure");
+    steadyBtn->setPosition(Vec2(180, 40));
+    steadyBtn->setContentSize(Size(120, 48));
+    _steadyBtn = steadyBtn;
+    _steadyBtn->setOnClickHandler([this](Ref *sender) {
+        //        Vector<DragonBaseModel *> targets{_oc, _cow};
+        //        SGSkillDispatcher::getInstance()->dispatchSceneSkill("mantianhuoyu", _fp, targets);
+    });
+    this->addChild(steadyBtn);
+    
+    LGButton *rAttackBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
+    rAttackBtn->setTitle("pSkill");
+    rAttackBtn->setPosition(Vec2(300, 40));
+    rAttackBtn->setContentSize(Size(120, 48));
+    _rAttackBtn = rAttackBtn;
+    _rAttackBtn->setOnClickHandler([&](Ref *sender) {
+        //        Vector<DragonBaseModel *> targets{_oc, _cow};
+        //        SGSkillDispatcher::getInstance()->dispatchMovementSkill("leimingzhan", _fp, targets);
+    });
+    this->addChild(rAttackBtn);
+    
+    LGButton *tickBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
+    tickBtn->setTitle("tick");
+    tickBtn->setPosition(Vec2(420, 40));
+    tickBtn->setContentSize(Size(120, 48));
+    tickBtn->setOnClickHandler([&](Ref *sender) {
+        //        _fp->_player->buffPool->tick();
+    });
+    this->addChild(tickBtn);
+    
+    LGButton *addBuff = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
+    addBuff->setTitle("addBuff");
+    addBuff->setPosition(Vec2(540, 40));
+    addBuff->setContentSize(Size(120, 48));
+    addBuff->setOnClickHandler([&](Ref *sender) {
+        //        SGBuff *zhanqiBuff = SGBuffFactory::getInstance()->createBuffById("zhixing");
+        //        _fp->_player->buffPool->addBuff(zhanqiBuff);
+    });
+    this->addChild(addBuff);
+    
+    LGButton *resetBtn = LGButton::createWithFont(UIFont("fonts/scp.ttf", 16));
+    resetBtn->setTitle("reset");
+    resetBtn->setPosition(Vec2(660, 40));
+    resetBtn->setContentSize(Size(120, 48));
+    resetBtn->setOnClickHandler([&](Ref *sender) {
+        SGRoundDispatcher::getInstance()->newRound();
+    });
+    this->addChild(resetBtn);
+    
+    vector<pair<string, string>> operations{
+        pair<string, string>("漫天火雨", "mantianhuoyu"),
+        pair<string, string>("雷龙怒", "leilongnu"),
+        pair<string, string>("烈焰斩", "lieyanzhan"),
+        pair<string, string>("雷鸣斩", "leimingzhan")
+    };
+    _operations = operations;
+    // add menu
+    TableView *tableView = TableView::create(this, Size(120, visibleSize.height * 0.6));
+    tableView->setDelegate(this);
+    MEMSETTER(tableView);
+    this->addChild(tableView);
+    tableView->setPosition(Vec2(visibleSize.width * 0.5f - 120, 0));
+    
+    // left and right skill node
+    leftSkillNode = Sprite::create();
+    leftSkillNode->setPosition(Vec2(visibleSize.width * 0.3f, visibleSize.height * 0.6f));
+    this->addChild(leftSkillNode);
+    rightSkillNode = Sprite::create();
+    rightSkillNode->setPosition(Vec2(visibleSize.width * 0.7f, visibleSize.height * 0.6f));
+    this->addChild(rightSkillNode);
+    leftSkillNode->setLocalZOrder(ZOrder_SceneSkillNode);
+    rightSkillNode->setLocalZOrder(ZOrder_SceneSkillNode);
+    SGSkillDispatcher::getInstance()->leftSceneSkillNode = leftSkillNode;
+    SGSkillDispatcher::getInstance()->rightSceneSkillNode = rightSkillNode;
+    Node *delayNode = Node::create();
+    this->addChild(delayNode);
+    SGSkillDispatcher::getInstance()->delayNode = delayNode;
 }
 
 #pragma mark - TableView DataSource

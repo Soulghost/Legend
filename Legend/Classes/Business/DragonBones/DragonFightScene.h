@@ -51,6 +51,7 @@ private:
     Sprite *rightSkillNode;
     TableView *_tableView;
     void commonInit();
+    void setupViews();
     
     SGPlayer* createDemoPlayer(const string &name, float scale = 1.0f);
 };

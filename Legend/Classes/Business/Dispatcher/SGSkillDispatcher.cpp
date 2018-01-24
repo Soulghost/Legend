@@ -72,10 +72,25 @@ void SGSkillDispatcher::dispatchNodeSkill(SGSkill *skill, DragonBaseModel *calle
         float animationStartDelay = duration * caller->_skillConjureRatio;
         AttackAttribute attribute = skill->type == "p" ? AttackAttributePhysical : AttackAttributeMagic;
         CalculateOptions options = CalculateOptions(attribute);
-        bool isHeal = skill->subtype == "heal";
-        if (isHeal) {
+        if (skill->isWave) {
+            options.isWave = true;
+            options.waveFrom = skill->waveFrom;
+            options.waveTo = skill->waveTo;
+        }
+        // 技能作用类型判定
+        SkillMode mode = SkillModeHurt;
+        const string &subtype = skill->subtype;
+        if (subtype == "heal") {
+            mode = SkillModeHeal;
+            options.isHeal = true;
+        } else if (subtype == "resurge") {
+            mode = SkillModeResurge;
             options.isHeal = true;
         }
+        // 处理Buff
+        bool isBuffAdd = skill->isBuffAdd;
+        bool pureBuffSkill = skill->pureBuffSkill;
+        // 处理技能属性
         switch (attribute) {
             case AttackAttributePhysical:
                 options.pgain = skill->gain;
@@ -87,20 +102,29 @@ void SGSkillDispatcher::dispatchNodeSkill(SGSkill *skill, DragonBaseModel *calle
                 break;
         }
         options.fixedAdd = skill->fixedAdd;
+        // 处理技能时间
         float skillDuration = skill->frameDuration * skill->frameCount;
         float showValueDelay = animationStartDelay + skillDuration * skill->hitRatio;
-        // deal with buff
-        bool isBuffAdd = skill->isBuffAdd;
-        bool pureBuffSkill = skill->pureBuffSkill;
         for (DragonBaseModel *target : targets) {
             target->playSkill(skill, animationStartDelay);
+            // 非纯buff技能需要进行数值计算
             if (!pureBuffSkill) {
                 AttackValue v = SGAttackCalculator::calculateAttackValue(caller->_player, target->_player, options);
-                if (!isHeal) {
-                    target->sufferAttackWithValue(v, showValueDelay);
-                } else {
-                    v.type = ValueTypeHeal;
-                    target->underHealWithValue(v, showValueDelay);
+                switch (mode) {
+                    case SkillModeHurt: {
+                        target->sufferAttackWithValue(v, showValueDelay);
+                        break;
+                    }
+                    case SkillModeHeal: {
+                        v.type = ValueTypeHeal;
+                        target->underHealWithValue(v, showValueDelay);
+                        break;
+                    }
+                    case SkillModeResurge: {
+                        v.type = ValueTypeHeal;
+                        target->resurgeWithValue(v, showValueDelay);
+                        break;
+                    }
                 }
             }
             if (isBuffAdd && LGRandomUtil::genTrig(skill->buffAddP)) {
@@ -160,10 +184,12 @@ void SGSkillDispatcher::dispatchSceneSkill(SGSkill *skill, DragonBaseModel *call
         }
         float sufferTotalDelay = animationStartDelay + skillDuration * skill->hitRatio;
         for (DragonBaseModel *target : targets) {
+            // 非纯buff技能需要进行数值计算
             if (!pureBuffSkill) {
                 AttackValue v = SGAttackCalculator::calculateAttackValue(caller->_player, target->_player, options);
                 target->sufferAttackWithValue(v, sufferTotalDelay);
             }
+            // buff技能需要添加buff
             if (buff && LGRandomUtil::genTrig(skill->buffAddP)) {
                 target->addBuffAfterDelay(buff, sufferTotalDelay);
             }
@@ -198,6 +224,8 @@ void SGSkillDispatcher::dispatchSkill(const string &skillName, DragonBaseModel *
     void *data = nullptr;
     if (subtype == "heal") {
         rule = TargetFullFillRuleLessHp;
+    } else if (subtype == "resurge") {
+        rule = TargetFullFillRuleResurgence;
     }
     if (isAddBuff) {
         rule = TargetFullFillRuleNotUnder;
@@ -282,6 +310,16 @@ Vector<DragonBaseModel *> SGSkillDispatcher::fullfillTargets(Vector<DragonBaseMo
             allTargets.pushBack(underTargets);
             break;
         }
+        case TargetFullFillRuleResurgence: {
+            // 复活技能，选择死亡的目标
+            Vector<DragonBaseModel *> deathTargets;
+            for (DragonBaseModel *target : allTargets) {
+                if (target->_player->isDead()) {
+                    deathTargets.pushBack(target);
+                }
+            }
+            break;
+        }
         default: {
             
             break;
@@ -292,9 +330,15 @@ Vector<DragonBaseModel *> SGSkillDispatcher::fullfillTargets(Vector<DragonBaseMo
         if (modelContains.find(target) != modelContains.end()) {
             continue;
         }
-        // 如果目标已经死亡，并且不是复活类技能，不再继续选择
-        if (target->_player->hp == 0 && rule != TargetFullFillRuleResurgence) {
-            continue;
+        // 非复活类技能，选择未死亡目标，复活类技能选择死亡目标
+        if (rule != TargetFullFillRuleResurgence) {
+            if (target->_player->isDead()) {
+                continue;
+            }
+        } else {
+            if (!target->_player->isDead()) {
+                continue;
+            }
         }
         finalTargets.pushBack(target);
         if (--diff == 0) {
@@ -312,6 +356,7 @@ Vector<DragonBaseModel *> SGSkillDispatcher::fullfillTargets(Vector<DragonBaseMo
             it++;
         }
     }
+    // 复活类技能不可能出现无目标情况，不需要额外处理
     if (finalTargets.size() == 0) {
         // 无目标，尝试选择一个非0目标
         for (DragonBaseModel *target : allTargets) {

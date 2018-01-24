@@ -88,6 +88,9 @@ void SGBuffPool::tick() {
 }
 
 void SGBuffPool::performBuff(SGBuff *buff) {
+    if (_model->_player->isDead()) {
+        return;
+    }
     SGBuffType buffType = buff->type;
     int value = buff->fixedValue;
     int percentAdd;
@@ -107,7 +110,8 @@ void SGBuffPool::performBuff(SGBuff *buff) {
     }
     value += percentAdd;
     if (buffType & SGBuffTypeHurt) {
-    
+        AttackValue attackValue = AttackValue(value, ValueTypeCommon);
+        _model->underHurtWithValue(attackValue, -1);
     }
     if (buffType & SGBuffTypeHeal) {
         AttackValue attackValue = AttackValue(value, ValueTypeHeal);
